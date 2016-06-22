@@ -17,8 +17,8 @@
  * email   ljd2038@gmail.com
  */
 
-package com.ljd.news.internal.di;
+package com.ljd.news.config;
 
-public interface HasComponent<C> {
-    C getComponent();
+public class BuildConfig {
+
 }

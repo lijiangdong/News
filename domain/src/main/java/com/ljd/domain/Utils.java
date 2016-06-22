@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 News
+ * Copyright (C) 2026 News
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
  * author  LiJiangdong
  * email   ljd2038@gmail.com
  */
+
 package com.ljd.domain;
 
 /**

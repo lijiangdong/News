@@ -17,8 +17,17 @@
  * email   ljd2038@gmail.com
  */
 
-package com.ljd.news.internal.di;
+package com.ljd.news.internal.di.components;
 
-public interface HasComponent<C> {
-    C getComponent();
+import android.app.Activity;
+
+import com.ljd.news.internal.di.PerActivity;
+import com.ljd.news.internal.di.modules.ActivityModule;
+
+import dagger.Component;
+
+@PerActivity
+@Component(dependencies = ApplicationComponent.class, modules = ActivityModule.class)
+public interface ActivityComponent {
+    Activity activity();
 }

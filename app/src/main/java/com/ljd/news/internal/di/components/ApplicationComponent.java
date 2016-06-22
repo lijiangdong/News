@@ -17,17 +17,27 @@
  * email   ljd2038@gmail.com
  */
 
-package com.ljd.news;
+package com.ljd.news.internal.di.components;
 
-import android.app.Application;
+import android.content.Context;
 
-import com.ljd.news.utils.ToastUtils;
+import com.ljd.domain.executor.PostExecutionThread;
+import com.ljd.domain.executor.ThreadExecutor;
+import com.ljd.news.activity.BaseActivity;
+import com.ljd.news.internal.di.modules.ApplicationModule;
 
-public class NewsApplication extends Application {
+import javax.inject.Singleton;
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        ToastUtils.register(this);
-    }
+import dagger.Component;
+
+@Singleton
+@Component(modules = ApplicationModule.class)
+public interface ApplicationComponent {
+    void inject(BaseActivity baseActivity);
+
+    //Exposed to sub-graphs.
+    Context context();
+    ThreadExecutor threadExecutor();
+    PostExecutionThread postExecutionThread();
+//    UserRepository userRepository();
 }
