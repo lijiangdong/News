@@ -1,0 +1,60 @@
+ext{
+
+    news = [
+            compileSdkVersion: 23,
+            buildToolsVersion: "24.0.0",
+            applicationId: "com.ljd.news",
+            minSdkVersion: 16,
+            targetSdkVersion: 23,
+            versionCode: 1,
+            versionName: "1.0.0",
+            minifyEnabled: false
+    ]
+
+
+    appDependencies = [
+            appcompat:              "com.android.support:appcompat-v7:23.4.0",
+            design:                 "com.android.support:design:23.4.0",
+            rxandroid:              "io.reactivex:rxandroid:1.2.1",
+            rxjava:                 "io.reactivex:rxjava:1.1.6",
+            butterknife:            "com.jakewharton:butterknife:8.1.0",
+            butterknifeCompiler:    "com.jakewharton:butterknife-compiler:8.1.0",
+            dagger:                 "com.google.dagger:dagger:2.5",
+            daggerCompiler:         "com.google.dagger:dagger-compiler:2.5",
+            javaxAnnotation:        "org.glassfish:javax.annotation:10.0-b28",
+            timber:                 "com.jakewharton.timber:timber:4.1.2"
+    ]
+
+    appTestDependencies = [
+            junit:                  "junit:junit:4.12"
+    ]
+
+    dataDependencies = [
+            rxandroid:              "io.reactivex:rxandroid:1.2.1",
+            rxjava:                 "io.reactivex:rxjava:1.1.6",
+            retrofit2:              "com.squareup.retrofit2:retrofit:2.1.0",
+            converterGson:          "com.squareup.retrofit2:converter-gson:2.1.0",
+            rxjavaAdapter:          "com.squareup.retrofit2:adapter-rxjava:2.1.0",
+            javaxAnnotation:        "org.glassfish:javax.annotation:10.0-b28",
+            dagger:                 "com.google.dagger:dagger:2.5",
+            daggerCompiler:         "com.google.dagger:dagger-compiler:2.5",
+            timber:                 "com.jakewharton.timber:timber:4.1.2",
+            okHtttpLog:             "com.squareup.okhttp3:logging-interceptor:3.3.1"
+    ]
+
+    dataTestDependencies = [
+
+    ]
+
+    domainDependencies = [
+            rxjava:                 "io.reactivex:rxjava:1.1.6",
+            javaxAnnotation:        "org.glassfish:javax.annotation:10.0-b28",
+            dagger:                 "com.google.dagger:dagger:2.5",
+            daggerCompiler:         "com.google.dagger:dagger-compiler:2.5"
+    ]
+
+    domainTestDependencies = [
+
+    ]
+
+}
