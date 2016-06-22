@@ -43,7 +43,7 @@ ext{
     ]
 
     dataTestDependencies = [
-
+            junit:                  "junit:junit:4.12"
     ]
 
     domainDependencies = [

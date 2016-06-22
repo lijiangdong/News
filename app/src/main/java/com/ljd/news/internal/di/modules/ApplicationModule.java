@@ -29,8 +29,10 @@ import com.ljd.news.UIThread;
 
 import javax.inject.Singleton;
 
+import dagger.Module;
 import dagger.Provides;
 
+@Module
 public class ApplicationModule {
     private final NewsApplication application;
 

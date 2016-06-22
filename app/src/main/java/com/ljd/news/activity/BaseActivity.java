@@ -22,6 +22,10 @@ package com.ljd.news.activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.ljd.news.NewsApplication;
+import com.ljd.news.internal.di.components.ApplicationComponent;
+import com.ljd.news.internal.di.modules.ActivityModule;
+
 /**
  * Created by ljd on 6/21/16.
  */
@@ -30,5 +34,14 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.getApplicationComponent().inject(this);
+    }
+
+    protected ApplicationComponent getApplicationComponent() {
+        return ((NewsApplication)getApplication()).getApplicationComponent();
+    }
+
+    protected ActivityModule getActivityModule() {
+        return new ActivityModule(this);
     }
 }

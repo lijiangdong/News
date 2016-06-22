@@ -21,13 +21,38 @@ package com.ljd.news;
 
 import android.app.Application;
 
+import com.ljd.news.internal.di.components.ApplicationComponent;
+import com.ljd.news.internal.di.components.DaggerApplicationComponent;
+import com.ljd.news.internal.di.modules.ApplicationModule;
 import com.ljd.news.utils.ToastUtils;
 
+import timber.log.Timber;
+
+import static timber.log.Timber.DebugTree;
+
 public class NewsApplication extends Application {
+
+    private ApplicationComponent applicationComponent;
 
     @Override
     public void onCreate() {
         super.onCreate();
         ToastUtils.register(this);
+
+        if (NewsConfig.IS_DEBUG){
+            Timber.plant(new DebugTree());
+        }
+
+        initializeInjector();
+    }
+
+    private void initializeInjector() {
+        this.applicationComponent = DaggerApplicationComponent.builder()
+                .applicationModule(new ApplicationModule(this))
+                .build();
+    }
+
+    public ApplicationComponent getApplicationComponent() {
+        return this.applicationComponent;
     }
 }
