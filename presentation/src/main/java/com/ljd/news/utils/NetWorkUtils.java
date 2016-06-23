@@ -19,5 +19,5 @@
 
 package com.ljd.news.utils;
 
-public class NetStateUtils {
+public class NetWorkUtils {
 }

@@ -41,22 +41,22 @@ android {
 }
 
 dependencies {
-    def appDependencies = rootProject.ext.appDependencies
-    def testDependencies = rootProject.ext.appTestDependencies
+    def presentationDependencies = rootProject.ext.presentationDependencies
+    def testDependencies = rootProject.ext.presentationTestDependencies
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project(':domain')
     compile project(':data')
 
     testCompile     testDependencies.junit
-    compile         appDependencies.appcompat
-    compile         appDependencies.design
-    compile         appDependencies.rxandroid
-    compile         appDependencies.rxjava
-    compile         appDependencies.butterknife
-    apt             appDependencies.butterknifeCompiler
-    compile         appDependencies.dagger
-    apt             appDependencies.daggerCompiler
-    provided        appDependencies.javaxAnnotation
-    compile         appDependencies.timber
+    compile         presentationDependencies.appcompat
+    compile         presentationDependencies.design
+    compile         presentationDependencies.rxandroid
+    compile         presentationDependencies.rxjava
+    compile         presentationDependencies.butterknife
+    apt             presentationDependencies.butterknifeCompiler
+    compile         presentationDependencies.dagger
+    apt             presentationDependencies.daggerCompiler
+    provided        presentationDependencies.javaxAnnotation
+    compile         presentationDependencies.timber
 }
