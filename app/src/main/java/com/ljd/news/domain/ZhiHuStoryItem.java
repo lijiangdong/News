@@ -1,30 +1,15 @@
-package com.ljd.news.data.entity;
-
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+package com.ljd.news.domain;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ZhiHuStoryEntity {
+public class ZhiHuStoryItem {
 
-    @SerializedName("images")
-    @Expose
     private List<String> images = new ArrayList<String>();
-    @SerializedName("type")
-    @Expose
     private Integer type;
-    @SerializedName("id")
-    @Expose
     private Integer id;
-    @SerializedName("ga_prefix")
-    @Expose
     private String gaPrefix;
-    @SerializedName("title")
-    @Expose
     private String title;
-    @SerializedName("multipic")
-    @Expose
     private Boolean multipic;
 
     /**
