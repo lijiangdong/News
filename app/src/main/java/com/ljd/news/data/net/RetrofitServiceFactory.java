@@ -22,22 +22,25 @@ package com.ljd.news.data.net;
 import com.ljd.news.data.net.api.WeChatNewsApi;
 import com.ljd.news.data.net.api.ZhiHuApi;
 
+import javax.inject.Inject;
+
 public class RetrofitServiceFactory {
 
     private static final String WE_CHAT_BASE_URL = "";
     private static final String ZHI_HU_BASE_URL = "http://news-at.zhihu.com";
+
+    @Inject
+    public static NewsRetrofit newsRetrofit;
 
     private RetrofitServiceFactory(){
 
     }
 
     public static WeChatNewsApi getWeChatNewsService(){
-        return NewsRetrofit.getInstance(WE_CHAT_BASE_URL)
-                .getNewsRetrofit(WeChatNewsApi.class);
+        return newsRetrofit.getNewsRetrofit(WeChatNewsApi.class,WE_CHAT_BASE_URL);
     }
 
     public static ZhiHuApi getZhiHuService(){
-        return NewsRetrofit.getInstance(ZHI_HU_BASE_URL)
-                .getNewsRetrofit(ZhiHuApi.class);
+        return newsRetrofit.getNewsRetrofit(ZhiHuApi.class,ZHI_HU_BASE_URL);
     }
 }

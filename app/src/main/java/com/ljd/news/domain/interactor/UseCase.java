@@ -19,8 +19,9 @@
 
 package com.ljd.news.domain.interactor;
 
-import com.ljd.domain.executor.PostExecutionThread;
-import com.ljd.domain.executor.ThreadExecutor;
+
+import com.ljd.news.domain.executor.PostExecutionThread;
+import com.ljd.news.domain.executor.ThreadExecutor;
 
 import rx.Observable;
 import rx.Subscriber;

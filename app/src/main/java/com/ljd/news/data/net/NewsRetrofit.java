@@ -24,6 +24,9 @@ import android.text.TextUtils;
 
 import java.util.concurrent.TimeUnit;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -31,28 +34,14 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
+@Singleton
 public class NewsRetrofit {
 
-    private String baseUrl;
-    private static NewsRetrofit sNewsRetrofit;
-
-    private NewsRetrofit(String baseUrl) {
-        this.baseUrl = baseUrl;
+    @Inject
+    public NewsRetrofit() {
     }
 
-    public static NewsRetrofit getInstance(String baseUrl){
-        if (sNewsRetrofit == null){
-            synchronized (NewsRetrofit.class){
-                if (sNewsRetrofit == null){
-                    sNewsRetrofit = new NewsRetrofit(baseUrl);
-                }
-            }
-        }
-
-        return sNewsRetrofit;
-    }
-
-    public  <T> T getNewsRetrofit(Class<T> clazz){
+    public  <T> T getNewsRetrofit(Class<T> clazz, String baseUrl){
 
         if (TextUtils.isEmpty(baseUrl)){
             throw new NullPointerException("BaseUrl cannot be null");
@@ -62,7 +51,7 @@ public class NewsRetrofit {
                 .client(getNewsOkHttpClient())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .baseUrl(this.baseUrl)
+                .baseUrl(baseUrl)
                 .build();
         return retrofit.create(clazz);
     }

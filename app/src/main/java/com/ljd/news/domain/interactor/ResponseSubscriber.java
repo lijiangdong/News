@@ -17,7 +17,7 @@
  * email   ljd2038@gmail.com
  */
 
-package com.ljd.news.data.net;
+package com.ljd.news.domain.interactor;
 
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
