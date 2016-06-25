@@ -23,24 +23,27 @@ import com.ljd.news.data.net.api.WeChatNewsApi;
 import com.ljd.news.data.net.api.ZhiHuApi;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
+@Singleton
 public class RetrofitServiceFactory {
 
     private static final String WE_CHAT_BASE_URL = "";
     private static final String ZHI_HU_BASE_URL = "http://news-at.zhihu.com";
 
     @Inject
-    public static NewsRetrofit newsRetrofit;
+    public NewsRetrofit newsRetrofit;
 
-    private RetrofitServiceFactory(){
+    @Inject
+    public RetrofitServiceFactory(){
 
     }
 
-    public static WeChatNewsApi getWeChatNewsService(){
+    public WeChatNewsApi getWeChatNewsService(){
         return newsRetrofit.getNewsRetrofit(WeChatNewsApi.class,WE_CHAT_BASE_URL);
     }
 
-    public static ZhiHuApi getZhiHuService(){
+    public ZhiHuApi getZhiHuService(){
         return newsRetrofit.getNewsRetrofit(ZhiHuApi.class,ZHI_HU_BASE_URL);
     }
 }

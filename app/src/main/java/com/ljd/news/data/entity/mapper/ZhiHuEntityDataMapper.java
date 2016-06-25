@@ -25,19 +25,19 @@ public class ZhiHuEntityDataMapper {
         checkNotNull(zhiHuDailyEntity,"ZhiHuDailyEntity == null");
         ZhiHuDaily zhiHuDaily = new ZhiHuDaily();
         zhiHuDaily.setDate(zhiHuDailyEntity.getDate());
-        zhiHuDaily.setStories(transform(zhiHuDailyEntity.getStories()));
-        zhiHuDaily.setTopStories(transform(zhiHuDailyEntity.getTopStories()));
+        zhiHuDaily.setStories(transformStories(zhiHuDailyEntity.getStories()));
+        zhiHuDaily.setTopStories(transformTopStories(zhiHuDailyEntity.getTopStories()));
         return zhiHuDaily;
     }
 
-    private List<ZhiHuStory> transform(List<ZhiHuStoryEntity> zhiHuStoryEntities){
+    public List<ZhiHuStory> transformStories(List<ZhiHuStoryEntity> zhiHuStoryEntities){
         if (zhiHuStoryEntities == null){
             return null;
         }
+
         List<ZhiHuStory> zhiHuStories = new ArrayList<>();
         for (ZhiHuStoryEntity zhiHuStoryEntity : zhiHuStoryEntities){
-            ZhiHuStory zhiHuStory = transform(zhiHuStoryEntity);
-            zhiHuStories.add(zhiHuStory);
+            zhiHuStories.add(transform(zhiHuStoryEntity));
         }
         return zhiHuStories;
     }
@@ -57,7 +57,7 @@ public class ZhiHuEntityDataMapper {
         return zhiHuStory;
     }
 
-    private List<ZhiHuTopStory> transform(List<ZhiHuTopStoryEntity> zhiHuTopStoryEntities){
+    private List<ZhiHuTopStory> transformTopStories(List<ZhiHuTopStoryEntity> zhiHuTopStoryEntities){
         if (zhiHuTopStoryEntities == null){
             return null;
         }
