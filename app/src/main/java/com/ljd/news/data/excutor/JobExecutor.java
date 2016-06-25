@@ -19,7 +19,8 @@
 
 package com.ljd.news.data.excutor;
 
-import com.ljd.domain.executor.ThreadExecutor;
+
+import com.ljd.news.domain.executor.ThreadExecutor;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;

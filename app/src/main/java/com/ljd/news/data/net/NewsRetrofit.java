@@ -34,9 +34,22 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class NewsRetrofit {
 
     private String baseUrl;
+    private static NewsRetrofit sNewsRetrofit;
 
-    public NewsRetrofit(String baseUrl) {
+    private NewsRetrofit(String baseUrl) {
         this.baseUrl = baseUrl;
+    }
+
+    public static NewsRetrofit getInstance(String baseUrl){
+        if (sNewsRetrofit == null){
+            synchronized (NewsRetrofit.class){
+                if (sNewsRetrofit == null){
+                    sNewsRetrofit = new NewsRetrofit(baseUrl);
+                }
+            }
+        }
+
+        return sNewsRetrofit;
     }
 
     public  <T> T getNewsRetrofit(Class<T> clazz){

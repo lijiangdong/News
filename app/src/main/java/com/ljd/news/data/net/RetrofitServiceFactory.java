@@ -21,23 +21,20 @@ package com.ljd.news.data.net;
 
 public class RetrofitServiceFactory {
 
-    private static WeChatNewsService weChatNewsService;
     private static final String WE_CHAT_BASE_URL = "";
+    private static final String ZHI_HU_BASE_URL = "";
+
     private RetrofitServiceFactory(){
 
     }
 
     public static WeChatNewsService getWeChatNewsService(){
-        if (weChatNewsService == null){
-            synchronized (RetrofitServiceFactory.class){
-                if (weChatNewsService == null){
-                    weChatNewsService = new NewsRetrofit(WE_CHAT_BASE_URL)
-                            .getNewsRetrofit(WeChatNewsService.class);
-                }
-            }
-        }
-
-        return weChatNewsService;
+        return NewsRetrofit.getInstance(WE_CHAT_BASE_URL)
+                .getNewsRetrofit(WeChatNewsService.class);
     }
 
+    public static ZhiHuService getZhiHuService(){
+        return NewsRetrofit.getInstance(ZHI_HU_BASE_URL)
+                .getNewsRetrofit(ZhiHuService.class);
+    }
 }
