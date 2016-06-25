@@ -24,7 +24,7 @@ ext{
 
     leakCanaryVersion = '1.4-beta2'
 
-    presentationDependencies = [
+    appDependencies = [
             appcompat:              "com.android.support:appcompat-v7:${supportVersion}",
             design:                 "com.android.support:design:${supportVersion}",
             rxandroid:              "io.reactivex:rxandroid:${rxandroidVersion}",
@@ -34,38 +34,15 @@ ext{
             dagger:                 "com.google.dagger:dagger:${daggerVersion}",
             daggerCompiler:         "com.google.dagger:dagger-compiler:${daggerVersion}",
             javaxAnnotation:        "org.glassfish:javax.annotation:${javaxAnnotationVersion}",
-            timber:                 "com.jakewharton.timber:timber:${timberVersion}"
-    ]
-
-    presentationTestDependencies = [
-            junit:                  "junit:junit:4.12"
-    ]
-
-    dataDependencies = [
-            rxandroid:              "io.reactivex:rxandroid:${rxandroidVersion}",
-            rxjava:                 "io.reactivex:rxjava:${rxjavaVersion}",
-            retrofit2:              "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+            timber:                 "com.jakewharton.timber:timber:${timberVersion}",
+            retrofit:              "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+            okHttpLog:              "com.squareup.okhttp3:logging-interceptor:${okHttpLogVersion}",
             converterGson:          "com.squareup.retrofit2:converter-gson:${gsonVersion}",
             rxjavaAdapter:          "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}",
-            javaxAnnotation:        "org.glassfish:javax.annotation:${javaxAnnotationVersion}",
-            dagger:                 "com.google.dagger:dagger:${daggerVersion}",
-            daggerCompiler:         "com.google.dagger:dagger-compiler:${daggerVersion}",
-            okHttpLog:             "com.squareup.okhttp3:logging-interceptor:${okHttpLogVersion}"
     ]
 
-    dataTestDependencies = [
+    appTestDependencies = [
             junit:                  "junit:junit:4.12"
-    ]
-
-    domainDependencies = [
-            rxjava:                 "io.reactivex:rxjava:${rxjavaVersion}",
-            javaxAnnotation:        "org.glassfish:javax.annotation:${javaxAnnotationVersion}",
-            dagger:                 "com.google.dagger:dagger:${daggerVersion}",
-            daggerCompiler:         "com.google.dagger:dagger-compiler:${daggerVersion}"
-    ]
-
-    domainTestDependencies = [
-
     ]
 
     developmentDependencies = [
