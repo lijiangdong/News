@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import com.ljd.news.R;
 
-public class ZhiHuActivity extends BaseActivity {
+public class ZhiHuStoryListActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

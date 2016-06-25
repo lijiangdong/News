@@ -8,10 +8,10 @@ import android.view.ViewGroup;
 
 import com.ljd.news.R;
 
-public class FragmentZhiHu extends BaseFragment {
+public class ZhiHuStoryListFragment extends BaseFragment {
 
 
-    public FragmentZhiHu() {
+    public ZhiHuStoryListFragment() {
         // Required empty public constructor
     }
 
