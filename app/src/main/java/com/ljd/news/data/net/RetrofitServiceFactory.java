@@ -19,22 +19,25 @@
 
 package com.ljd.news.data.net;
 
+import com.ljd.news.data.net.api.WeChatNewsApi;
+import com.ljd.news.data.net.api.ZhiHuApi;
+
 public class RetrofitServiceFactory {
 
     private static final String WE_CHAT_BASE_URL = "";
-    private static final String ZHI_HU_BASE_URL = "";
+    private static final String ZHI_HU_BASE_URL = "http://news-at.zhihu.com";
 
     private RetrofitServiceFactory(){
 
     }
 
-    public static WeChatNewsService getWeChatNewsService(){
+    public static WeChatNewsApi getWeChatNewsService(){
         return NewsRetrofit.getInstance(WE_CHAT_BASE_URL)
-                .getNewsRetrofit(WeChatNewsService.class);
+                .getNewsRetrofit(WeChatNewsApi.class);
     }
 
-    public static ZhiHuService getZhiHuService(){
+    public static ZhiHuApi getZhiHuService(){
         return NewsRetrofit.getInstance(ZHI_HU_BASE_URL)
-                .getNewsRetrofit(ZhiHuService.class);
+                .getNewsRetrofit(ZhiHuApi.class);
     }
 }

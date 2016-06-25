@@ -17,10 +17,10 @@
  * email   ljd2038@gmail.com
  */
 
-package com.ljd.news.data.net;
+package com.ljd.news.data.net.api;
 
 /**
  * Created by ljd on 6/21/16.
  */
-public interface WeChatNewsService {
+public interface WeChatNewsApi {
 }

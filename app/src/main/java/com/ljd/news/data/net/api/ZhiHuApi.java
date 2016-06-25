@@ -17,8 +17,21 @@
  * email   ljd2038@gmail.com
  */
 
-package com.ljd.news.data.net;
+package com.ljd.news.data.net.api;
 
-public class ZhiHuService {
+import okhttp3.ResponseBody;
+import retrofit2.http.GET;
+import retrofit2.http.Path;
+import rx.Observable;
 
+public interface ZhiHuApi {
+
+    @GET("/api/4/news/latest")
+    Observable<ResponseBody> getZhiHuLastDaily();
+
+    @GET("/api/4/news/before/{date}")
+    Observable<ResponseBody> getZhiHuDaily(@Path("date") String date);
+
+    @GET("/api/4/news/{id}")
+    Observable<ResponseBody> getZhihuStory(@Path("id") String id);
 }
