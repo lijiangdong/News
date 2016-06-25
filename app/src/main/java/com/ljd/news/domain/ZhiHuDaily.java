@@ -6,8 +6,7 @@ import java.util.List;
 public class ZhiHuDaily {
 
     private String date;
-    private List<ZhiHuStory> stories = new ArrayList<ZhiHuStory>();
-    private List<ZhiHuTopStory> topStories = new ArrayList<ZhiHuTopStory>();
+    private List<ZhiHuStoryItem> stories = new ArrayList<ZhiHuStoryItem>();
 
     /**
      *
@@ -32,7 +31,7 @@ public class ZhiHuDaily {
      * @return
      * The stories
      */
-    public List<ZhiHuStory> getStories() {
+    public List<ZhiHuStoryItem> getStories() {
         return stories;
     }
 
@@ -41,21 +40,8 @@ public class ZhiHuDaily {
      * @param stories
      * The stories
      */
-    public void setStories(List<ZhiHuStory> stories) {
+    public void setStories(List<ZhiHuStoryItem> stories) {
         this.stories = stories;
     }
 
-    /**
-     *
-     * @return
-     * The topStories
-     */
-    public List<ZhiHuTopStory> getTopStories() {
-        return topStories;
-    }
-
-
-    public void setTopStories(List<ZhiHuTopStory> topStories) {
-        this.topStories = topStories;
-    }
 }

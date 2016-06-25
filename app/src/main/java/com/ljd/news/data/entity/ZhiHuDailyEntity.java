@@ -13,10 +13,10 @@ public class ZhiHuDailyEntity {
     private String date;
     @SerializedName("stories")
     @Expose
-    private List<ZhiHuStoryEntity> stories = new ArrayList<ZhiHuStoryEntity>();
+    private List<ZhiHuStoryItemEntity> stories = new ArrayList<ZhiHuStoryItemEntity>();
     @SerializedName("top_stories")
     @Expose
-    private List<ZhiHuTopStoryEntity> topStories = new ArrayList<ZhiHuTopStoryEntity>();
+    private List<ZhiHuStoryItemEntity> topStories = new ArrayList<ZhiHuStoryItemEntity>();
 
     /**
      *
@@ -41,7 +41,7 @@ public class ZhiHuDailyEntity {
      * @return
      * The stories
      */
-    public List<ZhiHuStoryEntity> getStories() {
+    public List<ZhiHuStoryItemEntity> getStories() {
         return stories;
     }
 
@@ -50,7 +50,7 @@ public class ZhiHuDailyEntity {
      * @param stories
      * The stories
      */
-    public void setStories(List<ZhiHuStoryEntity> stories) {
+    public void setStories(List<ZhiHuStoryItemEntity> stories) {
         this.stories = stories;
     }
 
@@ -59,7 +59,7 @@ public class ZhiHuDailyEntity {
      * @return
      * The topStories
      */
-    public List<ZhiHuTopStoryEntity> getTopStories() {
+    public List<ZhiHuStoryItemEntity> getTopStories() {
         return topStories;
     }
 
@@ -68,7 +68,7 @@ public class ZhiHuDailyEntity {
      * @param topStories
      * The top_stories
      */
-    public void setTopStories(List<ZhiHuTopStoryEntity> topStories) {
+    public void setTopStories(List<ZhiHuStoryItemEntity> topStories) {
         this.topStories = topStories;
     }
 }

@@ -21,10 +21,12 @@ ext{
     retrofitVersion = '2.1.0'
     gsonVersion = '2.1.0'
     okHttpLogVersion = '3.3.1'
+    picassoVersion = '2.5.2'
 
     leakCanaryVersion = '1.4-beta2'
 
     appDependencies = [
+            supportV4:              "com.android.support:support-v4:${supportVersion}",
             appcompat:              "com.android.support:appcompat-v7:${supportVersion}",
             design:                 "com.android.support:design:${supportVersion}",
             rxandroid:              "io.reactivex:rxandroid:${rxandroidVersion}",
@@ -35,10 +37,11 @@ ext{
             daggerCompiler:         "com.google.dagger:dagger-compiler:${daggerVersion}",
             javaxAnnotation:        "org.glassfish:javax.annotation:${javaxAnnotationVersion}",
             timber:                 "com.jakewharton.timber:timber:${timberVersion}",
-            retrofit:              "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+            retrofit:               "com.squareup.retrofit2:retrofit:${retrofitVersion}",
             okHttpLog:              "com.squareup.okhttp3:logging-interceptor:${okHttpLogVersion}",
             converterGson:          "com.squareup.retrofit2:converter-gson:${gsonVersion}",
             rxjavaAdapter:          "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}",
+            picasso:                "com.squareup.picasso:picasso:${picassoVersion}"
     ]
 
     appTestDependencies = [
