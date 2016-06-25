@@ -25,6 +25,7 @@ import com.ljd.news.internal.di.components.ApplicationComponent;
 import com.ljd.news.internal.di.components.DaggerApplicationComponent;
 import com.ljd.news.internal.di.modules.ApplicationModule;
 import com.ljd.news.utils.ToastUtils;
+import com.squareup.leakcanary.LeakCanary;
 
 import timber.log.Timber;
 
@@ -38,14 +39,20 @@ public class NewsApplication extends Application {
     public void onCreate() {
         super.onCreate();
         ToastUtils.register(this);
-
-        if (NewsConfig.IS_DEBUG){
-            Timber.plant(new DebugTree());
-        }
-
+        initLeakCanary();
+        initTimber();
         initializeInjector();
     }
 
+    private void initLeakCanary(){
+        LeakCanary.install(this);
+    }
+
+    private void initTimber(){
+        if (NewsConfig.IS_DEBUG){
+            Timber.plant(new DebugTree());
+        }
+    }
     private void initializeInjector() {
         this.applicationComponent = DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(this))

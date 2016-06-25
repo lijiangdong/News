@@ -24,4 +24,5 @@ dependencies {
     provided        domainDependencies.daggerCompiler
     provided        domainDependencies.javaxAnnotation
     compile         domainDependencies.rxjava
+
 }

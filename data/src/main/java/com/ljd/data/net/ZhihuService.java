@@ -17,17 +17,8 @@
  * email   ljd2038@gmail.com
  */
 
-package com.ljd.domain;
+package com.ljd.data.net;
 
-/**
- * Created by ljd on 6/21/16.
- */
-public class Utils {
+public class ZhihuService {
 
-    public static <T> T checkNotNull(T object, String message) {
-        if (object == null) {
-            throw new NullPointerException(message);
-        }
-        return object;
-    }
 }

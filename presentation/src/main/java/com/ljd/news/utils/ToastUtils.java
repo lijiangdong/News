@@ -22,8 +22,6 @@ package com.ljd.news.utils;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.ljd.domain.Utils;
-
 public class ToastUtils {
 
     private static Context mContext;
@@ -33,12 +31,13 @@ public class ToastUtils {
     }
 
     public static void register(Context context){
-        Utils.checkNotNull(context,"context == null");
         mContext = context.getApplicationContext();
     }
 
     public static void checkContextNotNull(){
-        Utils.checkNotNull(mContext,"context == null");
+        if (mContext == null) {
+            throw new NullPointerException("context = null");
+        }
     }
 
     public static void showToastShort(CharSequence text){
@@ -57,7 +56,7 @@ public class ToastUtils {
     }
 
     public static void showToastLong(int text){
-        checkContextNotNull();
         Toast.makeText(mContext,text,Toast.LENGTH_LONG).show();
     }
+
 }

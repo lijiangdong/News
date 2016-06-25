@@ -49,11 +49,10 @@ dependencies {
     compile         dataDependencies.converterGson
     compile         dataDependencies.rxjavaAdapter
     provided        dataDependencies.javaxAnnotation
-    compile         dataDependencies.timber
     compile         dataDependencies.dagger
     apt             dataDependencies.daggerCompiler
     compile         dataDependencies.rxandroid
     compile         dataDependencies.rxjava
-    compile         dataDependencies.okHtttpLog
+    compile         dataDependencies.okHttpLog
 
 }
