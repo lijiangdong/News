@@ -17,7 +17,7 @@
  * email   ljd2038@gmail.com
  */
 
-package com.ljd.news.presentation.activity;
+package com.ljd.news.presentation.view.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;

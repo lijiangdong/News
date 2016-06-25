@@ -1,4 +1,4 @@
-package com.ljd.news.presentation.fragment;
+package com.ljd.news.presentation.view.fragment;
 
 
 import android.os.Bundle;
@@ -8,7 +8,9 @@ import android.view.ViewGroup;
 
 import com.ljd.news.R;
 
-public class ZhiHuStoryListFragment extends BaseFragment {
+import butterknife.ButterKnife;
+
+public class ZhiHuStoryListFragment extends BaseFragment  {
 
 
     public ZhiHuStoryListFragment() {
@@ -20,7 +22,8 @@ public class ZhiHuStoryListFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fragment_zhi_hu, container, false);
+        View layout = inflater.inflate(R.layout.fragment_zhi_hu_story_list, container, false);
+        ButterKnife.bind(this,layout);
+        return layout;
     }
-
 }

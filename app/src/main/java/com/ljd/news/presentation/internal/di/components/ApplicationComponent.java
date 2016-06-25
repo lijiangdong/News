@@ -23,8 +23,9 @@ import android.content.Context;
 
 import com.ljd.news.domain.executor.PostExecutionThread;
 import com.ljd.news.domain.executor.ThreadExecutor;
-import com.ljd.news.presentation.activity.BaseActivity;
+import com.ljd.news.domain.repository.ZhiHuRepository;
 import com.ljd.news.presentation.internal.di.modules.ApplicationModule;
+import com.ljd.news.presentation.view.activity.BaseActivity;
 
 import javax.inject.Singleton;
 
@@ -35,9 +36,8 @@ import dagger.Component;
 public interface ApplicationComponent {
     void inject(BaseActivity baseActivity);
 
-    //Exposed to sub-graphs.
     Context context();
     ThreadExecutor threadExecutor();
     PostExecutionThread postExecutionThread();
-//    UserRepository userRepository();
+    ZhiHuRepository zhiHuRepository();
 }
