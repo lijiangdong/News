@@ -11,10 +11,10 @@ import rx.Observable;
 public class GetZhiHuDailyDetail extends UseCase {
 
     private final ZhiHuRepository zhiHuRepository;
-    private final String storyId;
+    private final int storyId;
 
     @Inject
-    public GetZhiHuDailyDetail(String storyId,
+    public GetZhiHuDailyDetail(int storyId,
                                   ZhiHuRepository zhiHuRepository,
                                   ThreadExecutor threadExecutor,
                                   PostExecutionThread postExecutionThread) {
