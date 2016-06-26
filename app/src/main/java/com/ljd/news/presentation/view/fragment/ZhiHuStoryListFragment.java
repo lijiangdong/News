@@ -14,7 +14,6 @@ public class ZhiHuStoryListFragment extends BaseFragment  {
 
 
     public ZhiHuStoryListFragment() {
-        // Required empty public constructor
     }
 
 
