@@ -14,6 +14,7 @@ import com.ljd.news.presentation.internal.di.components.ZhiHuComponent;
 import com.ljd.news.presentation.model.ZhiHuStoryItemModel;
 import com.ljd.news.presentation.presenter.ZhiHuStoryListPresenter;
 import com.ljd.news.presentation.view.ZhiHuStoryListView;
+import com.ljd.news.presentation.view.activity.ZhiHuStoryDetailActivity;
 import com.ljd.news.presentation.view.adapter.ZhiHuAdapter;
 
 import java.util.Collection;
@@ -76,6 +77,12 @@ public class ZhiHuStoryListFragment extends BaseFragment  implements ZhiHuStoryL
     }
 
     private void setRecyclerView(){
+        this.zhiHuAdapter.setOnItemClickListener(zhiHuStoryItemModel -> {
+            if (navigator != null){
+                navigator.navigateToActivity(ZhiHuStoryDetailActivity.class);
+            }
+
+        });
         this.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         this.recyclerView.setAdapter(zhiHuAdapter);
     }

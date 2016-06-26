@@ -25,7 +25,6 @@ import com.ljd.news.domain.executor.PostExecutionThread;
 import com.ljd.news.domain.executor.ThreadExecutor;
 import com.ljd.news.domain.repository.ZhiHuRepository;
 import com.ljd.news.presentation.internal.di.modules.ApplicationModule;
-import com.ljd.news.presentation.view.activity.BaseActivity;
 
 import javax.inject.Singleton;
 
@@ -34,8 +33,6 @@ import dagger.Component;
 @Singleton
 @Component(modules = ApplicationModule.class)
 public interface ApplicationComponent {
-    void inject(BaseActivity baseActivity);
-
     Context context();
     ThreadExecutor threadExecutor();
     PostExecutionThread postExecutionThread();

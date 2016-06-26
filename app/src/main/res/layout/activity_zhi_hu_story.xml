@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context="com.ljd.news.presentation.view.activity.ZhiHuStoryActivity">
+    tools:context=".presentation.view.activity.ZhiHuStoryDetailActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"

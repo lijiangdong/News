@@ -1,7 +1,5 @@
 package com.ljd.news.presentation.view.activity;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
@@ -18,10 +16,6 @@ public class ZhiHuStoryListActivity extends BaseActivity implements HasComponent
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-
-    public static Intent getCallingIntent(Context context){
-        return new Intent(context,ZhiHuStoryListActivity.class);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
