@@ -10,7 +10,7 @@ import com.ljd.news.presentation.view.fragment.ZhiHuStoryFragment;
 
 import butterknife.ButterKnife;
 
-public class ZhiHuStoryActivity extends BaseActivity implements HasComponent<ZhiHuComponent>{
+public class ZhiHuStoryDetailActivity extends BaseActivity implements HasComponent<ZhiHuComponent>{
 
 
     @Override
