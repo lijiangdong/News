@@ -24,14 +24,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 public class NetWorkUtils {
 
-    private static Context mContext;
-
-    public static void register(Context context){
-        mContext = context.getApplicationContext();
-    }
-
-    public static boolean isNetWorkAvailable() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+    public static boolean isNetWorkAvailable(Context context) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
         return networkInfo != null && networkInfo.isConnected();
     }

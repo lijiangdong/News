@@ -20,11 +20,11 @@
 package com.ljd.news;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.ljd.news.presentation.internal.di.components.ApplicationComponent;
 import com.ljd.news.presentation.internal.di.components.DaggerApplicationComponent;
 import com.ljd.news.presentation.internal.di.modules.ApplicationModule;
-import com.ljd.news.utils.NetWorkUtils;
 import com.ljd.news.utils.ToastUtils;
 import com.squareup.leakcanary.LeakCanary;
 
@@ -36,23 +36,29 @@ public class NewsApplication extends Application {
 
     private ApplicationComponent applicationComponent;
 
+    private static Context context;
+
     @Override
     public void onCreate() {
         super.onCreate();
 
+        initApplicationContext();
         initToastUtils();
-        initNetWorkUtils();
         initLeakCanary();
         initTimber();
         initializeInjector();
     }
 
-    private void initToastUtils(){
-        ToastUtils.register(this);
+    private void initApplicationContext(){
+        context = this;
     }
 
-    private void initNetWorkUtils(){
-        NetWorkUtils.register(this);
+    public static Context getAppicationContext(){
+        return context;
+    }
+
+    private void initToastUtils(){
+        ToastUtils.register(this);
     }
 
     private void initLeakCanary(){
