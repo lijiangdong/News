@@ -1,5 +1,7 @@
 package com.ljd.news.presentation.view.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
@@ -7,6 +9,7 @@ import com.ljd.news.R;
 import com.ljd.news.presentation.internal.di.HasComponent;
 import com.ljd.news.presentation.internal.di.components.DaggerZhiHuComponent;
 import com.ljd.news.presentation.internal.di.components.ZhiHuComponent;
+import com.ljd.news.presentation.internal.di.modules.ZhiHuModule;
 import com.ljd.news.presentation.view.fragment.ZhiHuStoryListFragment;
 
 import butterknife.BindView;
@@ -16,6 +19,10 @@ public class ZhiHuStoryListActivity extends BaseActivity implements HasComponent
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+
+    public static Intent getCallingIntent(Context context){
+        return new Intent(context,ZhiHuStoryListActivity.class);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +41,7 @@ public class ZhiHuStoryListActivity extends BaseActivity implements HasComponent
         return DaggerZhiHuComponent.builder()
                 .applicationComponent(getApplicationComponent())
                 .activityModule(getActivityModule())
+                .zhiHuModule(new ZhiHuModule())
                 .build();
     }
 }

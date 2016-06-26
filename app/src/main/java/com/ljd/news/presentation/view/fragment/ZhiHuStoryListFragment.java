@@ -64,6 +64,7 @@ public class ZhiHuStoryListFragment extends BaseFragment  implements ZhiHuStoryL
     private void loadZhiHuStoryList(){
         this.zhiHuStoryListPresenter.initialize();
     }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -79,7 +80,8 @@ public class ZhiHuStoryListFragment extends BaseFragment  implements ZhiHuStoryL
     private void setRecyclerView(){
         this.zhiHuAdapter.setOnItemClickListener(zhiHuStoryItemModel -> {
             if (navigator != null){
-                navigator.navigateToActivity(ZhiHuStoryDetailActivity.class);
+                navigator.navigateToActivity(ZhiHuStoryDetailActivity
+                        .getCallingIntent(getActivity(),zhiHuStoryItemModel.getId()));
             }
 
         });
@@ -93,4 +95,5 @@ public class ZhiHuStoryListFragment extends BaseFragment  implements ZhiHuStoryL
             this.zhiHuAdapter.setStoryList(zhiHuStoryItemModels);
         }
     }
+
 }

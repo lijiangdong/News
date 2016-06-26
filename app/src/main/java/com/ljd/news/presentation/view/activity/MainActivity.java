@@ -106,7 +106,7 @@ public class MainActivity extends BaseActivity
         if (id == R.id.nav_camera) {
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
-            turnToActivity(ZhiHuStoryListActivity.class);
+            navigateToActivity(ZhiHuStoryListActivity.getCallingIntent(this));
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
