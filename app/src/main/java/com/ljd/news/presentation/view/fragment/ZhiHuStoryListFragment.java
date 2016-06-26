@@ -11,19 +11,25 @@ import android.view.ViewGroup;
 
 import com.ljd.news.R;
 import com.ljd.news.presentation.internal.di.components.ZhiHuComponent;
+import com.ljd.news.presentation.model.ZhiHuStoryItemModel;
+import com.ljd.news.presentation.presenter.ZhiHuStoryListPresenter;
+import com.ljd.news.presentation.view.ZhiHuStoryListView;
 import com.ljd.news.presentation.view.adapter.ZhiHuAdapter;
+
+import java.util.Collection;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ZhiHuStoryListFragment extends BaseFragment  {
+public class ZhiHuStoryListFragment extends BaseFragment  implements ZhiHuStoryListView{
 
 
     @BindView(R.id.zhi_hu_recycler_view) RecyclerView recyclerView;
 
     @Inject ZhiHuAdapter zhiHuAdapter;
+    @Inject ZhiHuStoryListPresenter zhiHuStoryListPresenter;
 
     public ZhiHuStoryListFragment() {
         setRetainInstance(true);
@@ -45,8 +51,39 @@ public class ZhiHuStoryListFragment extends BaseFragment  {
         return layout;
     }
 
-    private void setRecyclerView(){
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        this.zhiHuStoryListPresenter.setView(this);
+        if (savedInstanceState == null){
+            this.loadZhiHuStoryList();
+        }
     }
 
+    private void loadZhiHuStoryList(){
+        this.zhiHuStoryListPresenter.initialize();
+    }
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        this.recyclerView.setAdapter(null);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        this.zhiHuStoryListPresenter.destroy();
+    }
+
+    private void setRecyclerView(){
+        this.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        this.recyclerView.setAdapter(zhiHuAdapter);
+    }
+
+    @Override
+    public void renderZhiHuStoryList(Collection<ZhiHuStoryItemModel> zhiHuStoryItemModels) {
+        if (zhiHuStoryItemModels != null){
+            this.zhiHuAdapter.setStoryList(zhiHuStoryItemModels);
+        }
+    }
 }

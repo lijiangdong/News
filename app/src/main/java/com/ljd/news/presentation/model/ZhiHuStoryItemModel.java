@@ -1,11 +1,8 @@
 package com.ljd.news.presentation.model;
 
-import java.util.ArrayList;
-import java.util.List;
+public class ZhiHuStoryItemModel {
 
-public class StoryItemModel {
-
-    private List<String> images = new ArrayList<String>();
+    private String image;
     private Integer type;
     private Integer id;
     private String gaPrefix;
@@ -15,19 +12,19 @@ public class StoryItemModel {
     /**
      *
      * @return
-     * The images
+     * The image
      */
-    public List<String> getImages() {
-        return images;
+    public String getImage() {
+        return image;
     }
 
     /**
      *
-     * @param images
+     * @param image
      * The images
      */
-    public void setImages(List<String> images) {
-        this.images = images;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     /**

@@ -9,9 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ljd.news.R;
-import com.ljd.news.presentation.model.StoryItemModel;
+import com.ljd.news.presentation.model.ZhiHuStoryItemModel;
 import com.squareup.picasso.Picasso;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -25,10 +26,10 @@ import static com.ljd.news.utils.Utils.checkNotNull;
 public class ZhiHuAdapter extends RecyclerView.Adapter<ZhiHuAdapter.ViewHolder>{
 
     public interface OnItemClickListener{
-        void onUserItemClicked(StoryItemModel storyItemModel);
+        void onUserItemClicked(ZhiHuStoryItemModel zhiHuStoryItemModel);
     }
 
-    private List<StoryItemModel> storyList;
+    private List<ZhiHuStoryItemModel> storyList;
     private final LayoutInflater layoutInflater;
     private Context context;
 
@@ -50,12 +51,12 @@ public class ZhiHuAdapter extends RecyclerView.Adapter<ZhiHuAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        StoryItemModel storyItemModel = storyList.get(position);
-        Picasso.with(context).load(storyItemModel.getImages().get(0)).into(holder.storyImageView);
-        holder.storyTitleText.setText(storyItemModel.getTitle());
+        ZhiHuStoryItemModel zhiHuStoryItemModel = storyList.get(position);
+        Picasso.with(context).load(zhiHuStoryItemModel.getImage()).into(holder.storyImageView);
+        holder.storyTitleText.setText(zhiHuStoryItemModel.getTitle());
         holder.itemView.setOnClickListener(v -> {
             if (this.onItemClickListener != null){
-                onItemClickListener.onUserItemClicked(storyItemModel);
+                onItemClickListener.onUserItemClicked(zhiHuStoryItemModel);
             }
         });
     }
@@ -70,9 +71,9 @@ public class ZhiHuAdapter extends RecyclerView.Adapter<ZhiHuAdapter.ViewHolder>{
         return position;
     }
 
-    public void setStoryList(List<StoryItemModel> storyList) {
+    public void setStoryList(Collection<ZhiHuStoryItemModel> storyList) {
         checkNotNull(storyList,"storyList == null");
-        this.storyList = storyList;
+        this.storyList = (List<ZhiHuStoryItemModel>) storyList;
         this.notifyDataSetChanged();
     }
 

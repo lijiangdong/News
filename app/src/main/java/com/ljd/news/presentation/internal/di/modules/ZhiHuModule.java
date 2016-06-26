@@ -1,6 +1,6 @@
 package com.ljd.news.presentation.internal.di.modules;
 
-import com.ljd.news.domain.interactor.GetZhiHuLastDaily;
+import com.ljd.news.domain.interactor.GetZhiHuDaily;
 import com.ljd.news.domain.interactor.UseCase;
 import com.ljd.news.presentation.internal.di.PerActivity;
 
@@ -25,7 +25,7 @@ public class ZhiHuModule {
     @Provides
     @PerActivity
     @Named("zhiHuLastDaily")
-    UseCase provideGetZhiHuLastDailyUseCase(GetZhiHuLastDaily getZhiHuLastDaily){
-        return getZhiHuLastDaily;
+    UseCase provideGetZhiHuLastDailyUseCase(GetZhiHuDaily getZhiHuDaily){
+        return getZhiHuDaily;
     }
 }
