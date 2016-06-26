@@ -9,7 +9,7 @@ import com.ljd.news.presentation.internal.di.HasComponent;
 import com.ljd.news.presentation.internal.di.components.DaggerZhiHuComponent;
 import com.ljd.news.presentation.internal.di.components.ZhiHuComponent;
 import com.ljd.news.presentation.internal.di.modules.ZhiHuModule;
-import com.ljd.news.presentation.view.fragment.ZhiHuStoryFragment;
+import com.ljd.news.presentation.view.fragment.ZhiHuStoryDetailFragment;
 
 import butterknife.ButterKnife;
 
@@ -45,7 +45,7 @@ public class ZhiHuStoryDetailActivity extends BaseActivity implements HasCompone
     private void initActivity(Bundle savedInstanceState){
         if (savedInstanceState == null){
             this.storyId = getIntent().getIntExtra(INTENT_EXTRA_PARAM_STORY_ID,-1);
-            addFragment(R.id.fragmentContainer,new ZhiHuStoryFragment());
+            addFragment(R.id.fragmentContainer,new ZhiHuStoryDetailFragment());
         }else {
             this.storyId = savedInstanceState.getInt(INSTANCE_STATE_PARAM_STORY_ID);
         }

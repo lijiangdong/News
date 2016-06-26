@@ -14,7 +14,7 @@ public class BaseActivity extends AppCompatActivity implements BaseFragment.Navi
 
     @Override
     public void navigateToActivity(Intent intent) {
-        this.startActivity(intent);
+        startActivity(intent);
     }
 
     protected void addFragment(int containerViewId, Fragment fragment) {

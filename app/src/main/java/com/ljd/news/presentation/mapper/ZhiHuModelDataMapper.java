@@ -1,7 +1,9 @@
 package com.ljd.news.presentation.mapper;
 
+import com.ljd.news.domain.ZhiHuStoryDetail;
 import com.ljd.news.domain.ZhiHuStoryItem;
 import com.ljd.news.presentation.internal.di.PerActivity;
+import com.ljd.news.presentation.model.ZhiHuStoryDetailModel;
 import com.ljd.news.presentation.model.ZhiHuStoryItemModel;
 
 import java.util.ArrayList;
@@ -37,5 +39,17 @@ public class ZhiHuModelDataMapper {
         zhiHuStoryItemModel.setMultipic(zhiHuStoryItem.getMultipic());
         zhiHuStoryItemModel.setType(zhiHuStoryItem.getType());
         return zhiHuStoryItemModel;
+    }
+
+    public ZhiHuStoryDetailModel transform(ZhiHuStoryDetail zhiHuStoryDetail){
+        checkNotNull(zhiHuStoryDetail,"zhiHuStoryDetail == null");
+        ZhiHuStoryDetailModel zhiHuStoryDetailModel = new ZhiHuStoryDetailModel();
+        zhiHuStoryDetailModel.setImage(zhiHuStoryDetail.getImage());
+        zhiHuStoryDetailModel.setShareUrl(zhiHuStoryDetail.getShareUrl());
+        zhiHuStoryDetailModel.setCss(zhiHuStoryDetail.getCss());
+        zhiHuStoryDetailModel.setTitle(zhiHuStoryDetail.getTitle());
+        zhiHuStoryDetailModel.setBody(zhiHuStoryDetail.getBody());
+
+        return zhiHuStoryDetailModel;
     }
 }
