@@ -15,13 +15,12 @@ import javax.inject.Inject;
 
 public class BaseActivity extends AppCompatActivity {
 
-    @Inject
-    Navigator navigator = new Navigator();
+    @Inject Navigator navigator = new Navigator();
 
     @Override
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
-        getApplicationComponent().inject(this);
+        this.getApplicationComponent().inject(this);
     }
 
     protected void addFragment(int containerViewId, Fragment fragment) {

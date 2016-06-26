@@ -45,25 +45,26 @@ dependencies {
     def developmentDependencies = rootProject.ext.developmentDependencies
     def testDependencies = rootProject.ext.appTestDependencies
 
-    compile     appDependencies.supportV4
-    compile     appDependencies.appcompat
-    compile     appDependencies.design
-    compile     appDependencies.rxandroid
-    compile     appDependencies.rxjava
-    compile     appDependencies.butterknife
-    apt         appDependencies.butterknifeCompiler
-    compile     appDependencies.dagger
-    apt         appDependencies.daggerCompiler
-    provided    appDependencies.javaxAnnotation
-    compile     appDependencies.timber
-    compile     appDependencies.retrofit
-    compile     appDependencies.okHttpLog
-    compile     appDependencies.converterGson
-    compile     appDependencies.rxjavaAdapter
-    compile     appDependencies.picasso
+    compile appDependencies.supportV4
+    compile appDependencies.appcompat
+    compile appDependencies.design
+    compile appDependencies.rxandroid
+    compile appDependencies.rxjava
+    compile appDependencies.butterknife
+    apt appDependencies.butterknifeCompiler
+    compile appDependencies.dagger
+    apt appDependencies.daggerCompiler
+    provided appDependencies.javaxAnnotation
+    compile appDependencies.timber
+    compile appDependencies.retrofit
+    compile appDependencies.okHttpLog
+    compile appDependencies.converterGson
+    compile appDependencies.rxjavaAdapter
+    compile appDependencies.picasso
 
 
     debugCompile developmentDependencies.leakCanary
 
     testCompile testDependencies.junit
+    compile 'com.android.support:support-v4:23.4.0'
 }

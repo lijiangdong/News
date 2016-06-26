@@ -21,11 +21,11 @@ package com.ljd.news.presentation.internal.di.modules;
 
 import android.content.Context;
 
+import com.ljd.news.NewsApplication;
 import com.ljd.news.data.excutor.JobExecutor;
 import com.ljd.news.data.repository.ZhiHuDataRepository;
 import com.ljd.news.domain.executor.PostExecutionThread;
 import com.ljd.news.domain.executor.ThreadExecutor;
-import com.ljd.news.NewsApplication;
 import com.ljd.news.domain.repository.ZhiHuRepository;
 import com.ljd.news.presentation.UIThread;
 
@@ -42,8 +42,7 @@ public class ApplicationModule {
         this.application = application;
     }
 
-    @Provides
-    @Singleton
+    @Provides @Singleton
     Context provideApplicationContext() {
         return this.application;
     }

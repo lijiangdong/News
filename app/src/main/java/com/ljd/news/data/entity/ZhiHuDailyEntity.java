@@ -14,9 +14,6 @@ public class ZhiHuDailyEntity {
     @SerializedName("stories")
     @Expose
     private List<ZhiHuStoryItemEntity> stories = new ArrayList<ZhiHuStoryItemEntity>();
-    @SerializedName("top_stories")
-    @Expose
-    private List<ZhiHuStoryItemEntity> topStories = new ArrayList<ZhiHuStoryItemEntity>();
 
     /**
      *
@@ -54,21 +51,5 @@ public class ZhiHuDailyEntity {
         this.stories = stories;
     }
 
-    /**
-     *
-     * @return
-     * The topStories
-     */
-    public List<ZhiHuStoryItemEntity> getTopStories() {
-        return topStories;
-    }
 
-    /**
-     *
-     * @param topStories
-     * The top_stories
-     */
-    public void setTopStories(List<ZhiHuStoryItemEntity> topStories) {
-        this.topStories = topStories;
-    }
 }
