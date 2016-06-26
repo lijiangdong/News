@@ -4,12 +4,15 @@ import com.ljd.news.domain.executor.PostExecutionThread;
 import com.ljd.news.domain.executor.ThreadExecutor;
 import com.ljd.news.domain.repository.ZhiHuRepository;
 
+import javax.inject.Inject;
+
 import rx.Observable;
 
 public class GetZhiHuLastDaily extends UseCase{
 
     private final ZhiHuRepository zhiHuRepository;
 
+    @Inject
     protected GetZhiHuLastDaily(ZhiHuRepository zhiHuRepository,
                                 ThreadExecutor threadExecutor,
                                 PostExecutionThread postExecutionThread) {
@@ -19,6 +22,6 @@ public class GetZhiHuLastDaily extends UseCase{
 
     @Override
     protected Observable buildUseCaseObservable() {
-        return null;
+        return zhiHuRepository.zhiHuLastDaily();
     }
 }

@@ -8,20 +8,24 @@ import javax.inject.Inject;
 
 import rx.Observable;
 
-public class GetZhiHuDaily extends UseCase {
+public class GetZhiHuDailyDetail extends UseCase {
 
     private final ZhiHuRepository zhiHuRepository;
+    private final String storyId;
 
     @Inject
-    protected GetZhiHuDaily(ZhiHuRepository zhiHuRepository,
-                                ThreadExecutor threadExecutor,
-                                PostExecutionThread postExecutionThread) {
+    public GetZhiHuDailyDetail(String storyId,
+                                  ZhiHuRepository zhiHuRepository,
+                                  ThreadExecutor threadExecutor,
+                                  PostExecutionThread postExecutionThread) {
         super(threadExecutor, postExecutionThread);
         this.zhiHuRepository = zhiHuRepository;
+        this.storyId = storyId;
     }
+
 
     @Override
     protected Observable buildUseCaseObservable() {
-        return null;
+        return this.zhiHuRepository.zhiHuDailyDetail(this.storyId);
     }
 }

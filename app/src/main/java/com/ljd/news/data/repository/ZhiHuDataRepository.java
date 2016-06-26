@@ -3,6 +3,7 @@ package com.ljd.news.data.repository;
 import com.ljd.news.data.entity.mapper.ZhiHuEntityDataMapper;
 import com.ljd.news.data.net.RetrofitServiceFactory;
 import com.ljd.news.domain.ZhiHuDaily;
+import com.ljd.news.domain.ZhiHuStoryDetail;
 import com.ljd.news.domain.repository.ZhiHuRepository;
 
 import javax.inject.Inject;
@@ -24,8 +25,14 @@ public class ZhiHuDataRepository implements ZhiHuRepository{
     }
 
     @Override
-    public Observable<ZhiHuDaily> zhiHuDaily() {
+    public Observable<ZhiHuDaily> zhiHuLastDaily() {
         return retrofitServiceFactory.getZhiHuService().getZhiHuLastDaily()
                 .map(zhiHuDailyEntity -> zhiHuEntityDataMapper.transform(zhiHuDailyEntity));
+    }
+
+    @Override
+    public Observable<ZhiHuStoryDetail> zhiHuDailyDetail(String storyId) {
+        return retrofitServiceFactory.getZhiHuService().getZhiHuStory(storyId)
+                .map(zhiHuStoryDetailEntity -> zhiHuEntityDataMapper.transform(zhiHuStoryDetailEntity));
     }
 }

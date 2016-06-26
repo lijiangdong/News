@@ -1,8 +1,10 @@
 package com.ljd.news.data.entity.mapper;
 
 import com.ljd.news.data.entity.ZhiHuDailyEntity;
+import com.ljd.news.data.entity.ZhiHuStoryDetailEntity;
 import com.ljd.news.data.entity.ZhiHuStoryItemEntity;
 import com.ljd.news.domain.ZhiHuDaily;
+import com.ljd.news.domain.ZhiHuStoryDetail;
 import com.ljd.news.domain.ZhiHuStoryItem;
 
 import java.util.ArrayList;
@@ -53,5 +55,16 @@ public class ZhiHuEntityDataMapper {
         zhiHuStoryItem.setMultipic(zhiHuStoryItemEntity.getMultipic());
         zhiHuStoryItem.setType(zhiHuStoryItemEntity.getType());
         return zhiHuStoryItem;
+    }
+
+    public ZhiHuStoryDetail transform(ZhiHuStoryDetailEntity zhiHuStoryDetailEntity){
+        checkNotNull(zhiHuStoryDetailEntity,"zhiHuStoryDetailEntity == null");
+        ZhiHuStoryDetail zhiHuStoryDetail = new ZhiHuStoryDetail();
+        zhiHuStoryDetail.setTitle(zhiHuStoryDetailEntity.getTitle());
+        zhiHuStoryDetail.setBody(zhiHuStoryDetailEntity.getBody());
+        zhiHuStoryDetail.setCss(zhiHuStoryDetailEntity.getCss());
+        zhiHuStoryDetail.setShareUrl(zhiHuStoryDetailEntity.getShareUrl());
+        zhiHuStoryDetail.setImage(zhiHuStoryDetailEntity.getImage());
+        return zhiHuStoryDetail;
     }
 }
