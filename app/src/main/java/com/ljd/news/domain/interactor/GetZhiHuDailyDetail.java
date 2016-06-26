@@ -23,7 +23,6 @@ public class GetZhiHuDailyDetail extends UseCase {
         this.storyId = storyId;
     }
 
-
     @Override
     protected Observable buildUseCaseObservable() {
         return this.zhiHuRepository.zhiHuDailyDetail(this.storyId);
