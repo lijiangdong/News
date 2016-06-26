@@ -1,5 +1,7 @@
 package com.ljd.news.presentation.view.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.ljd.news.R;
@@ -9,6 +11,10 @@ import com.ljd.news.presentation.internal.di.components.ZhiHuComponent;
 import com.ljd.news.presentation.view.fragment.ZhiHuStoryListFragment;
 
 public class ZhiHuStoryListActivity extends BaseActivity implements HasComponent<ZhiHuComponent> {
+
+    public static Intent getCallingIntent(Context context){
+        return new Intent(context,ZhiHuStoryListActivity.class);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

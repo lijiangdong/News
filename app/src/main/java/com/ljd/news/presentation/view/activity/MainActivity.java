@@ -33,6 +33,7 @@ import android.view.MenuItem;
 import com.ljd.news.R;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -47,6 +48,8 @@ public class MainActivity extends BaseActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
+
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -104,7 +107,7 @@ public class MainActivity extends BaseActivity
         if (id == R.id.nav_camera) {
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
-
+            navigator.navigateToZhiHuStoryListActivity(this);
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
