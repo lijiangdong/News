@@ -18,8 +18,14 @@ public class BaseActivity extends AppCompatActivity implements BaseFragment.Navi
     }
 
     protected void addFragment(int containerViewId, Fragment fragment) {
-        FragmentTransaction fragmentTransaction = this.getSupportFragmentManager().beginTransaction();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(containerViewId, fragment);
+        fragmentTransaction.commit();
+    }
+
+    protected void replaceFragment(int containerViewId,Fragment fragment){
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(containerViewId,fragment);
         fragmentTransaction.commit();
     }
 

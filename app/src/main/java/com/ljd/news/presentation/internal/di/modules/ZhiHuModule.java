@@ -35,6 +35,6 @@ public class ZhiHuModule {
     UseCase provideGetZhiHuStoryDetail(ZhiHuRepository zhiHuRepository,
                                        ThreadExecutor threadExecutor,
                                        PostExecutionThread postExecutionThread){
-        return new GetZhiHuDailyDetail(storyId,zhiHuRepository,threadExecutor,postExecutionThread);
+        return new GetZhiHuDailyDetail(this.storyId,zhiHuRepository,threadExecutor,postExecutionThread);
     }
 }

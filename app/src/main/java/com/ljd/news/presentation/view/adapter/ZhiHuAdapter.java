@@ -5,12 +5,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ljd.news.R;
 import com.ljd.news.presentation.model.ZhiHuStoryItemModel;
-import com.squareup.picasso.Picasso;
+import com.ljd.news.presentation.view.component.AutoLoadImageView;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -52,7 +51,7 @@ public class ZhiHuAdapter extends RecyclerView.Adapter<ZhiHuAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         ZhiHuStoryItemModel zhiHuStoryItemModel = storyList.get(position);
-        Picasso.with(context).load(zhiHuStoryItemModel.getImage()).into(holder.storyImageView);
+        holder.storyImageView.loadUrl(zhiHuStoryItemModel.getImage());
         holder.storyTitleText.setText(zhiHuStoryItemModel.getTitle());
         holder.itemView.setOnClickListener(v -> {
             if (this.onItemClickListener != null){
@@ -81,10 +80,10 @@ public class ZhiHuAdapter extends RecyclerView.Adapter<ZhiHuAdapter.ViewHolder>{
         this.onItemClickListener = onItemClickListener;
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    final static class ViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.zhi_hu_story_image)
-        ImageView storyImageView;
+        AutoLoadImageView storyImageView;
 
         @BindView(R.id.zhi_hu_story_title_text)
         TextView storyTitleText;

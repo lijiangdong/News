@@ -10,8 +10,8 @@ import com.ljd.news.presentation.view.activity.BaseActivity;
 
 public abstract class BaseFragment extends Fragment {
 
-    public interface Navigator {
-        void navigateToActivity(final Intent intent);
+    public BaseFragment() {
+        // Required empty public constructor
     }
 
     protected Navigator navigator;
@@ -24,13 +24,17 @@ public abstract class BaseFragment extends Fragment {
         }
     }
 
-    public BaseFragment() {
-        // Required empty public constructor
+    @Override
+    public void onDetach() {
+        this.navigator = null;
+        super.onDetach();
     }
-
 
     protected <C> C getComponent(Class<C> componentType) {
         return componentType.cast(((HasComponent<C>) getActivity()).getComponent());
     }
 
+    public interface Navigator {
+        void navigateToActivity(final Intent intent);
+    }
 }

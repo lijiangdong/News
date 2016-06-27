@@ -22,6 +22,7 @@ package com.ljd.news;
 import android.app.Application;
 import android.content.Context;
 
+import com.facebook.stetho.Stetho;
 import com.ljd.news.presentation.internal.di.components.ApplicationComponent;
 import com.ljd.news.presentation.internal.di.components.DaggerApplicationComponent;
 import com.ljd.news.presentation.internal.di.modules.ApplicationModule;
@@ -35,28 +36,23 @@ import static timber.log.Timber.DebugTree;
 public class NewsApplication extends Application {
 
     private ApplicationComponent applicationComponent;
-
     private static Context context;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
-        initApplicationContext();
+        context = this;
         initToastUtils();
         initLeakCanary();
         initTimber();
         initializeInjector();
+        initStetho();
     }
 
-    private void initApplicationContext(){
-        context = this;
-    }
-
-    public static Context getAppicationContext(){
+    public static Context getContext(){
         return context;
     }
-
     private void initToastUtils(){
         ToastUtils.register(this);
     }
@@ -74,6 +70,10 @@ public class NewsApplication extends Application {
         this.applicationComponent = DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(this))
                 .build();
+    }
+
+    private void initStetho(){
+        Stetho.initializeWithDefaults(this);
     }
 
     public ApplicationComponent getApplicationComponent() {

@@ -23,6 +23,8 @@ import android.content.Context;
 
 import com.ljd.news.NewsApplication;
 import com.ljd.news.data.excutor.JobExecutor;
+import com.ljd.news.data.net.DefaultHttpClient;
+import com.ljd.news.data.net.HttpClient;
 import com.ljd.news.data.repository.ZhiHuDataRepository;
 import com.ljd.news.domain.executor.PostExecutionThread;
 import com.ljd.news.domain.executor.ThreadExecutor;
@@ -33,6 +35,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+
 
 @Module
 public class ApplicationModule {
@@ -45,6 +48,11 @@ public class ApplicationModule {
     @Provides @Singleton
     Context provideApplicationContext() {
         return this.application;
+    }
+
+    @Provides @Singleton
+    HttpClient provideHttpClient(DefaultHttpClient defaultHttpClient){
+        return defaultHttpClient;
     }
 
     @Provides @Singleton
@@ -61,4 +69,5 @@ public class ApplicationModule {
     ZhiHuRepository provideZhiHuRepository(ZhiHuDataRepository zhiHuDataRepository) {
         return zhiHuDataRepository;
     }
+
 }
