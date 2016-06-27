@@ -1,8 +1,10 @@
 package com.ljd.news.presentation.view;
 
-import com.ljd.news.presentation.model.ZhiHuStoryDetailModel;
+import com.ljd.news.domain.ZhiHuStoryDetail;
 
-public interface ZhiHuStoryDetailView {
+public interface ZhiHuStoryDetailView extends LoadDataView{
 
-    void renderZhiHuStoryList(ZhiHuStoryDetailModel zhiHuStoryDetailModel);
+    void renderZhiHuStoryDetailByUrl(String url);
+
+    void renderZhiHuStoryDetailByHtml(ZhiHuStoryDetail zhiHuStoryDetail);
 }

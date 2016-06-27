@@ -1,9 +1,12 @@
 package com.ljd.news.presentation.presenter;
 
 
+import android.text.TextUtils;
+
 import com.ljd.news.domain.ZhiHuStoryDetail;
 import com.ljd.news.domain.interactor.ResponseSubscriber;
 import com.ljd.news.domain.interactor.UseCase;
+import com.ljd.news.presentation.exception.ErrorMessageFactory;
 import com.ljd.news.presentation.internal.di.PerActivity;
 import com.ljd.news.presentation.mapper.ZhiHuModelDataMapper;
 import com.ljd.news.presentation.model.ZhiHuStoryDetailModel;
@@ -41,6 +44,7 @@ public class ZhiHuStoryDetailPresenter implements Presenter {
     }
 
     private void loadZhiHuStoryDetails(){
+        zhiHuStoryDetailView.showLoading();
         this.getZhiHuStoryDetails();
     }
 
@@ -50,8 +54,17 @@ public class ZhiHuStoryDetailPresenter implements Presenter {
 
     private void showZhiHuDetails(ZhiHuStoryDetail zhiHuStoryDetail){
         ZhiHuStoryDetailModel zhiHuStoryDetailModel = this.zhiHuModelDataMapper.transform(zhiHuStoryDetail);
-        this.zhiHuStoryDetailView.renderZhiHuStoryList(zhiHuStoryDetailModel);
+        if (TextUtils.isEmpty(zhiHuStoryDetail.getBody())){
+            this.zhiHuStoryDetailView.renderZhiHuStoryDetailByUrl(zhiHuStoryDetailModel.getShareUrl());
+        }else {
+            this.zhiHuStoryDetailView.hideLoading();
+            this.zhiHuStoryDetailView.renderZhiHuStoryDetailByHtml(zhiHuStoryDetail);
+        }
+    }
 
+    private void showErrorMessage(Exception e){
+        String errorMessage = ErrorMessageFactory.create(zhiHuStoryDetailView.context(), e);
+        zhiHuStoryDetailView.showError(errorMessage);
     }
 
     private final class ZhiHuStoryDetailsSubscriber extends ResponseSubscriber<ZhiHuStoryDetail>{
@@ -63,7 +76,10 @@ public class ZhiHuStoryDetailPresenter implements Presenter {
 
         @Override
         protected void onFailure(Throwable e) {
-
+            zhiHuStoryDetailView.hideLoading();
+            showErrorMessage((Exception) e);
         }
     }
+
+
 }

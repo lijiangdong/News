@@ -87,7 +87,6 @@ public class ZhiHuStoryListFragment extends BaseFragment  implements ZhiHuStoryL
                 navigator.navigateToActivity(ZhiHuStoryDetailActivity
                         .getCallingIntent(getActivity(),zhiHuStoryItemModel.getId()));
             }
-
         });
         this.recyclerView.setLayoutManager(new LinearLayoutManager(context()));
         this.recyclerView.setAdapter(zhiHuAdapter);
