@@ -4,6 +4,7 @@ package com.ljd.news.presentation.view.fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -58,8 +59,7 @@ public class ZhiHuStoryDetailFragment extends BaseFragment implements ZhiHuStory
                              Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.fragment_zhi_hu_story, container, false);
         ButterKnife.bind(this,layout);
-        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-
+        setToolbar();
         setWebView();
         return layout;
     }
@@ -91,6 +91,15 @@ public class ZhiHuStoryDetailFragment extends BaseFragment implements ZhiHuStory
         webView.setWebChromeClient(new WebChromeClient());
     }
 
+    private void setToolbar(){
+        ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        if (actionBar != null) {
+            //使左上角图标是否显示
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+        //点击左上角按钮
+        toolbar.setNavigationOnClickListener(v -> getActivity().onBackPressed());
+    }
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -129,6 +138,7 @@ public class ZhiHuStoryDetailFragment extends BaseFragment implements ZhiHuStory
 
     private void setToolbarTitle(String title){
         toolbar.setTitle(title);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
     }
 
     private void setTitleImage(String url){

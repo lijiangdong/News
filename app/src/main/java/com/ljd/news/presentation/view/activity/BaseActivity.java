@@ -36,4 +36,5 @@ public class BaseActivity extends AppCompatActivity implements BaseFragment.Navi
     protected ActivityModule getActivityModule() {
         return new ActivityModule(this);
     }
+
 }
