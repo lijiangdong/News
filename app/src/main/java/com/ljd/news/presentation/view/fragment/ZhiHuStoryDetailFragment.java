@@ -4,6 +4,8 @@ package com.ljd.news.presentation.view.fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +16,11 @@ import android.webkit.WebViewClient;
 import android.widget.RelativeLayout;
 
 import com.ljd.news.R;
-import com.ljd.news.domain.ZhiHuStoryDetail;
 import com.ljd.news.presentation.internal.di.components.ZhiHuComponent;
+import com.ljd.news.presentation.model.ZhiHuStoryDetailModel;
 import com.ljd.news.presentation.presenter.ZhiHuStoryDetailPresenter;
 import com.ljd.news.presentation.view.ZhiHuStoryDetailView;
+import com.ljd.news.presentation.view.component.AutoLoadImageView;
 import com.ljd.news.utils.ToastUtils;
 import com.ljd.news.utils.WebViewUtils;
 
@@ -28,10 +31,17 @@ import butterknife.ButterKnife;
 
 public class ZhiHuStoryDetailFragment extends BaseFragment implements ZhiHuStoryDetailView{
 
-    @BindView(R.id.zhi_hu_web_view) WebView webView;
-    @BindView(R.id.rl_progress) RelativeLayout progressView;
+    @BindView(R.id.zhi_hu_web_view)
+    WebView webView;
+    @BindView(R.id.rl_progress)
+    RelativeLayout progressView;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.zhi_hu_story_image)
+    AutoLoadImageView titleImage;
 
-    @Inject ZhiHuStoryDetailPresenter presenter;
+    @Inject
+    ZhiHuStoryDetailPresenter presenter;
 
     public ZhiHuStoryDetailFragment() {
         this.setRetainInstance(true);
@@ -48,6 +58,8 @@ public class ZhiHuStoryDetailFragment extends BaseFragment implements ZhiHuStory
                              Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.fragment_zhi_hu_story, container, false);
         ButterKnife.bind(this,layout);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+
         setWebView();
         return layout;
     }
@@ -99,16 +111,28 @@ public class ZhiHuStoryDetailFragment extends BaseFragment implements ZhiHuStory
     }
 
     @Override
-    public void renderZhiHuStoryDetailByUrl(String url) {
-        webView.loadUrl(url);
+    public void renderZhiHuStoryDetailByUrl(ZhiHuStoryDetailModel zhiHuStoryDetailModel) {
+        webView.loadUrl(zhiHuStoryDetailModel.getShareUrl());
+        setToolbarTitle(zhiHuStoryDetailModel.getTitle());
+        setTitleImage(zhiHuStoryDetailModel.getImage());
     }
 
     @Override
-    public void renderZhiHuStoryDetailByHtml(ZhiHuStoryDetail zhiHuStoryDetail) {
-        String data = WebViewUtils.buildHtmlWithCss(zhiHuStoryDetail.getBody(),
-                zhiHuStoryDetail.getCss());
+    public void renderZhiHuStoryDetailByHtml(ZhiHuStoryDetailModel zhiHuStoryDetailModel) {
+        setToolbarTitle(zhiHuStoryDetailModel.getTitle());
+        setTitleImage(zhiHuStoryDetailModel.getImage());
+        String data = WebViewUtils.buildHtmlWithCss(zhiHuStoryDetailModel.getBody(),
+                zhiHuStoryDetailModel.getCss());
         webView.loadDataWithBaseURL(WebViewUtils.BASE_URL,data,WebViewUtils.MIME_TYPE,
                 WebViewUtils.ENCODING, WebViewUtils.FAIL_URL);
+    }
+
+    private void setToolbarTitle(String title){
+        toolbar.setTitle(title);
+    }
+
+    private void setTitleImage(String url){
+        titleImage.loadUrl(url);
     }
 
     @Override

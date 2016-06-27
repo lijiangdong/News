@@ -29,8 +29,8 @@ public class ZhiHuStoryDetailActivity extends BaseActivity implements HasCompone
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ButterKnife.bind(this);
         setContentView(R.layout.activity_zhi_hu_story);
+        ButterKnife.bind(this);
         initActivity(savedInstanceState);
     }
 

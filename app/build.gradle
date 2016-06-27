@@ -60,7 +60,7 @@ dependencies {
     compile appDependencies.okHttpLog
     compile appDependencies.converterGson
     compile appDependencies.rxjavaAdapter
-    compile appDependencies.picasso
+    compile appDependencies.glide
 
 
     debugCompile developmentDependencies.leakCanary

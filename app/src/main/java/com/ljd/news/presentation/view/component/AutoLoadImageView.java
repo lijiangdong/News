@@ -1,31 +1,57 @@
 package com.ljd.news.presentation.view.component;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
+import com.ljd.news.R;
+
 
 public class AutoLoadImageView extends ImageView {
 
     private Context context;
+    private int ratio;           //设置AutoLoadImageView宽和高的比例
 
     public AutoLoadImageView(Context context) {
         super(context);
-        this.context = context;
+        setContext(context);
     }
 
     public AutoLoadImageView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.context = context;
+        setContext(context);
+        setAttrs(attrs);
     }
 
     public AutoLoadImageView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        setContext(context);
+        setAttrs(attrs);
+    }
+
+    public void setContext(Context context) {
         this.context = context;
     }
 
+    private void setAttrs(AttributeSet attrs){
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.AutoLoadImageView);
+        ratio = typedArray.getInteger(R.styleable.AutoLoadImageView_ratio,0);
+        typedArray.recycle();
+    }
+
     public void loadUrl(String url){
-        Picasso.with(context).load(url).into(this);
+        Glide.with(context).load(url).into(this);
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        if (ratio == 0){
+            super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        } else {
+            super.onMeasure(widthMeasureSpec, widthMeasureSpec * ratio);
+        }
+
     }
 }

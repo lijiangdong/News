@@ -55,10 +55,10 @@ public class ZhiHuStoryDetailPresenter implements Presenter {
     private void showZhiHuDetails(ZhiHuStoryDetail zhiHuStoryDetail){
         ZhiHuStoryDetailModel zhiHuStoryDetailModel = this.zhiHuModelDataMapper.transform(zhiHuStoryDetail);
         if (TextUtils.isEmpty(zhiHuStoryDetail.getBody())){
-            this.zhiHuStoryDetailView.renderZhiHuStoryDetailByUrl(zhiHuStoryDetailModel.getShareUrl());
+            this.zhiHuStoryDetailView.renderZhiHuStoryDetailByUrl(zhiHuStoryDetailModel);
         }else {
             this.zhiHuStoryDetailView.hideLoading();
-            this.zhiHuStoryDetailView.renderZhiHuStoryDetailByHtml(zhiHuStoryDetail);
+            this.zhiHuStoryDetailView.renderZhiHuStoryDetailByHtml(zhiHuStoryDetailModel);
         }
     }
 
