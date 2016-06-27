@@ -33,7 +33,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Singleton
 public class NewsRetrofit {
 
-    private final HttpClient httpClient;
+    private HttpClient httpClient;
 
     @Inject
     public NewsRetrofit(HttpClient httpClient) {
@@ -47,10 +47,10 @@ public class NewsRetrofit {
         }
 
         Retrofit retrofit = new Retrofit.Builder()
-                .client(this.httpClient.getOKHttpClient())
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .baseUrl(baseUrl)
+                .client(httpClient.getOKHttpClient())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
                 .build();
         return retrofit.create(clazz);
     }
