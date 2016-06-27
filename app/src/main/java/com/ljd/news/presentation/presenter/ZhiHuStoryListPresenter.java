@@ -4,6 +4,7 @@ import com.ljd.news.domain.ZhiHuDaily;
 import com.ljd.news.domain.ZhiHuStoryItem;
 import com.ljd.news.domain.interactor.ResponseSubscriber;
 import com.ljd.news.domain.interactor.UseCase;
+import com.ljd.news.presentation.exception.ErrorMessageFactory;
 import com.ljd.news.presentation.internal.di.PerActivity;
 import com.ljd.news.presentation.mapper.ZhiHuModelDataMapper;
 import com.ljd.news.presentation.model.ZhiHuStoryItemModel;
@@ -39,15 +40,22 @@ public class ZhiHuStoryListPresenter implements Presenter {
     }
 
     private void loadZhiHuStoryList(){
+        viewListView.showLoading();
         this.getZhiHuStoryList();
     }
 
     private void getZhiHuStoryList(){
         getZhiHuStoryListUseCase.execute(new ZhiHuStoryListSubscriber());
     }
+
     private void showZhiHuCollectionInView(List<ZhiHuStoryItem> zhiHuStoryItems){
         Collection<ZhiHuStoryItemModel> zhiHuStoryItemModels = zhiHuModelDataMapper.transform(zhiHuStoryItems);
         viewListView.renderZhiHuStoryList(zhiHuStoryItemModels);
+    }
+
+    private void showErrorMessage(Exception e){
+        String errorMessage = ErrorMessageFactory.create(viewListView.context(), e);
+        viewListView.showError(errorMessage);
     }
 
     @Override
@@ -60,12 +68,14 @@ public class ZhiHuStoryListPresenter implements Presenter {
 
         @Override
         protected void onSuccess(ZhiHuDaily zhiHuDaily) {
+            viewListView.hideLoading();
             showZhiHuCollectionInView(zhiHuDaily.getStories());
         }
 
         @Override
         protected void onFailure(Throwable e) {
-
+            viewListView.hideLoading();
+            showErrorMessage((Exception) e);
         }
     }
 }

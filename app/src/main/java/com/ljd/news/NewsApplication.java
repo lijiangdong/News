@@ -20,7 +20,6 @@
 package com.ljd.news;
 
 import android.app.Application;
-import android.content.Context;
 
 import com.facebook.stetho.Stetho;
 import com.ljd.news.presentation.internal.di.components.ApplicationComponent;
@@ -36,13 +35,10 @@ import static timber.log.Timber.DebugTree;
 public class NewsApplication extends Application {
 
     private ApplicationComponent applicationComponent;
-    private static Context context;
 
     @Override
     public void onCreate() {
         super.onCreate();
-
-        context = this;
         initToastUtils();
         initLeakCanary();
         initTimber();
@@ -50,9 +46,6 @@ public class NewsApplication extends Application {
         initStetho();
     }
 
-    public static Context getContext(){
-        return context;
-    }
     private void initToastUtils(){
         ToastUtils.register(this);
     }

@@ -19,9 +19,6 @@
 
 package com.ljd.news.domain.interactor;
 
-import java.net.ConnectException;
-import java.net.SocketTimeoutException;
-
 import rx.Subscriber;
 
 /**
@@ -43,30 +40,10 @@ public abstract class ResponseSubscriber<T> extends Subscriber<T> {
     @Override
     public void onError(Throwable e) {
         e.printStackTrace();
-        if (e instanceof SocketTimeoutException){
-            connectTimeOutException();
-        }else if (e instanceof ConnectException){
-            connectNetException();
-        }else if (e instanceof RuntimeException){
-            runtimeException();
-        }
         onFailure(e);
     }
 
     protected abstract void onSuccess(T t);
 
     protected abstract void onFailure(Throwable e);
-
-    private void connectTimeOutException(){
-        //TODO:连接服务器超时处理
-    }
-
-    private void connectNetException(){
-        //TODO:连接网络异常
-    }
-
-    private void runtimeException(){
-        //TODO:运行时异常
-    }
-
 }
