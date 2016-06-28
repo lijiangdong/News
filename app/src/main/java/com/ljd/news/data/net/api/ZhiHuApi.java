@@ -21,7 +21,6 @@ package com.ljd.news.data.net.api;
 
 import com.ljd.news.data.entity.ZhiHuDailyEntity;
 import com.ljd.news.data.entity.ZhiHuStoryDetailEntity;
-import com.ljd.news.data.entity.ZhiHuStoryItemEntity;
 
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -33,7 +32,7 @@ public interface ZhiHuApi {
     Observable<ZhiHuDailyEntity> getZhiHuLastDaily();
 
     @GET("/api/4/news/before/{date}")
-    Observable<ZhiHuStoryItemEntity> getZhiHuDaily(@Path("date") String date);
+    Observable<ZhiHuDailyEntity> getZhiHuDaily(@Path("date") String date);
 
     @GET("/api/4/news/{id}")
     Observable<ZhiHuStoryDetailEntity> getZhiHuStory(@Path("id") String id);

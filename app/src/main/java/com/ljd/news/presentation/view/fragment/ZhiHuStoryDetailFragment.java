@@ -44,6 +44,8 @@ public class ZhiHuStoryDetailFragment extends BaseFragment implements ZhiHuStory
     @Inject
     ZhiHuStoryDetailPresenter presenter;
 
+    private ActionBar actionBar;
+
     public ZhiHuStoryDetailFragment() {
         this.setRetainInstance(true);
     }
@@ -92,7 +94,8 @@ public class ZhiHuStoryDetailFragment extends BaseFragment implements ZhiHuStory
     }
 
     private void setToolbar(){
-        ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         if (actionBar != null) {
             //使左上角图标是否显示
             actionBar.setDisplayHomeAsUpEnabled(true);
@@ -139,7 +142,6 @@ public class ZhiHuStoryDetailFragment extends BaseFragment implements ZhiHuStory
 
     private void setToolbarTitle(String title){
         toolbar.setTitle(title);
-        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
     }
 
     private void setTitleImage(String url){

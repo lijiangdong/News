@@ -9,5 +9,7 @@ public interface ZhiHuRepository {
 
     Observable<ZhiHuDaily> zhiHuLastDaily();
 
-    Observable<ZhiHuStoryDetail> zhiHuDailyDetail(int storyId);
+    Observable<ZhiHuStoryDetail> zhiHuStoryDetail(int storyId);
+
+    Observable<ZhiHuDaily> zhiHuDailyByDate(String date);
 }

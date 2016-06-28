@@ -31,8 +31,14 @@ public class ZhiHuDataRepository implements ZhiHuRepository{
     }
 
     @Override
-    public Observable<ZhiHuStoryDetail> zhiHuDailyDetail(int storyId) {
+    public Observable<ZhiHuStoryDetail> zhiHuStoryDetail(int storyId) {
         return retrofitServiceFactory.getZhiHuService().getZhiHuStory(storyId + "")
                 .map(zhiHuStoryDetailEntity -> zhiHuEntityDataMapper.transform(zhiHuStoryDetailEntity));
+    }
+
+    @Override
+    public Observable<ZhiHuDaily> zhiHuDailyByDate(String date) {
+        return retrofitServiceFactory.getZhiHuService().getZhiHuDaily(date)
+                .map(zhiHuDailyEntity -> zhiHuEntityDataMapper.transform(zhiHuDailyEntity));
     }
 }

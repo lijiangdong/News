@@ -21,6 +21,7 @@ import com.ljd.news.presentation.view.adapter.ZhiHuAdapter;
 import com.ljd.news.utils.ToastUtils;
 
 import java.util.Collection;
+import java.util.Collections;
 
 import javax.inject.Inject;
 
@@ -39,6 +40,8 @@ public class ZhiHuStoryListFragment extends BaseFragment  implements ZhiHuStoryL
     public ZhiHuStoryListFragment() {
         setRetainInstance(true);
     }
+    private Collection<ZhiHuStoryItemModel> zhiHuStoryDataCollection = Collections.emptyList();
+    private LinearLayoutManager linearLayoutManager;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -82,21 +85,39 @@ public class ZhiHuStoryListFragment extends BaseFragment  implements ZhiHuStoryL
     }
 
     private void setRecyclerView(){
-        this.zhiHuAdapter.setOnItemClickListener(zhiHuStoryItemModel -> {
-            if (navigator != null){
-                navigator.navigateToActivity(ZhiHuStoryDetailActivity
-                        .getCallingIntent(getActivity(),zhiHuStoryItemModel.getId()));
-            }
-        });
-        this.recyclerView.setLayoutManager(new LinearLayoutManager(context()));
+        this.zhiHuAdapter.setOnItemClickListener(zhiHuStoryItemModel ->
+                this.onClickRecycleViewItem(zhiHuStoryItemModel));
+        this.linearLayoutManager = new LinearLayoutManager(context());
+        this.recyclerView.setLayoutManager(linearLayoutManager);
         this.recyclerView.setAdapter(zhiHuAdapter);
+        this.recyclerView.addOnScrollListener(new RecyclerViewScrollListener());
+    }
+
+    private void onClickRecycleViewItem(ZhiHuStoryItemModel zhiHuStoryItemModel){
+        if (navigator != null){
+            navigator.navigateToActivity(ZhiHuStoryDetailActivity
+                    .getCallingIntent(getActivity(),zhiHuStoryItemModel.getId()));
+        }
+    }
+
+    private void loadMoreView(){
+        this.zhiHuStoryListPresenter.loadMoreStory();
     }
 
     @Override
     public void renderZhiHuStoryList(Collection<ZhiHuStoryItemModel> zhiHuStoryItemModels) {
         if (zhiHuStoryItemModels != null){
-            this.zhiHuAdapter.setStoryList(zhiHuStoryItemModels);
+            this.zhiHuStoryDataCollection = zhiHuStoryItemModels;
         }
+        this.zhiHuAdapter.setStoryList(zhiHuStoryDataCollection);
+    }
+
+    @Override
+    public void renderMoreStory(Collection<ZhiHuStoryItemModel> zhiHuStoryItemModels) {
+        if (zhiHuStoryItemModels != null){
+            this.zhiHuStoryDataCollection.addAll(zhiHuStoryItemModels);
+        }
+        this.zhiHuAdapter.setStoryList(zhiHuStoryDataCollection);
     }
 
     @Override
@@ -117,5 +138,26 @@ public class ZhiHuStoryListFragment extends BaseFragment  implements ZhiHuStoryL
     @Override
     public Context context() {
         return getActivity().getApplicationContext();
+    }
+
+    private final class RecyclerViewScrollListener extends RecyclerView.OnScrollListener{
+        @Override
+        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+            super.onScrolled(recyclerView, dx, dy);
+            this.handleScrollEvent(dy);
+        }
+
+        private void handleScrollEvent(int dy){
+            if (dy < 0){
+                return;
+            }
+
+            int visibleItemCount = linearLayoutManager.getChildCount();
+            int pastVisibleItems = linearLayoutManager.findFirstVisibleItemPosition();
+            int totalItemCount = linearLayoutManager.getItemCount();
+            if (visibleItemCount + pastVisibleItems >= totalItemCount){
+                loadMoreView();
+            }
+        }
     }
 }

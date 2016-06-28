@@ -2,6 +2,7 @@ package com.ljd.news.presentation.internal.di.modules;
 
 import com.ljd.news.domain.executor.PostExecutionThread;
 import com.ljd.news.domain.executor.ThreadExecutor;
+import com.ljd.news.domain.interactor.GetZhiHuDailyByDate;
 import com.ljd.news.domain.interactor.GetZhiHuDailyDetail;
 import com.ljd.news.domain.interactor.GetZhiHuLastDaily;
 import com.ljd.news.domain.interactor.UseCase;
@@ -31,10 +32,15 @@ public class ZhiHuModule {
         return getZhiHuLastDaily;
     }
 
-    @Provides @PerActivity @Named("zhiHuDailyDetail")
+    @Provides @PerActivity @Named("zhiHuStoryDetail")
     UseCase provideGetZhiHuStoryDetail(ZhiHuRepository zhiHuRepository,
                                        ThreadExecutor threadExecutor,
                                        PostExecutionThread postExecutionThread){
         return new GetZhiHuDailyDetail(this.storyId,zhiHuRepository,threadExecutor,postExecutionThread);
+    }
+
+    @Provides @PerActivity @Named("zhiHuDailyByDate")
+    UseCase provideGetZhiHuDailyByDate(GetZhiHuDailyByDate getZhiHuDailyByDate){
+        return getZhiHuDailyByDate;
     }
 }

@@ -24,7 +24,7 @@ public class ZhiHuStoryDetailPresenter implements Presenter {
 
 
     @Inject
-    public ZhiHuStoryDetailPresenter(@Named("zhiHuDailyDetail")UseCase getZhiHuDailyDetailUseCase,
+    public ZhiHuStoryDetailPresenter(@Named("zhiHuStoryDetail")UseCase getZhiHuDailyDetailUseCase,
                                      ZhiHuModelDataMapper zhiHuModelDataMapper) {
         this.getZhiHuDailyDetailUseCase = getZhiHuDailyDetailUseCase;
         this.zhiHuModelDataMapper = zhiHuModelDataMapper;

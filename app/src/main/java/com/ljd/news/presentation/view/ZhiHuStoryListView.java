@@ -7,4 +7,6 @@ import java.util.Collection;
 public interface ZhiHuStoryListView extends LoadDataView{
 
     void renderZhiHuStoryList(Collection<ZhiHuStoryItemModel> zhiHuStoryItemModels);
+
+    void renderMoreStory(Collection<ZhiHuStoryItemModel> zhiHuStoryItemModels);
 }

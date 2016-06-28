@@ -1,7 +1,7 @@
 package com.ljd.news.presentation.presenter;
 
 import com.ljd.news.domain.ZhiHuDaily;
-import com.ljd.news.domain.ZhiHuStoryItem;
+import com.ljd.news.domain.interactor.GetZhiHuDailyByDate;
 import com.ljd.news.domain.interactor.ResponseSubscriber;
 import com.ljd.news.domain.interactor.UseCase;
 import com.ljd.news.presentation.exception.ErrorMessageFactory;
@@ -11,7 +11,6 @@ import com.ljd.news.presentation.model.ZhiHuStoryItemModel;
 import com.ljd.news.presentation.view.ZhiHuStoryListView;
 
 import java.util.Collection;
-import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -21,13 +20,16 @@ public class ZhiHuStoryListPresenter implements Presenter {
 
     private ZhiHuStoryListView viewListView;
 
-    private final UseCase getZhiHuStoryListUseCase;
+    private final UseCase getZhiHuLastStoryListUseCase;
+    private final UseCase getZhiHuStoryListByDateUseCase;
     private final ZhiHuModelDataMapper zhiHuModelDataMapper;
 
     @Inject
     public ZhiHuStoryListPresenter(@Named("zhiHuLastDaily") UseCase getZhiHuStoryListUseCase,
+                                   @Named("zhiHuDailyByDate") UseCase getZhiHuStoryListByDateUseCase,
                                    ZhiHuModelDataMapper zhiHuModelDataMapper) {
-        this.getZhiHuStoryListUseCase = getZhiHuStoryListUseCase;
+        this.getZhiHuLastStoryListUseCase = getZhiHuStoryListUseCase;
+        this.getZhiHuStoryListByDateUseCase = getZhiHuStoryListByDateUseCase;
         this.zhiHuModelDataMapper = zhiHuModelDataMapper;
     }
 
@@ -39,18 +41,34 @@ public class ZhiHuStoryListPresenter implements Presenter {
         this.loadZhiHuStoryList();
     }
 
+    public void loadMoreStory(){
+        viewListView.showLoading();
+        this.getMoreStoryList();
+    }
+
     private void loadZhiHuStoryList(){
         viewListView.showLoading();
         this.getZhiHuStoryList();
     }
 
     private void getZhiHuStoryList(){
-        getZhiHuStoryListUseCase.execute(new ZhiHuStoryListSubscriber());
+        getZhiHuLastStoryListUseCase.execute(new ZhiHuLastStoryListSubscriber());
     }
 
-    private void showZhiHuCollectionInView(List<ZhiHuStoryItem> zhiHuStoryItems){
-        Collection<ZhiHuStoryItemModel> zhiHuStoryItemModels = zhiHuModelDataMapper.transform(zhiHuStoryItems);
+    private void showZhiHuCollectionInView(ZhiHuDaily zhiHuDaily){
+        Collection<ZhiHuStoryItemModel> zhiHuStoryItemModels = transformStoryItem(zhiHuDaily);
         viewListView.renderZhiHuStoryList(zhiHuStoryItemModels);
+        GetZhiHuDailyByDate getZhiHuDailyByDate = (GetZhiHuDailyByDate)getZhiHuStoryListByDateUseCase;
+        getZhiHuDailyByDate.setDate(zhiHuDaily.getDate());
+    }
+
+    private void getMoreStoryList(){
+        getZhiHuStoryListByDateUseCase.execute(new ZhiHuStoryListByDateSubscriber());
+    }
+
+    private void showMoreZhiHuCollectionInView(ZhiHuDaily zhiHuDaily){
+        Collection<ZhiHuStoryItemModel> zhiHuStoryItemModels = transformStoryItem(zhiHuDaily);
+        viewListView.renderMoreStory(zhiHuStoryItemModels);
     }
 
     private void showErrorMessage(Exception e){
@@ -58,18 +76,37 @@ public class ZhiHuStoryListPresenter implements Presenter {
         viewListView.showError(errorMessage);
     }
 
+    private Collection<ZhiHuStoryItemModel> transformStoryItem(ZhiHuDaily zhiHuDaily){
+        return zhiHuModelDataMapper.transform(zhiHuDaily.getStories());
+    }
+
     @Override
     public void destroy() {
-        this.getZhiHuStoryListUseCase.unSubscribe();
+        this.getZhiHuLastStoryListUseCase.unSubscribe();
+        this.getZhiHuStoryListByDateUseCase.unSubscribe();
         this.viewListView = null;
     }
 
-    private final class ZhiHuStoryListSubscriber extends ResponseSubscriber<ZhiHuDaily>{
+    private final class ZhiHuLastStoryListSubscriber extends ResponseSubscriber<ZhiHuDaily>{
 
         @Override
         protected void onSuccess(ZhiHuDaily zhiHuDaily) {
             viewListView.hideLoading();
-            showZhiHuCollectionInView(zhiHuDaily.getStories());
+            showZhiHuCollectionInView(zhiHuDaily);
+        }
+
+        @Override
+        protected void onFailure(Throwable e) {
+            viewListView.hideLoading();
+            showErrorMessage((Exception) e);
+        }
+    }
+
+    private final class ZhiHuStoryListByDateSubscriber extends ResponseSubscriber<ZhiHuDaily>{
+        @Override
+        protected void onSuccess(ZhiHuDaily zhiHuDaily) {
+            viewListView.hideLoading();
+            showMoreZhiHuCollectionInView(zhiHuDaily);
         }
 
         @Override
