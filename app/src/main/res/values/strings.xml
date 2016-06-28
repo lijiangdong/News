@@ -10,4 +10,5 @@
     <string name="exception_message_generic">There was an application error</string>
     <string name="exception_message_no_connection">There is no internet connection</string>
     <string name="exception_message_connect_timeout">connect timeout</string>
+    <string name="exception_message_not_net_connect">not net connect</string>
 </resources>

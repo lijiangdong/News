@@ -100,6 +100,7 @@ public class ZhiHuStoryDetailFragment extends BaseFragment implements ZhiHuStory
         //点击左上角按钮
         toolbar.setNavigationOnClickListener(v -> getActivity().onBackPressed());
     }
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
