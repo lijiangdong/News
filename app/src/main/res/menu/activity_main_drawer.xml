@@ -3,35 +3,45 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
+
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:id="@+id/nav_author"
+            android:icon="@drawable/ic_menu_author"
+            android:title="作者" />
+
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:id="@+id/nav_share"
+            android:icon="@drawable/ic_menu_share"
+            android:title="分享" />
+
         <item
             android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
-    </group>
+            android:icon="@drawable/ic_menu_about"
+            android:title="关于" />
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
-        </menu>
-    </item>
+        <item
+            android:id="@+id/nav_send"
+            android:icon="@drawable/ic_menu_feedback"
+            android:title="反馈" />
+
+        <item
+            android:id="@+id/nav_help"
+            android:icon="@drawable/ic_menu_help"
+            android:title="使用帮助" />
+
+        <item
+            android:id="@+id/nav_clear_cache"
+            android:icon="@drawable/ic_menu_clear"
+            android:title="清空缓存" />
+
+        <item
+            android:id="@+id/nav_update"
+            android:icon="@drawable/ic_menu_update"
+            android:title="检查更新" />
+        <item
+            android:id="@+id/nav_night"
+            android:icon="@drawable/ic_menu_night"
+            android:title="夜间模式" />
+    </group>
 
 </menu>

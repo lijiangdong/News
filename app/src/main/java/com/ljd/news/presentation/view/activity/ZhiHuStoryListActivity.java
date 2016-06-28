@@ -17,8 +17,7 @@ import butterknife.ButterKnife;
 
 public class ZhiHuStoryListActivity extends BaseActivity implements HasComponent<ZhiHuComponent> {
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
+    @BindView(R.id.toolbar) Toolbar toolbar;
 
     public static Intent getCallingIntent(Context context){
         return new Intent(context,ZhiHuStoryListActivity.class);

@@ -58,8 +58,7 @@ public class ZhiHuStoryListPresenter implements Presenter {
     private void showZhiHuCollectionInView(ZhiHuDaily zhiHuDaily){
         Collection<ZhiHuStoryItemModel> zhiHuStoryItemModels = transformStoryItem(zhiHuDaily);
         viewListView.renderZhiHuStoryList(zhiHuStoryItemModels);
-        GetZhiHuDailyByDate getZhiHuDailyByDate = (GetZhiHuDailyByDate)getZhiHuStoryListByDateUseCase;
-        getZhiHuDailyByDate.setDate(zhiHuDaily.getDate());
+        setDate(zhiHuDaily.getDate());
     }
 
     private void getMoreStoryList(){
@@ -69,6 +68,12 @@ public class ZhiHuStoryListPresenter implements Presenter {
     private void showMoreZhiHuCollectionInView(ZhiHuDaily zhiHuDaily){
         Collection<ZhiHuStoryItemModel> zhiHuStoryItemModels = transformStoryItem(zhiHuDaily);
         viewListView.renderMoreStory(zhiHuStoryItemModels);
+        setDate(zhiHuDaily.getDate());
+    }
+
+    private void setDate(String date){
+        GetZhiHuDailyByDate getZhiHuDailyByDate = (GetZhiHuDailyByDate)getZhiHuStoryListByDateUseCase;
+        getZhiHuDailyByDate.setDate(date);
     }
 
     private void showErrorMessage(Exception e){

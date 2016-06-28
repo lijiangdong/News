@@ -46,7 +46,7 @@ public class DefaultHttpClient implements HttpClient{
 
             Response originalResponse = chain.proceed(request);
             if (NetWorkUtils.isNetWorkAvailable(context)) {
-                int maxAge = 60;
+                int maxAge = 60;                  //在线缓存一分钟
                 return originalResponse.newBuilder()
                         .removeHeader("Pragma")
                         .removeHeader("Cache-Control")
@@ -54,7 +54,7 @@ public class DefaultHttpClient implements HttpClient{
                         .build();
 
             } else {
-                int maxStale = 60 * 60 * 24 * 4 * 7;
+                int maxStale = 60 * 60 * 24 * 4 * 7;     //离线缓存4周
                 return originalResponse.newBuilder()
                         .removeHeader("Pragma")
                         .removeHeader("Cache-Control")
