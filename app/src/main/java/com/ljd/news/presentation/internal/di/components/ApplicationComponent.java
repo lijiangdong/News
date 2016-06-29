@@ -21,7 +21,7 @@ package com.ljd.news.presentation.internal.di.components;
 
 import android.content.Context;
 
-import com.ljd.news.NewsApplication;
+import com.ljd.news.presentation.NewsApplication;
 import com.ljd.news.domain.executor.PostExecutionThread;
 import com.ljd.news.domain.executor.ThreadExecutor;
 import com.ljd.news.domain.repository.ZhiHuRepository;

@@ -21,7 +21,7 @@ package com.ljd.news.presentation.internal.di.modules;
 
 import android.content.Context;
 
-import com.ljd.news.NewsApplication;
+import com.ljd.news.presentation.NewsApplication;
 import com.ljd.news.data.excutor.JobExecutor;
 import com.ljd.news.data.net.DefaultHttpClient;
 import com.ljd.news.data.net.HttpClient;

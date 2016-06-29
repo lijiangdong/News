@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
-import com.ljd.news.NewsApplication;
+import com.ljd.news.presentation.NewsApplication;
 import com.ljd.news.presentation.internal.di.components.ApplicationComponent;
 import com.ljd.news.presentation.internal.di.modules.ActivityModule;
 import com.ljd.news.presentation.view.fragment.BaseFragment;

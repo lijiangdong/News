@@ -17,7 +17,7 @@
  * email   ljd2038@gmail.com
  */
 
-package com.ljd.news;
+package com.ljd.news.presentation;
 
 import android.app.Application;
 

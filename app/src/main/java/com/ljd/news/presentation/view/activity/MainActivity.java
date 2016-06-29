@@ -23,72 +23,68 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
-import android.support.v4.view.GravityCompat;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 
 import com.ljd.news.R;
 import com.ljd.news.presentation.internal.di.HasComponent;
 import com.ljd.news.presentation.internal.di.components.DaggerZhiHuComponent;
 import com.ljd.news.presentation.internal.di.components.ZhiHuComponent;
 import com.ljd.news.presentation.internal.di.modules.ZhiHuModule;
+import com.ljd.news.presentation.view.adapter.MainViewPageAdapter;
 import com.ljd.news.presentation.view.fragment.ZhiHuStoryListFragment;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
-public class MainActivity extends BaseActivity
-        implements NavigationView.OnNavigationItemSelectedListener ,HasComponent<ZhiHuComponent>{
+public class MainActivity extends BaseActivity implements HasComponent<ZhiHuComponent>{
 
+    @BindView(R.id.drawer_layout) DrawerLayout mDrawerLayout;
     @BindView(R.id.toolbar) Toolbar toolbar;
     @BindView(R.id.nav_view) NavigationView navigationView;
-    @BindView(R.id.drawer_layout) DrawerLayout drawer;
-    @BindView(R.id.fab) FloatingActionButton fab;
+    @BindView(R.id.viewpager) ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
-        toolbar.setTitle(this.getString(R.string.title_zhi_hu));
+
         setSupportActionBar(toolbar);
-        fab.setOnClickListener(v ->
-            Snackbar.make(v, "Replace with your own action", Snackbar.LENGTH_LONG)
+        final ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
+        if (navigationView != null) {
+            setupDrawerContent(navigationView);
+        }
+
+        if (viewPager != null) {
+            setupViewPager(viewPager);
+        }
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(view ->
+            Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show());
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-
-        navigationView.setNavigationItemSelectedListener(this);
-        if (savedInstanceState == null){
-            addFragment(R.id.fragmentContainer,new ZhiHuStoryListFragment());
-        }
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
     }
 
-    @Override
-    public void onBackPressed() {
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
+    private void setupViewPager(ViewPager viewPager) {
+        MainViewPageAdapter adapter = new MainViewPageAdapter(getSupportFragmentManager());
+        adapter.addFragment(new ZhiHuStoryListFragment(), "Category 1");
+        adapter.addFragment(new ZhiHuStoryListFragment(), "Category 2");
+        adapter.addFragment(new ZhiHuStoryListFragment(), "Category 3");
+        viewPager.setAdapter(adapter);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.nav_share:
-                break;
-            case R.id.nav_send:
-                break;
-        }
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
+    private void setupDrawerContent(NavigationView navigationView) {
+        navigationView.setNavigationItemSelectedListener(item -> {
+            item.setChecked(true);
+            mDrawerLayout.closeDrawers();
+            return true;
+        });
     }
 
     @Override
@@ -99,4 +95,5 @@ public class MainActivity extends BaseActivity
                 .zhiHuModule(new ZhiHuModule())
                 .build();
     }
+
 }

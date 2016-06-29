@@ -17,7 +17,9 @@
  * email   ljd2038@gmail.com
  */
 
-package com.ljd.news;
+package com.ljd.news.presentation;
+
+import com.ljd.news.BuildConfig;
 
 public class NewsConfig {
     public static final boolean IS_DEBUG = BuildConfig.DEBUG;
