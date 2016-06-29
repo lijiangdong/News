@@ -42,6 +42,7 @@ public class ZhiHuStoryListFragment extends BaseFragment  implements ZhiHuStoryL
     }
     private Collection<ZhiHuStoryItemModel> zhiHuStoryDataCollection = Collections.emptyList();
     private LinearLayoutManager linearLayoutManager;
+    private boolean isLoading;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,7 +53,6 @@ public class ZhiHuStoryListFragment extends BaseFragment  implements ZhiHuStoryL
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View layout = inflater.inflate(R.layout.fragment_zhi_hu_story_list, container, false);
         ButterKnife.bind(this,layout);
         setRecyclerView();
@@ -101,6 +101,7 @@ public class ZhiHuStoryListFragment extends BaseFragment  implements ZhiHuStoryL
     }
 
     private void loadMoreView(){
+        this.isLoading = true;
         this.zhiHuStoryListPresenter.loadMoreStory();
     }
 
@@ -127,6 +128,7 @@ public class ZhiHuStoryListFragment extends BaseFragment  implements ZhiHuStoryL
 
     @Override
     public void hideLoading() {
+        this.isLoading = false;
         progressView.setVisibility(View.GONE);
     }
 
@@ -148,7 +150,8 @@ public class ZhiHuStoryListFragment extends BaseFragment  implements ZhiHuStoryL
         }
 
         private void handleScrollEvent(int dy){
-            if (dy < 0){
+            //手指向下滑动并且正在加载不做处理
+            if (dy < 0 || isLoading){
                 return;
             }
 

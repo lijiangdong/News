@@ -14,6 +14,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
 import com.ljd.news.R;
@@ -32,19 +33,16 @@ import butterknife.ButterKnife;
 
 public class ZhiHuStoryDetailFragment extends BaseFragment implements ZhiHuStoryDetailView{
 
-    @BindView(R.id.zhi_hu_web_view)
-    WebView webView;
-    @BindView(R.id.rl_progress)
-    RelativeLayout progressView;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-    @BindView(R.id.zhi_hu_story_image)
-    AutoLoadImageView titleImage;
+    @BindView(R.id.web_view_container) FrameLayout webViewContainer;
+    @BindView(R.id.rl_progress) RelativeLayout progressView;
+    @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.zhi_hu_story_image) AutoLoadImageView titleImage;
 
     @Inject
     ZhiHuStoryDetailPresenter presenter;
 
     private ActionBar actionBar;
+    private WebView webView;
 
     public ZhiHuStoryDetailFragment() {
         this.setRetainInstance(true);
@@ -73,6 +71,8 @@ public class ZhiHuStoryDetailFragment extends BaseFragment implements ZhiHuStory
     }
 
     private void setWebView(){
+        webView = new WebView(getActivity());
+        webViewContainer.addView(webView);
         WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);
         settings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
@@ -97,7 +97,7 @@ public class ZhiHuStoryDetailFragment extends BaseFragment implements ZhiHuStory
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         if (actionBar != null) {
-            //使左上角图标是否显示
+            //使左上角图标显示
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
         //点击左上角按钮
@@ -152,9 +152,11 @@ public class ZhiHuStoryDetailFragment extends BaseFragment implements ZhiHuStory
     public void onDestroy() {
         super.onDestroy();
         if (webView != null) {
-            ((ViewGroup) webView.getParent()).removeView(webView);
             webView.destroy();
             webView = null;
+        }
+        if (webViewContainer != null){
+            webViewContainer.removeAllViews();
         }
         this.presenter.destroy();
     }

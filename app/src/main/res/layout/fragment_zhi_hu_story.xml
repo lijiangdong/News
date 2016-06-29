@@ -40,16 +40,10 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v4.widget.NestedScrollView
-        android:id="@+id/nest"
+    <FrameLayout
+        android:id="@+id/web_view_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <WebView
-            android:id="@+id/zhi_hu_web_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </android.support.v4.widget.NestedScrollView>
+        android:layout_height="match_parent">
+    </FrameLayout>
     <include layout="@layout/view_progress"/>
 </LinearLayout>
