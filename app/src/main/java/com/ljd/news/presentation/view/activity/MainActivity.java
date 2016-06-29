@@ -26,7 +26,7 @@ import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 
 import com.ljd.news.R;
@@ -38,53 +38,67 @@ import com.ljd.news.presentation.view.adapter.MainViewPageAdapter;
 import com.ljd.news.presentation.view.fragment.ZhiHuStoryListFragment;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity implements HasComponent<ZhiHuComponent>{
 
-    @BindView(R.id.drawer_layout) DrawerLayout mDrawerLayout;
+    @BindView(R.id.drawer_layout) DrawerLayout drawerLayout;
     @BindView(R.id.toolbar) Toolbar toolbar;
     @BindView(R.id.nav_view) NavigationView navigationView;
     @BindView(R.id.viewpager) ViewPager viewPager;
+    @BindView(R.id.fab) FloatingActionButton fab;
+    @BindView(R.id.tabs) TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        setSupportActionBar(toolbar);
-        final ActionBar ab = getSupportActionBar();
-        ab.setDisplayHomeAsUpEnabled(true);
-        if (navigationView != null) {
-            setupDrawerContent(navigationView);
-        }
-
-        if (viewPager != null) {
-            setupViewPager(viewPager);
-        }
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(view ->
-            Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show());
-
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
+        ButterKnife.bind(this);
+        this.initView();
     }
 
-    private void setupViewPager(ViewPager viewPager) {
+    private void initView(){
+        this.setupToolbar();
+        this.setupDrawerContent();
+        this.setupViewPager();
+        this.setupFloatButton();
+        this.setupTabLayout();
+    }
+
+    private void setupToolbar(){
+        toolbar.setTitle(this.getString(R.string.title_zhi_hu));
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout.setDrawerListener(toggle);
+        toggle.syncState();
+    }
+
+    private void setupViewPager() {
         MainViewPageAdapter adapter = new MainViewPageAdapter(getSupportFragmentManager());
         adapter.addFragment(new ZhiHuStoryListFragment(), "Category 1");
         adapter.addFragment(new ZhiHuStoryListFragment(), "Category 2");
         adapter.addFragment(new ZhiHuStoryListFragment(), "Category 3");
-        viewPager.setAdapter(adapter);
+        this.viewPager.setAdapter(adapter);
     }
 
-    private void setupDrawerContent(NavigationView navigationView) {
-        navigationView.setNavigationItemSelectedListener(item -> {
+    private void setupDrawerContent() {
+        this.navigationView.setNavigationItemSelectedListener(item -> {
             item.setChecked(true);
-            mDrawerLayout.closeDrawers();
+            drawerLayout.closeDrawers();
             return true;
         });
+    }
+
+    private void setupFloatButton(){
+        this.fab.setOnClickListener(view ->
+                Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show());
+    }
+
+    private void setupTabLayout(){
+        this.tabLayout.setupWithViewPager(this.viewPager);
     }
 
     @Override
@@ -95,5 +109,4 @@ public class MainActivity extends BaseActivity implements HasComponent<ZhiHuComp
                 .zhiHuModule(new ZhiHuModule())
                 .build();
     }
-
 }
