@@ -77,7 +77,7 @@ public class ZhiHuStoryDetailFragment extends BaseFragment implements ZhiHuStory
         settings.setJavaScriptEnabled(true);
         settings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         settings.setLoadWithOverviewMode(true);
-        settings.setBuiltInZoomControls(true);
+//        settings.setBuiltInZoomControls(true);
         settings.setDomStorageEnabled(true);
         settings.setDatabaseEnabled(true);
         settings.setAppCachePath(context().getCacheDir().getAbsolutePath() + "/webViewCache");
