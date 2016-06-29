@@ -4,6 +4,7 @@ package com.ljd.news.presentation.view.fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -37,6 +38,7 @@ public class ZhiHuStoryDetailFragment extends BaseFragment implements ZhiHuStory
     @BindView(R.id.rl_progress) RelativeLayout progressView;
     @BindView(R.id.toolbar) Toolbar toolbar;
     @BindView(R.id.zhi_hu_story_image) AutoLoadImageView titleImage;
+    @BindView(R.id.collapsing_toolbar) CollapsingToolbarLayout collapsingToolbarLayout;
 
     @Inject
     ZhiHuStoryDetailPresenter presenter;
@@ -141,7 +143,7 @@ public class ZhiHuStoryDetailFragment extends BaseFragment implements ZhiHuStory
     }
 
     private void setToolbarTitle(String title){
-        toolbar.setTitle(title);
+        collapsingToolbarLayout.setTitle(title);
     }
 
     private void setTitleImage(String url){
