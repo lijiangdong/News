@@ -22,7 +22,7 @@ package com.ljd.news.utils;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-public class NetWorkUtils {
+public final class NetWorkUtils {
 
     private NetWorkUtils() {
     }

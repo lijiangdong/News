@@ -16,6 +16,7 @@ import com.ljd.news.presentation.internal.di.components.ZhiHuComponent;
 import com.ljd.news.presentation.model.ZhiHuStoryItemModel;
 import com.ljd.news.presentation.presenter.ZhiHuStoryListPresenter;
 import com.ljd.news.presentation.view.ZhiHuStoryListView;
+import com.ljd.news.presentation.view.activity.MainActivity;
 import com.ljd.news.presentation.view.activity.ZhiHuStoryDetailActivity;
 import com.ljd.news.presentation.view.adapter.ZhiHuAdapter;
 import com.ljd.news.utils.ToastUtils;
@@ -40,9 +41,20 @@ public class ZhiHuStoryListFragment extends BaseFragment  implements ZhiHuStoryL
     public ZhiHuStoryListFragment() {
         setRetainInstance(true);
     }
+
     private Collection<ZhiHuStoryItemModel> zhiHuStoryDataCollection = Collections.emptyList();
     private LinearLayoutManager linearLayoutManager;
     private boolean isLoading;
+    private int previousVisibleItem;
+    private HandleFloatActionButton hanleFab;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof MainActivity){
+            this.hanleFab = (HandleFloatActionButton) context;
+        }
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -82,6 +94,12 @@ public class ZhiHuStoryListFragment extends BaseFragment  implements ZhiHuStoryL
     public void onDestroy() {
         super.onDestroy();
         this.zhiHuStoryListPresenter.destroy();
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        this.hanleFab = null;
     }
 
     private void setRecyclerView(){
@@ -143,22 +161,38 @@ public class ZhiHuStoryListFragment extends BaseFragment  implements ZhiHuStoryL
     }
 
     private final class RecyclerViewScrollListener extends RecyclerView.OnScrollListener{
+
         @Override
         public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
             super.onScrolled(recyclerView, dx, dy);
-            this.handleScrollEvent(dy);
+            int firstVisibleItem = linearLayoutManager.findFirstVisibleItemPosition();
+            this.handleFab(firstVisibleItem);
+            this.handleLoadMoreData(firstVisibleItem,dy);
         }
 
-        private void handleScrollEvent(int dy){
+        private void handleFab(int firstVisibleItem){
+            if (hanleFab == null){
+                return;
+            }
+
+            if (firstVisibleItem > previousVisibleItem){
+                hanleFab.hideFloatActionButton();
+            }else if (firstVisibleItem < previousVisibleItem){
+                hanleFab.showFloatActionButton();
+            }
+
+            previousVisibleItem = firstVisibleItem;
+        }
+
+        private void handleLoadMoreData(int firstVisibleItem,int dy){
             //手指向下滑动并且正在加载不做处理
             if (dy < 0 || isLoading){
                 return;
             }
 
             int visibleItemCount = linearLayoutManager.getChildCount();
-            int pastVisibleItems = linearLayoutManager.findFirstVisibleItemPosition();
             int totalItemCount = linearLayoutManager.getItemCount();
-            if (visibleItemCount + pastVisibleItems >= totalItemCount){
+            if (visibleItemCount + firstVisibleItem >= totalItemCount){
                 loadMoreView();
             }
         }

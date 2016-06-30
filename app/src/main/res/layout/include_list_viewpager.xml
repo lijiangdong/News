@@ -2,6 +2,7 @@
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/tools"
     android:id="@+id/main_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -33,12 +34,34 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    <android.support.design.widget.FloatingActionButton
+    <com.ljd.news.presentation.view.component.FloatingActionMenu
         android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_gravity="end|bottom"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@android:drawable/ic_input_add" />
+        android:padding="@dimen/fab_margin"
+        android:src="@drawable/fab_add"
+        fab:menu_labels_ellipsize="end"
+        fab:menu_labels_singleLine="true"
+        fab:menu_backgroundColor="#ccffffff"
+        fab:menu_fab_label="Menu label">
+        <com.ljd.news.presentation.view.component.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_size="mini"
+            fab:fab_label="Menu item 1" />
+
+        <com.ljd.news.presentation.view.component.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_size="mini"
+            fab:fab_label="Menu item 2"
+            />
+        <com.ljd.news.presentation.view.component.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_size="mini"
+            fab:fab_label="Menu item 3" />
+    </com.ljd.news.presentation.view.component.FloatingActionMenu>
 
 </android.support.design.widget.CoordinatorLayout>

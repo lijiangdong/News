@@ -5,6 +5,11 @@
     <group android:checkableBehavior="single">
 
         <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_menu_home"
+            android:title="主页" />
+
+        <item
             android:id="@+id/nav_author"
             android:icon="@drawable/ic_menu_author"
             android:title="作者" />

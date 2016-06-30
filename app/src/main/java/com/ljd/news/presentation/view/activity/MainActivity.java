@@ -20,14 +20,14 @@
 package com.ljd.news.presentation.view.activity;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
+import android.os.Handler;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.view.animation.AnimationUtils;
 
 import com.ljd.news.R;
 import com.ljd.news.presentation.internal.di.HasComponent;
@@ -35,18 +35,21 @@ import com.ljd.news.presentation.internal.di.components.DaggerZhiHuComponent;
 import com.ljd.news.presentation.internal.di.components.ZhiHuComponent;
 import com.ljd.news.presentation.internal.di.modules.ZhiHuModule;
 import com.ljd.news.presentation.view.adapter.MainViewPageAdapter;
+import com.ljd.news.presentation.view.component.FloatingActionMenu;
+import com.ljd.news.presentation.view.fragment.BaseFragment;
 import com.ljd.news.presentation.view.fragment.ZhiHuStoryListFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends BaseActivity implements HasComponent<ZhiHuComponent>{
+public class MainActivity extends BaseActivity implements HasComponent<ZhiHuComponent>,
+        BaseFragment.HandleFloatActionButton{
 
     @BindView(R.id.drawer_layout) DrawerLayout drawerLayout;
     @BindView(R.id.toolbar) Toolbar toolbar;
     @BindView(R.id.nav_view) NavigationView navigationView;
     @BindView(R.id.viewpager) ViewPager viewPager;
-    @BindView(R.id.fab) FloatingActionButton fab;
+    @BindView(R.id.fab) FloatingActionMenu fab;
     @BindView(R.id.tabs) TabLayout tabLayout;
 
     @Override
@@ -71,7 +74,7 @@ public class MainActivity extends BaseActivity implements HasComponent<ZhiHuComp
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawerLayout.setDrawerListener(toggle);
+        drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
     }
 
@@ -86,15 +89,26 @@ public class MainActivity extends BaseActivity implements HasComponent<ZhiHuComp
     private void setupDrawerContent() {
         this.navigationView.setNavigationItemSelectedListener(item -> {
             item.setChecked(true);
+            int id = item.getItemId();
+            switch (id){
+                case R.id.nav_home:
+
+                    break;
+            }
             drawerLayout.closeDrawers();
             return true;
         });
     }
 
     private void setupFloatButton(){
-        this.fab.setOnClickListener(view ->
-                Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show());
+        fab.hideMenu(false);
+        new Handler().postDelayed(()->{
+            fab.showMenu(true);
+            fab.setMenuButtonShowAnimation(AnimationUtils.
+                    loadAnimation(MainActivity.this, R.anim.show_from_bottom));
+            fab.setMenuButtonHideAnimation(AnimationUtils.
+                    loadAnimation(MainActivity.this, R.anim.hide_to_bottom));
+        }, 300);
     }
 
     private void setupTabLayout(){
@@ -108,5 +122,15 @@ public class MainActivity extends BaseActivity implements HasComponent<ZhiHuComp
                 .activityModule(getActivityModule())
                 .zhiHuModule(new ZhiHuModule())
                 .build();
+    }
+
+    @Override
+    public void hideFloatActionButton() {
+        this.fab.hideMenu(true);
+    }
+
+    @Override
+    public void showFloatActionButton() {
+        this.fab.showMenu(true);
     }
 }

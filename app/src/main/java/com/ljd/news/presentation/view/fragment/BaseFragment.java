@@ -37,4 +37,9 @@ public abstract class BaseFragment extends Fragment {
     public interface Navigator {
         void navigateToActivity(final Intent intent);
     }
+
+    public interface HandleFloatActionButton{
+        void hideFloatActionButton();
+        void showFloatActionButton();
+    }
 }
