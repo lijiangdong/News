@@ -46,13 +46,13 @@ public class ZhiHuStoryListFragment extends BaseFragment  implements ZhiHuStoryL
     private LinearLayoutManager linearLayoutManager;
     private boolean isLoading;
     private int previousVisibleItem;
-    private HandleFloatActionButton hanleFab;
+    private HandleFloatActionButton handleFab;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof MainActivity){
-            this.hanleFab = (HandleFloatActionButton) context;
+            this.handleFab = (HandleFloatActionButton) context;
         }
     }
 
@@ -99,7 +99,7 @@ public class ZhiHuStoryListFragment extends BaseFragment  implements ZhiHuStoryL
     @Override
     public void onDetach() {
         super.onDetach();
-        this.hanleFab = null;
+        this.handleFab = null;
     }
 
     private void setRecyclerView(){
@@ -171,14 +171,14 @@ public class ZhiHuStoryListFragment extends BaseFragment  implements ZhiHuStoryL
         }
 
         private void handleFab(int firstVisibleItem){
-            if (hanleFab == null){
+            if (handleFab == null){
                 return;
             }
 
             if (firstVisibleItem > previousVisibleItem){
-                hanleFab.hideFloatActionButton();
+                handleFab.hideFloatActionButton();
             }else if (firstVisibleItem < previousVisibleItem){
-                hanleFab.showFloatActionButton();
+                handleFab.showFloatActionButton();
             }
 
             previousVisibleItem = firstVisibleItem;

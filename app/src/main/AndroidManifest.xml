@@ -22,11 +22,6 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity
-            android:name=".presentation.view.activity.ZhiHuStoryListActivity"
-            android:label="@string/title_activity_zhi_hu_story_list"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
         <activity android:name=".presentation.view.activity.ZhiHuStoryDetailActivity">
         </activity>
     </application>

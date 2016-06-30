@@ -38,7 +38,9 @@ import android.widget.TextView;
 
 import com.ljd.news.R;
 
-import static com.ljd.news.utils.DensityUtils.*;
+import static com.ljd.news.utils.DensityUtils.dpToPx;
+import static com.ljd.news.utils.Utils.hasJellyBean;
+import static com.ljd.news.utils.Utils.hasLollipop;
 
 public class FloatingActionButton extends ImageButton {
 

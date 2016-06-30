@@ -26,7 +26,8 @@ import android.view.ViewOutlineProvider;
 import android.view.animation.Animation;
 import android.widget.TextView;
 
-import static com.ljd.news.utils.DensityUtils.*;
+import static com.ljd.news.utils.Utils.hasJellyBean;
+import static com.ljd.news.utils.Utils.hasLollipop;
 
 public class Label extends TextView {
 

@@ -28,7 +28,7 @@ import com.ljd.news.R;
 
 import java.util.ArrayList;
 import java.util.List;
-import static com.ljd.news.utils.DensityUtils.*;
+import static com.ljd.news.utils.DensityUtils.dpToPx;
 
 public class FloatingActionMenu extends ViewGroup {
 
