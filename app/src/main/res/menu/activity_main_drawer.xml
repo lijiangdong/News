@@ -10,19 +10,9 @@
             android:title="主页" />
 
         <item
-            android:id="@+id/nav_author"
-            android:icon="@drawable/ic_menu_author"
-            android:title="作者" />
-
-        <item
             android:id="@+id/nav_share"
             android:icon="@drawable/ic_menu_share"
             android:title="分享" />
-
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_about"
-            android:title="关于" />
 
         <item
             android:id="@+id/nav_send"
@@ -30,23 +20,26 @@
             android:title="反馈" />
 
         <item
-            android:id="@+id/nav_help"
-            android:icon="@drawable/ic_menu_help"
-            android:title="使用帮助" />
+            android:id="@+id/nav_author"
+            android:icon="@drawable/ic_menu_author"
+            android:title="作者" />
 
-        <item
-            android:id="@+id/nav_clear_cache"
-            android:icon="@drawable/ic_menu_clear"
-            android:title="清空缓存" />
-
-        <item
-            android:id="@+id/nav_update"
-            android:icon="@drawable/ic_menu_update"
-            android:title="检查更新" />
-        <item
-            android:id="@+id/nav_night"
-            android:icon="@drawable/ic_menu_night"
-            android:title="夜间模式" />
     </group>
+
+    <item android:title="设置">
+        <menu>
+            <item
+                android:id="@+id/nav_clear_cache"
+                android:icon="@drawable/ic_menu_clear"
+                android:title="清空缓存" />
+
+            <item
+                android:id="@+id/nav_update"
+                android:icon="@drawable/ic_menu_update"
+                android:title="检查更新" />
+
+        </menu>
+    </item>
+
 
 </menu>
