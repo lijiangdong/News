@@ -19,6 +19,7 @@
 
 package com.ljd.news.data.net;
 
+import com.ljd.news.data.net.api.NewsApi;
 import com.ljd.news.data.net.api.WeChatNewsApi;
 import com.ljd.news.data.net.api.ZhiHuApi;
 
@@ -30,6 +31,7 @@ public class RetrofitServiceFactory {
 
     private static final String WE_CHAT_BASE_URL = "";
     private static final String ZHI_HU_BASE_URL = "http://news-at.zhihu.com";
+    private static final String NEWS_URL = "http://lijiangdong.com";
 
     @Inject
     public NewsRetrofit newsRetrofit;
@@ -45,5 +47,9 @@ public class RetrofitServiceFactory {
 
     public ZhiHuApi getZhiHuService(){
         return newsRetrofit.getNewsRetrofit(ZhiHuApi.class,ZHI_HU_BASE_URL);
+    }
+
+    public NewsApi getNewsService(){
+        return newsRetrofit.getNewsRetrofit(NewsApi.class,NEWS_URL);
     }
 }
