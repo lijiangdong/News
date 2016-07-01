@@ -4,7 +4,9 @@
 
 #下载方式
 扫描下方二维码可直接下载
-[](http://lijiangdong.com/app/release/images/download.png)
+
+![这里写图片描述](http://lijiangdong.com/app/release/images/download.png)
+
 #License
 
 Copyright (C) 2016 Li Jiangdong Open Source Project
