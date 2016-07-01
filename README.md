@@ -3,7 +3,7 @@
 项目采用Dagger2 + RxJava + Retrofit构建的Clean架构。
 
 #下载方式
-扫描下方二维码可直接下载
+扫描下方二维码可直接下载(不要通过微信扫描)
 
 ![这里写图片描述](http://lijiangdong.com/app/release/images/download.png)
 
