@@ -2,6 +2,9 @@
 通过在网上搜索获取一些新闻api，完成一个新闻阅读客户端。该客户端目的是针对当前Android开发中主流的开源框架使用与学习。目前只完成对知乎日报的展示阅读。
 项目采用Dagger2 + RxJava + Retrofit构建的Clean架构。
 
+#下载方式
+扫描下方二维码可直接下载
+[](http://lijiangdong.com/app/release/images/download.png)
 #License
 
 Copyright (C) 2016 Li Jiangdong Open Source Project
