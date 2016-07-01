@@ -21,6 +21,8 @@ package com.ljd.news.presentation.internal.di.modules;
 
 import android.content.Context;
 
+import com.ljd.news.data.repository.NewsDataRepository;
+import com.ljd.news.domain.repository.NewsRepository;
 import com.ljd.news.presentation.NewsApplication;
 import com.ljd.news.data.excutor.JobExecutor;
 import com.ljd.news.data.net.DefaultHttpClient;
@@ -68,6 +70,11 @@ public class ApplicationModule {
     @Provides @Singleton
     ZhiHuRepository provideZhiHuRepository(ZhiHuDataRepository zhiHuDataRepository) {
         return zhiHuDataRepository;
+    }
+
+    @Provides @Singleton
+    NewsRepository provideNewsRepository(NewsDataRepository newsDataRepository){
+        return newsDataRepository;
     }
 
 }
