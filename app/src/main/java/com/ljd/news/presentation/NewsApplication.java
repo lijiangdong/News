@@ -28,6 +28,7 @@ import com.ljd.news.presentation.internal.di.modules.ApplicationModule;
 import com.ljd.news.utils.ToastUtils;
 import com.squareup.leakcanary.LeakCanary;
 
+import cn.sharesdk.framework.ShareSDK;
 import timber.log.Timber;
 
 import static timber.log.Timber.DebugTree;
@@ -44,6 +45,7 @@ public class NewsApplication extends Application {
         initTimber();
         initializeInjector();
         initStetho();
+        initShare();
     }
 
     private void initToastUtils(){
@@ -67,6 +69,10 @@ public class NewsApplication extends Application {
 
     private void initStetho(){
         Stetho.initializeWithDefaults(this);
+    }
+
+    private void initShare(){
+        ShareSDK.initSDK(this);
     }
 
     public ApplicationComponent getApplicationComponent() {
