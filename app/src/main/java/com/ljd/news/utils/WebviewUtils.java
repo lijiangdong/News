@@ -3,7 +3,6 @@ package com.ljd.news.utils;
 import java.util.List;
 
 public class WebViewUtils {
-
     private WebViewUtils() {
     }
 
