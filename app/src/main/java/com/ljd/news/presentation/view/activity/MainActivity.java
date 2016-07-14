@@ -35,14 +35,19 @@ import com.ljd.news.presentation.internal.di.HasComponent;
 import com.ljd.news.presentation.internal.di.components.DaggerZhiHuComponent;
 import com.ljd.news.presentation.internal.di.components.ZhiHuComponent;
 import com.ljd.news.presentation.internal.di.modules.ZhiHuModule;
+import com.ljd.news.presentation.presenter.CheckNewsUpdatePresenter;
 import com.ljd.news.presentation.share.onekeyshare.OnekeyShare;
 import com.ljd.news.presentation.share.onekeyshare.ShareContentCustomizeCallback;
+import com.ljd.news.presentation.view.CheckNewsUpdateView;
 import com.ljd.news.presentation.view.adapter.MainViewPageAdapter;
 import com.ljd.news.presentation.view.component.FloatingActionMenu;
+import com.ljd.news.presentation.view.dialog.UpdatePromptDialog;
 import com.ljd.news.presentation.view.fragment.BaseFragment;
 import com.ljd.news.presentation.view.fragment.ZhiHuStoryListFragment;
 
 import java.util.HashMap;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -56,7 +61,7 @@ import cn.sharesdk.wechat.friends.Wechat;
 import cn.sharesdk.wechat.moments.WechatMoments;
 
 public class MainActivity extends BaseActivity implements HasComponent<ZhiHuComponent>,
-        BaseFragment.HandleFloatActionButton{
+        BaseFragment.HandleFloatActionButton,CheckNewsUpdateView{
 
     @BindView(R.id.drawer_layout) DrawerLayout drawerLayout;
     @BindView(R.id.toolbar) Toolbar toolbar;
@@ -65,11 +70,15 @@ public class MainActivity extends BaseActivity implements HasComponent<ZhiHuComp
     @BindView(R.id.fab) FloatingActionMenu fab;
     @BindView(R.id.tabs) TabLayout tabLayout;
 
+    @Inject CheckNewsUpdatePresenter presenter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        getComponent().inject(this);
+        presenter.setView(this);
+        presenter.initialize();
         this.initView();
     }
 
@@ -235,5 +244,10 @@ public class MainActivity extends BaseActivity implements HasComponent<ZhiHuComp
         });
         //**********显示******************
         share.show(this);
+    }
+
+    @Override
+    public void updatePromptView(String versionName, String message) {
+        UpdatePromptDialog.show(this,message);
     }
 }

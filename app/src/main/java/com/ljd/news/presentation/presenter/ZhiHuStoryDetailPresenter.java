@@ -80,6 +80,4 @@ public class ZhiHuStoryDetailPresenter implements Presenter {
             showErrorMessage((Exception) e);
         }
     }
-
-
 }

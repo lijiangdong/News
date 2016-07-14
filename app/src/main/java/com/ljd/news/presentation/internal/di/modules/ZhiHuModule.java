@@ -2,6 +2,7 @@ package com.ljd.news.presentation.internal.di.modules;
 
 import com.ljd.news.domain.executor.PostExecutionThread;
 import com.ljd.news.domain.executor.ThreadExecutor;
+import com.ljd.news.domain.interactor.CheckNewsUpdate;
 import com.ljd.news.domain.interactor.GetZhiHuDailyByDate;
 import com.ljd.news.domain.interactor.GetZhiHuDailyDetail;
 import com.ljd.news.domain.interactor.GetZhiHuLastDaily;
@@ -42,5 +43,10 @@ public class ZhiHuModule {
     @Provides @PerActivity @Named("zhiHuDailyByDate")
     UseCase provideGetZhiHuDailyByDate(GetZhiHuDailyByDate getZhiHuDailyByDate){
         return getZhiHuDailyByDate;
+    }
+
+    @Provides @PerActivity @Named("checkNewsUpdate")
+    UseCase provideUpdateNewsApk(CheckNewsUpdate checkNewsUpdate){
+        return checkNewsUpdate;
     }
 }

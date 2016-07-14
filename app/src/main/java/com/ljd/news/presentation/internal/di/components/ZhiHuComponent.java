@@ -3,6 +3,7 @@ package com.ljd.news.presentation.internal.di.components;
 import com.ljd.news.presentation.internal.di.PerActivity;
 import com.ljd.news.presentation.internal.di.modules.ActivityModule;
 import com.ljd.news.presentation.internal.di.modules.ZhiHuModule;
+import com.ljd.news.presentation.view.activity.MainActivity;
 import com.ljd.news.presentation.view.fragment.ZhiHuStoryDetailFragment;
 import com.ljd.news.presentation.view.fragment.ZhiHuStoryListFragment;
 
@@ -16,4 +17,6 @@ public interface ZhiHuComponent {
     void inject(ZhiHuStoryListFragment fragment);
 
     void inject(ZhiHuStoryDetailFragment fragment);
+
+    void inject(MainActivity activity);
 }

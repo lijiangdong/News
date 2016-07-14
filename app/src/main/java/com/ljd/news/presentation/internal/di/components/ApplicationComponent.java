@@ -21,10 +21,11 @@ package com.ljd.news.presentation.internal.di.components;
 
 import android.content.Context;
 
-import com.ljd.news.presentation.NewsApplication;
 import com.ljd.news.domain.executor.PostExecutionThread;
 import com.ljd.news.domain.executor.ThreadExecutor;
+import com.ljd.news.domain.repository.NewsRepository;
 import com.ljd.news.domain.repository.ZhiHuRepository;
+import com.ljd.news.presentation.NewsApplication;
 import com.ljd.news.presentation.internal.di.modules.ApplicationModule;
 
 import javax.inject.Singleton;
@@ -40,4 +41,5 @@ public interface ApplicationComponent {
     ThreadExecutor threadExecutor();
     PostExecutionThread postExecutionThread();
     ZhiHuRepository zhiHuRepository();
+    NewsRepository newsRepository();
 }
