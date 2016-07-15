@@ -54,5 +54,6 @@ public abstract class UseCase {
             subscription.unsubscribe();
         }
     }
+
     protected abstract Observable buildUseCaseObservable();
 }
