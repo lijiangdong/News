@@ -14,13 +14,22 @@
  * limitations under the License.
  */
 
-package com.ljd.news.presentation.view;
+package com.ljd.news.presentation.internal.di.modules;
 
-import java.io.File;
+import com.ljd.news.domain.interactor.DownloadNewsApk;
+import com.ljd.news.domain.interactor.UseCase;
+import com.ljd.news.presentation.internal.di.PerActivity;
 
-public interface DownloadNewsApkView {
+import javax.inject.Named;
 
-    void installNewsApk(File file);
+import dagger.Module;
+import dagger.Provides;
 
-    void stopService();
+@Module
+public class NewsModule {
+
+    @Provides @PerActivity @Named("downloadNewsApk")
+    UseCase provideDownloadNewsApk(DownloadNewsApk downloadNewsApk){
+        return downloadNewsApk;
+    }
 }

@@ -68,7 +68,7 @@ public class MainActivity extends BaseActivity implements HasComponent<ZhiHuComp
     }
 
     private void checkUpdate(){
-        getComponent().inject(this);
+        this.getComponent().inject(this);
         presenter.setView(this);
         presenter.initialize();
     }

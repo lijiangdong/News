@@ -80,7 +80,7 @@ public class DownloadNewsApkPresenter implements Presenter<DownloadNewsApkView> 
             fos.close();
             bis.close();
             is.close();
-            downloadNewsApkView.installNewsApk(new File(PATH,FILE_NAME));
+            this.downloadNewsApkView.installNewsApk(new File(PATH,FILE_NAME));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -91,11 +91,12 @@ public class DownloadNewsApkPresenter implements Presenter<DownloadNewsApkView> 
         @Override
         protected void onSuccess(ResponseBody responseBody) {
             writeToSdcardAndInstall(responseBody);
+            downloadNewsApkView.stopService();
         }
 
         @Override
         protected void onFailure(Throwable e) {
-
+            downloadNewsApkView.stopService();
         }
     }
 }
