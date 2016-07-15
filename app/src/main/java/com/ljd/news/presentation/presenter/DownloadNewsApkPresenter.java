@@ -63,30 +63,34 @@ public class DownloadNewsApkPresenter implements Presenter<DownloadNewsApkView> 
         this.downloadApkUseCase.execute(new DownloadApkSubscriber());
     }
 
+    private void writeToSdcardAndInstall(ResponseBody responseBody){
+        try {
+            final String PATH = Environment.getExternalStorageDirectory().getAbsolutePath();
+            final String FILE_NAME = "news.apk";
+            InputStream is = responseBody.byteStream();
+            File file = new File(PATH,FILE_NAME);
+            FileOutputStream fos = new FileOutputStream(file);
+            BufferedInputStream bis = new BufferedInputStream(is);
+            byte[] buffer = new byte[1024];
+            int len;
+            while ((len = bis.read(buffer)) != -1) {
+                fos.write(buffer, 0, len);
+                fos.flush();
+            }
+            fos.close();
+            bis.close();
+            is.close();
+            downloadNewsApkView.installNewsApk(new File(PATH,FILE_NAME));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private final class DownloadApkSubscriber extends ResponseSubscriber<ResponseBody>{
 
         @Override
         protected void onSuccess(ResponseBody responseBody) {
-            try {
-                final String PATH = Environment.getExternalStorageDirectory().getAbsolutePath();
-                final String FILE_NAME = "news.apk";
-                InputStream is = responseBody.byteStream();
-                File file = new File(PATH,FILE_NAME);
-                FileOutputStream fos = new FileOutputStream(file);
-                BufferedInputStream bis = new BufferedInputStream(is);
-                byte[] buffer = new byte[1024];
-                int len;
-                while ((len = bis.read(buffer)) != -1) {
-                    fos.write(buffer, 0, len);
-                    fos.flush();
-                }
-                fos.close();
-                bis.close();
-                is.close();
-                downloadNewsApkView.installNewsApk(new File(PATH,FILE_NAME));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            writeToSdcardAndInstall(responseBody);
         }
 
         @Override

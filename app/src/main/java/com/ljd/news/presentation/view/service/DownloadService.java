@@ -17,21 +17,52 @@
 package com.ljd.news.presentation.view.service;
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
-public class DownloadService extends Service {
+import com.ljd.news.presentation.presenter.DownloadNewsApkPresenter;
+import com.ljd.news.presentation.view.DownloadNewsApkView;
+
+import java.io.File;
+
+import javax.inject.Inject;
+
+public class DownloadService extends Service implements DownloadNewsApkView {
+
+    @Inject DownloadNewsApkPresenter downloadNewsApkPresenter;
+
+    public static Intent getCallingIntent(Context context){
+        return new Intent(context, DownloadService.class);
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        this.downloadNewsApkPresenter.setView(this);
+    }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        return super.onStartCommand(intent, flags, startId);
+        this.downloadNewsApkPresenter.initialize();
+        this.stopSelf(startId);
+        return START_STICKY;
     }
 
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-
         return null;
+    }
+
+    @Override
+    public void installNewsApk(File file) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setDataAndType(Uri.fromFile(file),
+                "application/vnd.android.package-archive");
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+        getApplicationContext().startActivity(intent);
     }
 }

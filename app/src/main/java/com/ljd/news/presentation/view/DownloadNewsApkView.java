@@ -16,13 +16,9 @@
 
 package com.ljd.news.presentation.view;
 
-import android.content.Context;
-
 import java.io.File;
 
 public interface DownloadNewsApkView {
 
     void installNewsApk(File file);
-
-    Context context();
 }

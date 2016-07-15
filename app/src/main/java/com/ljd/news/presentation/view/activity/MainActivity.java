@@ -17,9 +17,6 @@
 package com.ljd.news.presentation.view.activity;
 
 import android.app.AlertDialog;
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
@@ -37,15 +34,12 @@ import com.ljd.news.presentation.internal.di.components.DaggerZhiHuComponent;
 import com.ljd.news.presentation.internal.di.components.ZhiHuComponent;
 import com.ljd.news.presentation.internal.di.modules.ZhiHuModule;
 import com.ljd.news.presentation.presenter.CheckNewsUpdatePresenter;
-import com.ljd.news.presentation.presenter.DownloadNewsApkPresenter;
 import com.ljd.news.presentation.view.CheckNewsUpdateView;
-import com.ljd.news.presentation.view.DownloadNewsApkView;
 import com.ljd.news.presentation.view.adapter.MainViewPageAdapter;
 import com.ljd.news.presentation.view.component.FloatingActionMenu;
 import com.ljd.news.presentation.view.fragment.BaseFragment;
 import com.ljd.news.presentation.view.fragment.ZhiHuStoryListFragment;
-
-import java.io.File;
+import com.ljd.news.presentation.view.service.DownloadService;
 
 import javax.inject.Inject;
 
@@ -53,7 +47,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity implements HasComponent<ZhiHuComponent>,
-        BaseFragment.HandleFloatActionButton,CheckNewsUpdateView,DownloadNewsApkView{
+        BaseFragment.HandleFloatActionButton,CheckNewsUpdateView{
 
     @BindView(R.id.drawer_layout) DrawerLayout drawerLayout;
     @BindView(R.id.toolbar) Toolbar toolbar;
@@ -63,7 +57,6 @@ public class MainActivity extends BaseActivity implements HasComponent<ZhiHuComp
     @BindView(R.id.tabs) TabLayout tabLayout;
 
     @Inject CheckNewsUpdatePresenter presenter;
-    @Inject DownloadNewsApkPresenter downloadNewsApkPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +71,6 @@ public class MainActivity extends BaseActivity implements HasComponent<ZhiHuComp
         getComponent().inject(this);
         presenter.setView(this);
         presenter.initialize();
-        downloadNewsApkPresenter.setView(this);
     }
 
     private void initView(){
@@ -173,25 +165,11 @@ public class MainActivity extends BaseActivity implements HasComponent<ZhiHuComp
         builder.setCancelable(true);
         builder.setMessage(message);
         builder.setPositiveButton(getString(R.string.update),(dialog, which) -> {
-            downloadNewsApkPresenter.initialize();
+            startService(DownloadService.getCallingIntent(this));
         });
         builder.setNegativeButton(getString(R.string.cancel),(dialog, which) -> {
             dialog.dismiss();
         });
         builder.create().show();
-    }
-
-    @Override
-    public void installNewsApk(File file) {
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setDataAndType(Uri.fromFile(file),
-                "application/vnd.android.package-archive");
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-        getApplicationContext().startActivity(intent);
-    }
-
-    @Override
-    public Context context() {
-        return this;
     }
 }
