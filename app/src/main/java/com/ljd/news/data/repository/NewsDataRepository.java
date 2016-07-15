@@ -24,6 +24,7 @@ import com.ljd.news.domain.repository.NewsRepository;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import okhttp3.ResponseBody;
 import rx.Observable;
 
 @Singleton
@@ -43,5 +44,10 @@ public class NewsDataRepository implements NewsRepository {
     public Observable<UpdateApk> checkApkUpdate() {
         return retrofitServiceFactory.getNewsService().checkUpdateApk()
                 .map(updateApkEntity -> newsEntityDataMapper.transform(updateApkEntity));
+    }
+
+    @Override
+    public Observable<ResponseBody> downloadNewsApk() {
+        return retrofitServiceFactory.getNewsService().downloadApk();
     }
 }

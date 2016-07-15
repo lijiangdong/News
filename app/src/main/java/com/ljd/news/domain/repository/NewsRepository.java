@@ -18,8 +18,11 @@ package com.ljd.news.domain.repository;
 
 import com.ljd.news.domain.UpdateApk;
 
+import okhttp3.ResponseBody;
 import rx.Observable;
 
 public interface NewsRepository {
     Observable<UpdateApk> checkApkUpdate();
+
+    Observable<ResponseBody> downloadNewsApk();
 }

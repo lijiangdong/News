@@ -16,5 +16,28 @@
 
 package com.ljd.news.domain.interactor;
 
-public class DownloadNewsApk {
+import com.ljd.news.domain.executor.PostExecutionThread;
+import com.ljd.news.domain.executor.ThreadExecutor;
+import com.ljd.news.domain.repository.NewsRepository;
+
+import javax.inject.Inject;
+
+import rx.Observable;
+
+public class DownloadNewsApk extends UseCase{
+
+    private final NewsRepository newsRepository;
+
+    @Inject
+    public DownloadNewsApk(ThreadExecutor threadExecutor,
+                           PostExecutionThread postExecutionThread,
+                           NewsRepository newsRepository) {
+        super(threadExecutor, postExecutionThread);
+        this.newsRepository = newsRepository;
+    }
+
+    @Override
+    protected Observable buildUseCaseObservable() {
+        return newsRepository.downloadNewsApk();
+    }
 }

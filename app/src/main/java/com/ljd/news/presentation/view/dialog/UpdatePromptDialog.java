@@ -19,18 +19,20 @@ package com.ljd.news.presentation.view.dialog;
 import android.app.AlertDialog;
 import android.content.Context;
 
+import com.ljd.news.R;
+
 public class UpdatePromptDialog {
     private static  AlertDialog.Builder builder;
 
     public static void show(Context context,String message){
         builder = new AlertDialog.Builder(context);
-        builder.setTitle("版本更新");
+        builder.setTitle(context.getString(R.string.version_update));
         builder.setCancelable(true);
         builder.setMessage(message);
-        builder.setPositiveButton("更新",(dialog, which) -> {
+        builder.setPositiveButton(context.getString(R.string.update),(dialog, which) -> {
                     //TODO:下载更新操作
                 });
-        builder.setNegativeButton("取消",(dialog, which) -> {
+        builder.setNegativeButton(context.getString(R.string.cancel),(dialog, which) -> {
             dialog.dismiss();
         });
         builder.create().show();

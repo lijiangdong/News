@@ -68,15 +68,20 @@ public class MainActivity extends BaseActivity implements HasComponent<ZhiHuComp
     @BindView(R.id.tabs) TabLayout tabLayout;
 
     @Inject CheckNewsUpdatePresenter presenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        this.checkUpdate();
+        this.initView();
+    }
+
+    private void checkUpdate(){
         getComponent().inject(this);
         presenter.setView(this);
         presenter.initialize();
-        this.initView();
     }
 
     private void initView(){
