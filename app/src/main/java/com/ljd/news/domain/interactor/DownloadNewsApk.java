@@ -14,20 +14,7 @@
  * limitations under the License.
  */
 
-package com.ljd.news.presentation.view;
+package com.ljd.news.domain.interactor;
 
-import android.app.Service;
-import android.content.Intent;
-import android.os.IBinder;
-import android.support.annotation.Nullable;
-
-public class UpdateVersionService extends Service{
-
-
-    @Nullable
-    @Override
-    public IBinder onBind(Intent intent) {
-        return null;
-    }
-
+public class DownloadNewsApk {
 }
