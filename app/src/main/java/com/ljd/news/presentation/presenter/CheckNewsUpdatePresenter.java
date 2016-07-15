@@ -29,7 +29,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 @PerActivity
-public class CheckNewsUpdatePresenter implements Presenter {
+public class CheckNewsUpdatePresenter implements Presenter<CheckNewsUpdateView> {
 
     private UseCase checkNewsUpdateUseCase;
     private NewsModelDataMapper newsModelDataMapper;
@@ -42,6 +42,7 @@ public class CheckNewsUpdatePresenter implements Presenter {
         this.newsModelDataMapper = newsModelDataMapper;
     }
 
+    @Override
     public void setView(CheckNewsUpdateView checkNewsUpdateView){
         this.checkNewsUpdateView = checkNewsUpdateView;
     }

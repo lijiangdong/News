@@ -14,9 +14,15 @@
  * limitations under the License.
  */
 
-package com.ljd.news.presentation.presenter;
+package com.ljd.news.presentation.view;
 
-public interface Presenter<T> {
-    void destroy();
-    void setView(T t);
+import android.content.Context;
+
+import java.io.File;
+
+public interface DownloadNewsApkView {
+
+    void installNewsApk(File file);
+
+    Context context();
 }

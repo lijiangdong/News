@@ -32,7 +32,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 @PerActivity
-public class ZhiHuStoryListPresenter implements Presenter {
+public class ZhiHuStoryListPresenter implements Presenter<ZhiHuStoryListView> {
 
     private ZhiHuStoryListView viewListView;
 
@@ -49,6 +49,7 @@ public class ZhiHuStoryListPresenter implements Presenter {
         this.zhiHuModelDataMapper = zhiHuModelDataMapper;
     }
 
+    @Override
     public void setView(ZhiHuStoryListView viewListView){
         this.viewListView = viewListView;
     }
