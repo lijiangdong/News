@@ -21,6 +21,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -36,6 +37,7 @@ import com.ljd.news.presentation.internal.di.modules.ZhiHuModule;
 import com.ljd.news.presentation.presenter.CheckNewsUpdatePresenter;
 import com.ljd.news.presentation.view.CheckNewsUpdateView;
 import com.ljd.news.presentation.view.adapter.MainViewPageAdapter;
+import com.ljd.news.presentation.view.component.FloatingActionButton;
 import com.ljd.news.presentation.view.component.FloatingActionMenu;
 import com.ljd.news.presentation.view.fragment.BaseFragment;
 import com.ljd.news.presentation.view.fragment.ZhiHuStoryListFragment;
@@ -106,8 +108,6 @@ public class MainActivity extends BaseActivity implements HasComponent<ZhiHuComp
             item.setChecked(true);
             int id = item.getItemId();
             switch (id){
-                case R.id.nav_home:
-                    break;
                 case R.id.nav_share:
                     this.showShare();
                     break;
@@ -126,6 +126,19 @@ public class MainActivity extends BaseActivity implements HasComponent<ZhiHuComp
             fab.setMenuButtonHideAnimation(AnimationUtils.
                     loadAnimation(MainActivity.this, R.anim.hide_to_bottom));
         }, 300);
+
+        final FloatingActionButton programFab1 = new FloatingActionButton(this);
+        programFab1.setButtonSize(FloatingActionButton.SIZE_MINI);
+        programFab1.setLabelText("sdsdsdsdsds");
+        programFab1.setImageResource(R.drawable.ic_edit);
+        fab.addMenuButton(programFab1);
+        programFab1.setOnClickListener(v -> {
+            programFab1.setLabelColors(ContextCompat.getColor(MainActivity.this, R.color.grey),
+                    ContextCompat.getColor(MainActivity.this, R.color.light_grey),
+                    ContextCompat.getColor(MainActivity.this, R.color.white_transparent));
+            programFab1.setLabelTextColor(ContextCompat.getColor(MainActivity.this, R.color.black));
+        });
+
     }
 
     private void setupTabLayout(){

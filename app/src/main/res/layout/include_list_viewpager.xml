@@ -39,6 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="end|bottom"
+        android:visibility="gone"
         android:padding="@dimen/fab_margin"
         android:src="@drawable/fab_add"
         fab:menu_labels_ellipsize="end"
