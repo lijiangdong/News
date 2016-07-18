@@ -59,32 +59,32 @@ public class ZhiHuStoryListPresenter implements Presenter<ZhiHuStoryListView> {
     }
 
     public void loadMoreStory(){
-        viewListView.showLoading();
+        this.viewListView.showLoading();
         this.getMoreStoryList();
     }
 
     private void loadZhiHuStoryList(){
-        viewListView.showLoading();
+        this.viewListView.showLoading();
         this.getZhiHuStoryList();
     }
 
     private void getZhiHuStoryList(){
-        getZhiHuLastStoryListUseCase.execute(new ZhiHuLastStoryListSubscriber());
+        this.getZhiHuLastStoryListUseCase.execute(new ZhiHuLastStoryListSubscriber());
     }
 
     private void showZhiHuCollectionInView(ZhiHuDaily zhiHuDaily){
         Collection<ZhiHuStoryItemModel> zhiHuStoryItemModels = transformStoryItem(zhiHuDaily);
-        viewListView.renderZhiHuStoryList(zhiHuStoryItemModels);
+        this.viewListView.renderZhiHuStoryList(zhiHuStoryItemModels);
         setDate(zhiHuDaily.getDate());
     }
 
     private void getMoreStoryList(){
-        getZhiHuStoryListByDateUseCase.execute(new ZhiHuStoryListByDateSubscriber());
+        this.getZhiHuStoryListByDateUseCase.execute(new ZhiHuStoryListByDateSubscriber());
     }
 
     private void showMoreZhiHuCollectionInView(ZhiHuDaily zhiHuDaily){
         Collection<ZhiHuStoryItemModel> zhiHuStoryItemModels = transformStoryItem(zhiHuDaily);
-        viewListView.renderMoreStory(zhiHuStoryItemModels);
+        this.viewListView.renderMoreStory(zhiHuStoryItemModels);
         setDate(zhiHuDaily.getDate());
     }
 
@@ -95,11 +95,11 @@ public class ZhiHuStoryListPresenter implements Presenter<ZhiHuStoryListView> {
 
     private void showErrorMessage(Exception e){
         String errorMessage = ErrorMessageFactory.create(viewListView.context(), e);
-        viewListView.showError(errorMessage);
+        this.viewListView.showError(errorMessage);
     }
 
     private Collection<ZhiHuStoryItemModel> transformStoryItem(ZhiHuDaily zhiHuDaily){
-        return zhiHuModelDataMapper.transform(zhiHuDaily.getStories());
+        return this.zhiHuModelDataMapper.transform(zhiHuDaily.getStories());
     }
 
     @Override

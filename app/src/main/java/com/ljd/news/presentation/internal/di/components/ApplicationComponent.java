@@ -18,6 +18,7 @@ package com.ljd.news.presentation.internal.di.components;
 
 import android.content.Context;
 
+import com.ljd.news.data.repository.AvatarDataRepository;
 import com.ljd.news.domain.executor.PostExecutionThread;
 import com.ljd.news.domain.executor.ThreadExecutor;
 import com.ljd.news.domain.repository.NewsRepository;
@@ -39,4 +40,5 @@ public interface ApplicationComponent {
     PostExecutionThread postExecutionThread();
     ZhiHuRepository zhiHuRepository();
     NewsRepository newsRepository();
+    AvatarDataRepository avatarDataRepository();
 }

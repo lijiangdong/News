@@ -16,17 +16,63 @@
 
 package com.ljd.news.presentation.presenter;
 
+import com.ljd.news.domain.interactor.ResponseSubscriber;
+import com.ljd.news.domain.interactor.UseCase;
+import com.ljd.news.presentation.internal.di.PerActivity;
+import com.ljd.news.presentation.mapper.GuoNeiNewsModelDataMapper;
+import com.ljd.news.presentation.model.GuoNeiNewsModel;
 import com.ljd.news.presentation.view.GuoNeiNewsListView;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+
+@PerActivity
 public class GuoNeiNewsListPresenter implements Presenter<GuoNeiNewsListView> {
+
+    private GuoNeiNewsListView guoNeiNewsListView;
+    private final UseCase getGuoNeiNewsListUseCase;
+    private final GuoNeiNewsModelDataMapper guoNeiNewsModelDataMapper;
+
+    @Inject
+    public GuoNeiNewsListPresenter(@Named("guoNeiNewsList") UseCase getGuoNeiNewsList,
+                                   GuoNeiNewsModelDataMapper guoNeiNewsModelDataMapper) {
+        this.getGuoNeiNewsListUseCase = getGuoNeiNewsList;
+        this.guoNeiNewsModelDataMapper = guoNeiNewsModelDataMapper;
+    }
 
     @Override
     public void destroy() {
+        this.getGuoNeiNewsListUseCase.unSubscribe();
+    }
 
+    public void initialize(){
+        this.loadGuoNeiNewsList();
+    }
+
+    private void loadGuoNeiNewsList(){
+        this.guoNeiNewsListView.showLoading();
+        this.getGuoNeiNewsList();
+    }
+
+    private void getGuoNeiNewsList(){
+        this.getGuoNeiNewsListUseCase.execute(new GuoNeiNewsListSubscriber());
     }
 
     @Override
     public void setView(GuoNeiNewsListView guoNeiNewsListView) {
+        this.guoNeiNewsListView = guoNeiNewsListView;
+    }
 
+    private final class GuoNeiNewsListSubscriber extends ResponseSubscriber<GuoNeiNewsModel>{
+
+        @Override
+        protected void onSuccess(GuoNeiNewsModel guoNeiNewsModel) {
+
+        }
+
+        @Override
+        protected void onFailure(Throwable e) {
+
+        }
     }
 }

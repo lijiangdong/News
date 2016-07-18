@@ -16,5 +16,5 @@
 
 package com.ljd.news.presentation.view;
 
-public interface GuoNeiNewsListView {
+public interface GuoNeiNewsListView extends LoadDataView{
 }

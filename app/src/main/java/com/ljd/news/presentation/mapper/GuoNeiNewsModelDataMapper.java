@@ -24,9 +24,15 @@ import com.ljd.news.presentation.model.GuoNeiNewsResultModel;
 import java.util.Collections;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import static com.ljd.news.utils.Utils.checkNotNull;
 
 public class GuoNeiNewsModelDataMapper {
+
+    @Inject
+    public GuoNeiNewsModelDataMapper() {
+    }
 
     public GuoNeiNewsModel transform(GuoNeiNews guoNeiNews){
         checkNotNull(guoNeiNews,"guoNeiNewsEntity == null");

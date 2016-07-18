@@ -22,14 +22,14 @@ import android.os.Bundle;
 
 import com.ljd.news.R;
 import com.ljd.news.presentation.internal.di.HasComponent;
-import com.ljd.news.presentation.internal.di.components.DaggerZhiHuComponent;
-import com.ljd.news.presentation.internal.di.components.ZhiHuComponent;
+import com.ljd.news.presentation.internal.di.components.DaggerMainComponent;
+import com.ljd.news.presentation.internal.di.components.MainComponent;
 import com.ljd.news.presentation.internal.di.modules.ZhiHuModule;
 import com.ljd.news.presentation.view.fragment.ZhiHuStoryDetailFragment;
 
 import butterknife.ButterKnife;
 
-public class ZhiHuStoryDetailActivity extends BaseActivity implements HasComponent<ZhiHuComponent>{
+public class ZhiHuStoryDetailActivity extends BaseActivity implements HasComponent<MainComponent>{
 
     private static final String INTENT_EXTRA_PARAM_STORY_ID = "com.ljd.news.presentation.view.activity.INTENT_PARAM_STORY_ID";
     private static final String INSTANCE_STATE_PARAM_STORY_ID = "com.ljd.news.presentation.view.activity.STATE_PARAM_STORY_ID";
@@ -68,8 +68,8 @@ public class ZhiHuStoryDetailActivity extends BaseActivity implements HasCompone
     }
 
     @Override
-    public ZhiHuComponent getComponent() {
-        return DaggerZhiHuComponent.builder()
+    public MainComponent getComponent() {
+        return DaggerMainComponent.builder()
                 .applicationComponent(getApplicationComponent())
                 .activityModule(getActivityModule())
                 .zhiHuModule(new ZhiHuModule(this.storyId))

@@ -28,7 +28,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.ljd.news.R;
-import com.ljd.news.presentation.internal.di.components.ZhiHuComponent;
+import com.ljd.news.presentation.internal.di.components.MainComponent;
 import com.ljd.news.presentation.model.ZhiHuStoryItemModel;
 import com.ljd.news.presentation.presenter.ZhiHuStoryListPresenter;
 import com.ljd.news.presentation.view.ZhiHuStoryListView;
@@ -75,7 +75,7 @@ public class ZhiHuStoryListFragment extends BaseFragment  implements ZhiHuStoryL
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.getComponent(ZhiHuComponent.class).inject(this);
+        this.getComponent(MainComponent.class).inject(this);
     }
 
     @Override

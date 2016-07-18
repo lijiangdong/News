@@ -17,6 +17,7 @@
 package com.ljd.news.presentation.view.fragment;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -24,25 +25,52 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ljd.news.R;
+import com.ljd.news.presentation.internal.di.components.MainComponent;
+import com.ljd.news.presentation.presenter.GuoNeiNewsListPresenter;
+import com.ljd.news.presentation.view.GuoNeiNewsListView;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class GuoNeiNewsListFragment extends BaseFragment {
+public class GuoNeiNewsListFragment extends BaseFragment implements GuoNeiNewsListView {
 
     @BindView(R.id.guo_nei_news_recycler) RecyclerView recyclerView;
+    @Inject GuoNeiNewsListPresenter presenter;
 
     public GuoNeiNewsListFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.fragment_guo_nei_news_list, container, false);
         ButterKnife.bind(this,layout);
+        getComponent(MainComponent.class).inject(this);
+        presenter.setView(this);
+        presenter.initialize();
         return layout;
     }
 
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void showError(String message) {
+
+    }
+
+    @Override
+    public Context context() {
+        return getActivity();
+    }
 }

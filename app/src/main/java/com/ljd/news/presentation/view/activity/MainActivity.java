@@ -31,8 +31,8 @@ import android.view.animation.AnimationUtils;
 
 import com.ljd.news.R;
 import com.ljd.news.presentation.internal.di.HasComponent;
-import com.ljd.news.presentation.internal.di.components.DaggerZhiHuComponent;
-import com.ljd.news.presentation.internal.di.components.ZhiHuComponent;
+import com.ljd.news.presentation.internal.di.components.DaggerMainComponent;
+import com.ljd.news.presentation.internal.di.components.MainComponent;
 import com.ljd.news.presentation.internal.di.modules.ZhiHuModule;
 import com.ljd.news.presentation.presenter.CheckNewsUpdatePresenter;
 import com.ljd.news.presentation.view.CheckNewsUpdateView;
@@ -52,7 +52,7 @@ import butterknife.ButterKnife;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
 
-public class MainActivity extends BaseActivity implements HasComponent<ZhiHuComponent>, BaseFragment.HandleFloatActionButton,CheckNewsUpdateView{
+public class MainActivity extends BaseActivity implements HasComponent<MainComponent>, BaseFragment.HandleFloatActionButton,CheckNewsUpdateView{
 
     @BindView(R.id.drawer_layout) DrawerLayout drawerLayout;
     @BindView(R.id.toolbar) Toolbar toolbar;
@@ -157,8 +157,8 @@ public class MainActivity extends BaseActivity implements HasComponent<ZhiHuComp
     }
 
     @Override
-    public ZhiHuComponent getComponent() {
-        return DaggerZhiHuComponent.builder()
+    public MainComponent getComponent() {
+        return DaggerMainComponent.builder()
                 .applicationComponent(getApplicationComponent())
                 .activityModule(getActivityModule())
                 .zhiHuModule(new ZhiHuModule())

@@ -17,13 +17,26 @@
 package com.ljd.news.presentation.internal.di.components;
 
 import com.ljd.news.presentation.internal.di.PerActivity;
+import com.ljd.news.presentation.internal.di.modules.ActivityModule;
 import com.ljd.news.presentation.internal.di.modules.GuoNeiNewsModule;
+import com.ljd.news.presentation.internal.di.modules.ZhiHuModule;
+import com.ljd.news.presentation.view.activity.MainActivity;
 import com.ljd.news.presentation.view.fragment.GuoNeiNewsListFragment;
+import com.ljd.news.presentation.view.fragment.ZhiHuStoryDetailFragment;
+import com.ljd.news.presentation.view.fragment.ZhiHuStoryListFragment;
 
 import dagger.Component;
 
 @PerActivity
-@Component(dependencies = ApplicationComponent.class,modules = GuoNeiNewsModule.class)
-public interface GuoNeiNewsComponent {
+@Component(dependencies = ApplicationComponent.class,
+        modules = {ActivityModule.class, ZhiHuModule.class, GuoNeiNewsModule.class})
+public interface MainComponent {
+
+    void inject(ZhiHuStoryListFragment fragment);
+
+    void inject(ZhiHuStoryDetailFragment fragment);
+
+    void inject(MainActivity activity);
+
     void inject(GuoNeiNewsListFragment fragment);
 }

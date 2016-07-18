@@ -35,7 +35,7 @@ import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
 import com.ljd.news.R;
-import com.ljd.news.presentation.internal.di.components.ZhiHuComponent;
+import com.ljd.news.presentation.internal.di.components.MainComponent;
 import com.ljd.news.presentation.model.ZhiHuStoryDetailModel;
 import com.ljd.news.presentation.presenter.ZhiHuStoryDetailPresenter;
 import com.ljd.news.presentation.view.ZhiHuStoryDetailView;
@@ -69,7 +69,7 @@ public class ZhiHuStoryDetailFragment extends BaseFragment implements ZhiHuStory
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getComponent(ZhiHuComponent.class).inject(this);
+        getComponent(MainComponent.class).inject(this);
     }
 
     @Override
