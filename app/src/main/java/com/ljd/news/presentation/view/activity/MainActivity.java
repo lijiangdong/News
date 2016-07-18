@@ -50,8 +50,7 @@ import butterknife.ButterKnife;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
 
-public class MainActivity extends BaseActivity implements HasComponent<ZhiHuComponent>,
-        BaseFragment.HandleFloatActionButton,CheckNewsUpdateView{
+public class MainActivity extends BaseActivity implements HasComponent<ZhiHuComponent>, BaseFragment.HandleFloatActionButton,CheckNewsUpdateView{
 
     @BindView(R.id.drawer_layout) DrawerLayout drawerLayout;
     @BindView(R.id.toolbar) Toolbar toolbar;
