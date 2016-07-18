@@ -40,6 +40,8 @@ import com.ljd.news.presentation.view.adapter.MainViewPageAdapter;
 import com.ljd.news.presentation.view.component.FloatingActionButton;
 import com.ljd.news.presentation.view.component.FloatingActionMenu;
 import com.ljd.news.presentation.view.fragment.BaseFragment;
+import com.ljd.news.presentation.view.fragment.GuoNeiNewsListFragment;
+import com.ljd.news.presentation.view.fragment.WorldNewsListFragment;
 import com.ljd.news.presentation.view.fragment.ZhiHuStoryListFragment;
 import com.ljd.news.presentation.view.service.DownloadService;
 
@@ -72,8 +74,8 @@ public class MainActivity extends BaseActivity implements HasComponent<ZhiHuComp
 
     private void checkUpdate(){
         this.getComponent().inject(this);
-        presenter.setView(this);
-        presenter.initialize();
+        this.presenter.setView(this);
+        this.presenter.initialize();
     }
 
     private void initView(){
@@ -85,20 +87,21 @@ public class MainActivity extends BaseActivity implements HasComponent<ZhiHuComp
     }
 
     private void setupToolbar(){
-        toolbar.setTitle(this.getString(R.string.title_zhi_hu));
+        this.toolbar.setTitle(this.getString(R.string.app_name));
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawerLayout.addDrawerListener(toggle);
+        this.drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
     }
 
     private void setupViewPager() {
         MainViewPageAdapter adapter = new MainViewPageAdapter(getSupportFragmentManager());
-        adapter.addFragment(new ZhiHuStoryListFragment(), "Category 1");
-        adapter.addFragment(new ZhiHuStoryListFragment(), "Category 2");
-        adapter.addFragment(new ZhiHuStoryListFragment(), "Category 3");
+        adapter.addFragment(new ZhiHuStoryListFragment(), getString(R.string.title_zhi_hu));
+        adapter.addFragment(new GuoNeiNewsListFragment(), getString(R.string.title_guo_nei_news));
+        adapter.addFragment(new WorldNewsListFragment(), getString(R.string.title_world_news));
+        this.viewPager.setOffscreenPageLimit(adapter.getCount());
         this.viewPager.setAdapter(adapter);
     }
 
@@ -117,7 +120,7 @@ public class MainActivity extends BaseActivity implements HasComponent<ZhiHuComp
     }
 
     private void setupFloatButton(){
-        fab.hideMenu(false);
+        this.fab.hideMenu(false);
         new Handler().postDelayed(()->{
             fab.showMenu(true);
             fab.setMenuButtonShowAnimation(AnimationUtils.

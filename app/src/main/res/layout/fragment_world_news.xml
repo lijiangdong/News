@@ -18,10 +18,10 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context="com.ljd.news.presentation.view.fragment.GuoNeiNewsListFragment">
+             tools:context=".presentation.view.fragment.WorldNewsListFragment">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/guo_nei_news_recycler"
+        android:id="@+id/world_news_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

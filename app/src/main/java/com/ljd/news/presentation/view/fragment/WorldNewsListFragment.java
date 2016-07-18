@@ -18,21 +18,17 @@ package com.ljd.news.presentation.view.fragment;
 
 
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.ljd.news.R;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
-public class GuoNeiNewsListFragment extends BaseFragment {
+public class WorldNewsListFragment extends BaseFragment {
 
-    @BindView(R.id.guo_nei_news_recycler) RecyclerView recyclerView;
 
-    public GuoNeiNewsListFragment() {
+    public WorldNewsListFragment() {
         // Required empty public constructor
     }
 
@@ -40,9 +36,8 @@ public class GuoNeiNewsListFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View layout = inflater.inflate(R.layout.fragment_guo_nei_news_list, container, false);
-        ButterKnife.bind(this,layout);
-        return layout;
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_world_news, container, false);
     }
 
 }
