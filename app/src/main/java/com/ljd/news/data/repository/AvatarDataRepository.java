@@ -18,10 +18,8 @@ package com.ljd.news.data.repository;
 
 import com.ljd.news.data.entity.mapper.AvatarEntityDataMapper;
 import com.ljd.news.data.net.RetrofitServiceFactory;
-import com.ljd.news.domain.GuoNeiNewsResult;
+import com.ljd.news.domain.GuoNeiNews;
 import com.ljd.news.domain.repository.AvatarRepository;
-
-import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -41,8 +39,8 @@ public class AvatarDataRepository implements AvatarRepository {
     }
 
     @Override
-    public Observable<List<GuoNeiNewsResult>> getGuoNeiNews(String key, int page, int rows) {
+    public Observable<GuoNeiNews> getGuoNeiNews(String key, int page, int rows) {
         return retrofitServiceFactory.getGuoNeiNewsApi().getGuoNeiNews(key,page,rows)
-                .map(guoNeiNewsEntity -> avatarEntityDataMapper.transform(guoNeiNewsEntity.getResult()));
+                .map(guoNeiNewsEntity -> avatarEntityDataMapper.transform(guoNeiNewsEntity));
     }
 }

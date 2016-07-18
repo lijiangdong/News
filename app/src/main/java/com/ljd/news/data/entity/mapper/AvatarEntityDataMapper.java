@@ -16,7 +16,9 @@
 
 package com.ljd.news.data.entity.mapper;
 
+import com.ljd.news.data.entity.GuoNeiNewsEntity;
 import com.ljd.news.data.entity.GuoNeiNewsResultEntity;
+import com.ljd.news.domain.GuoNeiNews;
 import com.ljd.news.domain.GuoNeiNewsResult;
 
 import java.util.Collections;
@@ -32,6 +34,15 @@ public class AvatarEntityDataMapper {
 
     @Inject
     public AvatarEntityDataMapper() {
+    }
+
+    public GuoNeiNews transform(GuoNeiNewsEntity guoNeiNewsEntity){
+        checkNotNull(guoNeiNewsEntity,"guoNeiNewsEntity == null");
+        GuoNeiNews guoNeiNews = new GuoNeiNews();
+        guoNeiNews.setErrorCode(guoNeiNewsEntity.getErrorCode());
+        guoNeiNews.setReason(guoNeiNewsEntity.getReason());
+        guoNeiNews.setResult(transform(guoNeiNewsEntity.getResult()));
+        return guoNeiNews;
     }
 
     public List<GuoNeiNewsResult> transform(List<GuoNeiNewsResultEntity> guoNeiNewsResultEntities){

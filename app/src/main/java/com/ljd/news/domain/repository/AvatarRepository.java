@@ -16,13 +16,11 @@
 
 package com.ljd.news.domain.repository;
 
-import com.ljd.news.domain.GuoNeiNewsResult;
-
-import java.util.List;
+import com.ljd.news.domain.GuoNeiNews;
 
 import rx.Observable;
 
 public interface AvatarRepository {
 
-    Observable<List<GuoNeiNewsResult>> getGuoNeiNews(String key, int page, int rows );
+    Observable<GuoNeiNews> getGuoNeiNews(String key, int page, int rows );
 }
