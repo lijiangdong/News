@@ -30,10 +30,10 @@ import javax.inject.Singleton;
 import static com.ljd.news.utils.Utils.checkNotNull;
 
 @Singleton
-public class AvatarEntityDataMapper {
+public class GuoNeiNewsEntityDataMapper {
 
     @Inject
-    public AvatarEntityDataMapper() {
+    public GuoNeiNewsEntityDataMapper() {
     }
 
     public GuoNeiNews transform(GuoNeiNewsEntity guoNeiNewsEntity){

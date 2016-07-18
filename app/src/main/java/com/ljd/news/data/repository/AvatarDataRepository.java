@@ -16,7 +16,7 @@
 
 package com.ljd.news.data.repository;
 
-import com.ljd.news.data.entity.mapper.AvatarEntityDataMapper;
+import com.ljd.news.data.entity.mapper.GuoNeiNewsEntityDataMapper;
 import com.ljd.news.data.net.RetrofitServiceFactory;
 import com.ljd.news.domain.GuoNeiNews;
 import com.ljd.news.domain.repository.AvatarRepository;
@@ -29,18 +29,18 @@ import rx.Observable;
 @Singleton
 public class AvatarDataRepository implements AvatarRepository {
 
-    private final AvatarEntityDataMapper avatarEntityDataMapper;
+    private final GuoNeiNewsEntityDataMapper guoNeiNewsEntityDataMapper;
     private final RetrofitServiceFactory retrofitServiceFactory;
 
     @Inject
-    public AvatarDataRepository(AvatarEntityDataMapper avatarEntityDataMapper, RetrofitServiceFactory retrofitServiceFactory) {
-        this.avatarEntityDataMapper = avatarEntityDataMapper;
+    public AvatarDataRepository(GuoNeiNewsEntityDataMapper guoNeiNewsEntityDataMapper, RetrofitServiceFactory retrofitServiceFactory) {
+        this.guoNeiNewsEntityDataMapper = guoNeiNewsEntityDataMapper;
         this.retrofitServiceFactory = retrofitServiceFactory;
     }
 
     @Override
     public Observable<GuoNeiNews> getGuoNeiNews(String key, int page, int rows) {
         return retrofitServiceFactory.getGuoNeiNewsApi().getGuoNeiNews(key,page,rows)
-                .map(guoNeiNewsEntity -> avatarEntityDataMapper.transform(guoNeiNewsEntity));
+                .map(guoNeiNewsEntity -> guoNeiNewsEntityDataMapper.transform(guoNeiNewsEntity));
     }
 }

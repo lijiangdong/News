@@ -16,13 +16,11 @@
 
 package com.ljd.news.presentation.model;
 
-import com.ljd.news.domain.GuoNeiNewsResult;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class GuoNeiNewsModel {
-    private List<GuoNeiNewsResult> result = new ArrayList<GuoNeiNewsResult>();
+    private List<GuoNeiNewsResultModel> result = new ArrayList<GuoNeiNewsResultModel>();
     private Integer errorCode;
     private String reason;
 
@@ -31,7 +29,7 @@ public class GuoNeiNewsModel {
      * @return
      * The result
      */
-    public List<GuoNeiNewsResult> getResult() {
+    public List<GuoNeiNewsResultModel> getResult() {
         return result;
     }
 
@@ -40,7 +38,7 @@ public class GuoNeiNewsModel {
      * @param result
      * The result
      */
-    public void setResult(List<GuoNeiNewsResult> result) {
+    public void setResult(List<GuoNeiNewsResultModel> result) {
         this.result = result;
     }
 
