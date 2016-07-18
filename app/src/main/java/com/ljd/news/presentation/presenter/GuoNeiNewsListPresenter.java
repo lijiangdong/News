@@ -16,12 +16,12 @@
 
 package com.ljd.news.presentation.presenter;
 
+import com.ljd.news.domain.GuoNeiNews;
 import com.ljd.news.domain.interactor.GetGuoNeiNews;
 import com.ljd.news.domain.interactor.ResponseSubscriber;
 import com.ljd.news.domain.interactor.UseCase;
 import com.ljd.news.presentation.internal.di.PerActivity;
 import com.ljd.news.presentation.mapper.GuoNeiNewsModelDataMapper;
-import com.ljd.news.presentation.model.GuoNeiNewsModel;
 import com.ljd.news.presentation.view.GuoNeiNewsListView;
 
 import javax.inject.Inject;
@@ -66,10 +66,10 @@ public class GuoNeiNewsListPresenter implements Presenter<GuoNeiNewsListView> {
         this.guoNeiNewsListView = guoNeiNewsListView;
     }
 
-    private final class GuoNeiNewsListSubscriber extends ResponseSubscriber<GuoNeiNewsModel>{
+    private final class GuoNeiNewsListSubscriber extends ResponseSubscriber<GuoNeiNews>{
 
         @Override
-        protected void onSuccess(GuoNeiNewsModel guoNeiNewsModel) {
+        protected void onSuccess(GuoNeiNews guoNeiNews) {
 
         }
 
