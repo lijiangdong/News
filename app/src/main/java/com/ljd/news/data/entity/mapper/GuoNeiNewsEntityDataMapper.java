@@ -21,7 +21,7 @@ import com.ljd.news.data.entity.GuoNeiNewsResultEntity;
 import com.ljd.news.domain.GuoNeiNews;
 import com.ljd.news.domain.GuoNeiNewsResult;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -46,7 +46,7 @@ public class GuoNeiNewsEntityDataMapper {
     }
 
     public List<GuoNeiNewsResult> transform(List<GuoNeiNewsResultEntity> guoNeiNewsResultEntities){
-        List<GuoNeiNewsResult> guoNeiNewsResults = Collections.EMPTY_LIST;
+        List<GuoNeiNewsResult> guoNeiNewsResults = new ArrayList<>();
         for (GuoNeiNewsResultEntity guoNeiNewsResultEntity : guoNeiNewsResultEntities){
             guoNeiNewsResults.add(this.transform(guoNeiNewsResultEntity));
         }

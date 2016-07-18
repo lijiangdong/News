@@ -23,7 +23,7 @@ import retrofit2.http.Query;
 import rx.Observable;
 
 public interface GuoNeiNewsApi {
-    @GET("/GuoNeiNewsResult/Query")
+    @GET("/GuoNeiNews/Query")
     Observable<GuoNeiNewsEntity> getGuoNeiNews(@Query("key")String key,
                                                @Query("page")int page,
                                                @Query("rows")int rows);

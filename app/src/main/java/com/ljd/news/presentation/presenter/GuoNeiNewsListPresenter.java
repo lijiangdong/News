@@ -16,6 +16,7 @@
 
 package com.ljd.news.presentation.presenter;
 
+import com.ljd.news.domain.interactor.GetGuoNeiNews;
 import com.ljd.news.domain.interactor.ResponseSubscriber;
 import com.ljd.news.domain.interactor.UseCase;
 import com.ljd.news.presentation.internal.di.PerActivity;
@@ -55,6 +56,8 @@ public class GuoNeiNewsListPresenter implements Presenter<GuoNeiNewsListView> {
     }
 
     private void getGuoNeiNewsList(){
+        GetGuoNeiNews getGuoNeiNews = (GetGuoNeiNews)getGuoNeiNewsListUseCase;
+        getGuoNeiNews.setPage(1);
         this.getGuoNeiNewsListUseCase.execute(new GuoNeiNewsListSubscriber());
     }
 
