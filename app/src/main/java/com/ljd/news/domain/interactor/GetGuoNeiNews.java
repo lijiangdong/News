@@ -30,7 +30,7 @@ public class GetGuoNeiNews extends UseCase {
     private final String APP_KEY = "5effb2f8f356499e83bc00aba02e17e7";
     private final int RAWS = 10;
 
-    private int page;
+    private int page = 1;
 
     @Inject
     public GetGuoNeiNews(ThreadExecutor threadExecutor,

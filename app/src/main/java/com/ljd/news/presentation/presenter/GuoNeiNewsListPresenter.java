@@ -56,14 +56,17 @@ public class GuoNeiNewsListPresenter implements Presenter<GuoNeiNewsListView> {
     }
 
     private void getGuoNeiNewsList(){
-        GetGuoNeiNews getGuoNeiNews = (GetGuoNeiNews)getGuoNeiNewsListUseCase;
-        getGuoNeiNews.setPage(1);
         this.getGuoNeiNewsListUseCase.execute(new GuoNeiNewsListSubscriber());
     }
 
     @Override
     public void setView(GuoNeiNewsListView guoNeiNewsListView) {
         this.guoNeiNewsListView = guoNeiNewsListView;
+    }
+
+    private void setPage(int page){
+        GetGuoNeiNews getGuoNeiNews = (GetGuoNeiNews)getGuoNeiNewsListUseCase;
+        getGuoNeiNews.setPage(page);
     }
 
     private final class GuoNeiNewsListSubscriber extends ResponseSubscriber<GuoNeiNews>{
