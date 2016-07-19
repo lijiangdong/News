@@ -32,6 +32,7 @@ import com.ljd.news.presentation.internal.di.components.MainComponent;
 import com.ljd.news.presentation.model.QiWenNewsResultModel;
 import com.ljd.news.presentation.presenter.QiWenNewsListPresenter;
 import com.ljd.news.presentation.view.QiWenNewsListView;
+import com.ljd.news.presentation.view.activity.NewsDetailActivity;
 import com.ljd.news.presentation.view.adapter.QiWenNewsAdapter;
 import com.ljd.news.utils.ToastUtils;
 
@@ -85,7 +86,7 @@ public class QiWenNewsListFragment extends BaseFragment implements QiWenNewsList
     }
 
     private void onClickRecycleViewItem(QiWenNewsResultModel qiWenNewsResultModel){
-
+        startActivity(NewsDetailActivity.getCallingIntent(getActivity(),qiWenNewsResultModel.getUrl()));
     }
 
     @Override

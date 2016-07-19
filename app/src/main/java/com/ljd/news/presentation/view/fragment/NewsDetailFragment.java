@@ -22,23 +22,61 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.widget.FrameLayout;
 
 import com.ljd.news.R;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 public class NewsDetailFragment extends Fragment {
 
+    private final static String LOAD_URL = "com.ljd.news.presentation.view.fragment.LOAD_URL";
 
-    public NewsDetailFragment() {
-        // Required empty public constructor
+    public static NewsDetailFragment newInstance(String url) {
+
+        Bundle bundle = new Bundle();
+        bundle.putString(LOAD_URL,url);
+        NewsDetailFragment fragment = new NewsDetailFragment();
+        fragment.setArguments(bundle);
+        return fragment;
     }
 
+    public NewsDetailFragment() {
+    }
+
+    @BindView(R.id.web_view_container) FrameLayout webViewContainer;
+
+    private WebView webView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_news_deatil, container, false);
+        View layout = inflater.inflate(R.layout.fragment_news_deatil, container, false);
+        ButterKnife.bind(this,layout);
+        this.initWebView();
+        return layout;
     }
 
+    private void initWebView(){
+        webView = new WebView(getActivity());
+        webView.loadUrl(getArguments().getString(LOAD_URL));
+        webViewContainer.addView(webView);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        webView.onResume();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        webView.destroy();
+        webViewContainer.removeAllViews();
+        webView = null;
+    }
 }

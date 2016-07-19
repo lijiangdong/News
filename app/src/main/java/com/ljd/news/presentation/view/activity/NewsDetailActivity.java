@@ -19,13 +19,13 @@ package com.ljd.news.presentation.view.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
 import com.ljd.news.R;
+import com.ljd.news.presentation.view.fragment.NewsDetailFragment;
 
-public class NewsDetailActivity extends AppCompatActivity {
+public class NewsDetailActivity extends BaseActivity {
 
-    private static final String URL = "com.ljd.news.presentation.view.activity";
+    private static final String URL = "com.ljd.news.presentation.view.activity.URL";
 
     public static Intent getCallingIntent(Context context,String url){
         Intent intent = new Intent();
@@ -38,5 +38,9 @@ public class NewsDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_detail);
+        if (savedInstanceState == null){
+            addFragment(R.id.fragment_container,
+                    NewsDetailFragment.newInstance(getIntent().getStringExtra(URL)));
+        }
     }
 }
