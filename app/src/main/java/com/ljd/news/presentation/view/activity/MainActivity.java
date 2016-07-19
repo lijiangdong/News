@@ -41,7 +41,6 @@ import com.ljd.news.presentation.view.component.FloatingActionButton;
 import com.ljd.news.presentation.view.component.FloatingActionMenu;
 import com.ljd.news.presentation.view.fragment.BaseFragment;
 import com.ljd.news.presentation.view.fragment.QiWenNewsListFragment;
-import com.ljd.news.presentation.view.fragment.WorldNewsListFragment;
 import com.ljd.news.presentation.view.fragment.ZhiHuStoryListFragment;
 import com.ljd.news.presentation.view.service.DownloadService;
 

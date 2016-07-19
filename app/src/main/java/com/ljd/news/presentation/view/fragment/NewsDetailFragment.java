@@ -18,6 +18,7 @@ package com.ljd.news.presentation.view.fragment;
 
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,10 +26,10 @@ import android.view.ViewGroup;
 import com.ljd.news.R;
 
 
-public class WorldNewsListFragment extends BaseFragment {
+public class NewsDetailFragment extends Fragment {
 
 
-    public WorldNewsListFragment() {
+    public NewsDetailFragment() {
         // Required empty public constructor
     }
 
@@ -37,7 +38,7 @@ public class WorldNewsListFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_world_news, container, false);
+        return inflater.inflate(R.layout.fragment_news_deatil, container, false);
     }
 
 }

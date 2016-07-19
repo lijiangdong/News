@@ -27,8 +27,6 @@ import com.ljd.news.presentation.internal.di.components.MainComponent;
 import com.ljd.news.presentation.internal.di.modules.ZhiHuModule;
 import com.ljd.news.presentation.view.fragment.ZhiHuStoryDetailFragment;
 
-import butterknife.ButterKnife;
-
 public class ZhiHuStoryDetailActivity extends BaseActivity implements HasComponent<MainComponent>{
 
     private static final String INTENT_EXTRA_PARAM_STORY_ID = "com.ljd.news.presentation.view.activity.INTENT_PARAM_STORY_ID";
@@ -36,9 +34,9 @@ public class ZhiHuStoryDetailActivity extends BaseActivity implements HasCompone
 
     private int storyId;
 
-    public static Intent getCallingIntent(Context context, int userId) {
+    public static Intent getCallingIntent(Context context, int storyId) {
         Intent callingIntent = new Intent(context, ZhiHuStoryDetailActivity.class);
-        callingIntent.putExtra(INTENT_EXTRA_PARAM_STORY_ID, userId);
+        callingIntent.putExtra(INTENT_EXTRA_PARAM_STORY_ID, storyId);
         return callingIntent;
     }
 
@@ -46,7 +44,6 @@ public class ZhiHuStoryDetailActivity extends BaseActivity implements HasCompone
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zhi_hu_story);
-        ButterKnife.bind(this);
         initActivity(savedInstanceState);
     }
 
@@ -61,7 +58,7 @@ public class ZhiHuStoryDetailActivity extends BaseActivity implements HasCompone
     private void initActivity(Bundle savedInstanceState){
         if (savedInstanceState == null){
             this.storyId = getIntent().getIntExtra(INTENT_EXTRA_PARAM_STORY_ID,-1);
-            addFragment(R.id.fragmentContainer,new ZhiHuStoryDetailFragment());
+            addFragment(R.id.fragment_container,new ZhiHuStoryDetailFragment());
         }else {
             this.storyId = savedInstanceState.getInt(INSTANCE_STATE_PARAM_STORY_ID);
         }
@@ -75,5 +72,4 @@ public class ZhiHuStoryDetailActivity extends BaseActivity implements HasCompone
                 .zhiHuModule(new ZhiHuModule(this.storyId))
                 .build();
     }
-
 }
