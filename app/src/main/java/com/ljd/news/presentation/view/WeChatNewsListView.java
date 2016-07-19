@@ -14,22 +14,12 @@
  * limitations under the License.
  */
 
-package com.ljd.news.presentation.internal.di.modules;
+package com.ljd.news.presentation.view;
 
-import com.ljd.news.domain.interactor.GetQiWenNews;
-import com.ljd.news.domain.interactor.UseCase;
-import com.ljd.news.presentation.internal.di.PerActivity;
+import com.ljd.news.presentation.model.WeChatNewsResultModel;
 
-import javax.inject.Named;
+import java.util.Collection;
 
-import dagger.Module;
-import dagger.Provides;
-
-@Module
-public class GuoNeiNewsModule {
-
-    @Provides @PerActivity @Named("guoNeiNewsList")
-    UseCase provideGetGuoNeiNewsList(GetQiWenNews getQiWenNews){
-        return getQiWenNews;
-    }
+public interface WeChatNewsListView extends LoadDataView{
+    void renderGuoNeiNewsList(Collection<WeChatNewsResultModel> weChatNewsResultModels);
 }

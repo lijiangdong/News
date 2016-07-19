@@ -19,11 +19,11 @@ package com.ljd.news.data.entity;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class QiWenNewsResultEntity {
+public class WeChatNewsResultEntity {
 
-    @SerializedName("ctime")
+    @SerializedName("hottime")
     @Expose
-    private String ctime;
+    private String hottime;
     @SerializedName("title")
     @Expose
     private String title;
@@ -40,19 +40,19 @@ public class QiWenNewsResultEntity {
     /**
      *
      * @return
-     * The ctime
+     * The hottime
      */
-    public String getCtime() {
-        return ctime;
+    public String getHottime() {
+        return hottime;
     }
 
     /**
      *
-     * @param ctime
-     * The ctime
+     * @param hottime
+     * The hottime
      */
-    public void setCtime(String ctime) {
-        this.ctime = ctime;
+    public void setHottime(String hottime) {
+        this.hottime = hottime;
     }
 
     /**

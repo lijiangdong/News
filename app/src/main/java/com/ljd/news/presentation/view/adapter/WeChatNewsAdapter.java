@@ -24,7 +24,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.ljd.news.R;
-import com.ljd.news.presentation.model.QiWenNewsResultModel;
+import com.ljd.news.presentation.model.WeChatNewsResultModel;
 import com.ljd.news.presentation.view.component.AutoLoadImageView;
 
 import java.util.Collection;
@@ -38,20 +38,20 @@ import butterknife.ButterKnife;
 
 import static com.ljd.news.utils.Utils.checkNotNull;
 
-public class QiWenNewsAdapter extends RecyclerView.Adapter<QiWenNewsAdapter.ViewHolder> {
+public class WeChatNewsAdapter extends RecyclerView.Adapter<WeChatNewsAdapter.ViewHolder> {
 
-    private List<QiWenNewsResultModel> guoNeiNewsResultList;
+    private List<WeChatNewsResultModel> weChatNewsResultList;
     private final LayoutInflater layoutInflater;
     private OnItemClickListener onItemClickListener;
 
     public interface OnItemClickListener{
-        void onUserItemClicked(QiWenNewsResultModel qiWenNewsResultModel);
+        void onUserItemClicked(WeChatNewsResultModel weChatNewsResultModel);
     }
 
     @Inject
-    public QiWenNewsAdapter(Context context) {
+    public WeChatNewsAdapter(Context context) {
         this.layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        this.guoNeiNewsResultList = Collections.EMPTY_LIST;
+        this.weChatNewsResultList = Collections.EMPTY_LIST;
     }
 
     @Override
@@ -62,25 +62,24 @@ public class QiWenNewsAdapter extends RecyclerView.Adapter<QiWenNewsAdapter.View
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        QiWenNewsResultModel qiWenNewsResultModel = guoNeiNewsResultList.get(position);
-        holder.image.loadUrl(qiWenNewsResultModel.getPicUrl());
-        holder.timeText.setText(qiWenNewsResultModel.getCtime());
-        holder.titleText.setText(qiWenNewsResultModel.getTitle());
+        WeChatNewsResultModel weChatNewsResultModel = weChatNewsResultList.get(position);
+        holder.image.loadUrl(weChatNewsResultModel.getPicUrl());
+        holder.titleText.setText(weChatNewsResultModel.getTitle());
         holder.itemView.setOnClickListener(v -> {
             if (onItemClickListener != null){
-                onItemClickListener.onUserItemClicked(qiWenNewsResultModel);
+                onItemClickListener.onUserItemClicked(weChatNewsResultModel);
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return (this.guoNeiNewsResultList != null)?guoNeiNewsResultList.size() : 0;
+        return (this.weChatNewsResultList != null)?weChatNewsResultList.size() : 0;
     }
 
-    public void setGuoNeiNewsList(Collection<QiWenNewsResultModel> guoNeiNewsResultList) {
-        checkNotNull(guoNeiNewsResultList);
-        this.guoNeiNewsResultList = (List<QiWenNewsResultModel>) guoNeiNewsResultList;
+    public void setWeChatNewsList(Collection<WeChatNewsResultModel> weChatNewsResultModels) {
+        checkNotNull(weChatNewsResultModels);
+        this.weChatNewsResultList = (List<WeChatNewsResultModel>) weChatNewsResultModels;
         this.notifyDataSetChanged();
     }
 

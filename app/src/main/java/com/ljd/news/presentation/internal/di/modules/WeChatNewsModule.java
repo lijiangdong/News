@@ -14,18 +14,22 @@
  * limitations under the License.
  */
 
-package com.ljd.news.data.net.api;
+package com.ljd.news.presentation.internal.di.modules;
 
-import com.ljd.news.data.entity.QiWenNewsEntity;
+import com.ljd.news.domain.interactor.GetWeChatNews;
+import com.ljd.news.domain.interactor.UseCase;
+import com.ljd.news.presentation.internal.di.PerActivity;
 
-import retrofit2.http.GET;
-import retrofit2.http.Query;
-import rx.Observable;
+import javax.inject.Named;
 
-public interface QiWenNewsApi {
-    @GET("/WxNews/Query")
-    Observable<QiWenNewsEntity> getGuoNeiNews(@Query("key")String key,
-                                              @Query("page")int page,
-                                              @Query("rows")int rows,
-                                              @Query("keyword")String keyword);
+import dagger.Module;
+import dagger.Provides;
+
+@Module
+public class WeChatNewsModule {
+
+    @Provides @PerActivity @Named("guoNeiNewsList")
+    UseCase provideGetGuoNeiNewsList(GetWeChatNews getWeChatNews){
+        return getWeChatNews;
+    }
 }

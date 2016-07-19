@@ -14,12 +14,18 @@
  * limitations under the License.
  */
 
-package com.ljd.news.presentation.view;
+package com.ljd.news.data.net.api;
 
-import com.ljd.news.presentation.model.QiWenNewsResultModel;
+import com.ljd.news.data.entity.WeChatNewsEntity;
 
-import java.util.Collection;
+import retrofit2.http.GET;
+import retrofit2.http.Query;
+import rx.Observable;
 
-public interface QiWenNewsListView extends LoadDataView{
-    void renderGuoNeiNewsList(Collection<QiWenNewsResultModel> qiWenNewsResultModels);
+public interface WeChatNewsApi {
+    @GET("/WxNews/Query")
+    Observable<WeChatNewsEntity> getGuoNeiNews(@Query("key")String key,
+                                               @Query("page")int page,
+                                               @Query("rows")int rows,
+                                               @Query("keyword")String keyword);
 }

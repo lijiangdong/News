@@ -40,7 +40,7 @@ import com.ljd.news.presentation.view.adapter.MainViewPageAdapter;
 import com.ljd.news.presentation.view.component.FloatingActionButton;
 import com.ljd.news.presentation.view.component.FloatingActionMenu;
 import com.ljd.news.presentation.view.fragment.BaseFragment;
-import com.ljd.news.presentation.view.fragment.QiWenNewsListFragment;
+import com.ljd.news.presentation.view.fragment.WeChatNewsListFragment;
 import com.ljd.news.presentation.view.fragment.ZhiHuStoryListFragment;
 import com.ljd.news.presentation.view.service.DownloadService;
 
@@ -98,7 +98,7 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
     private void setupViewPager() {
         MainViewPageAdapter adapter = new MainViewPageAdapter(getSupportFragmentManager());
         adapter.addFragment(new ZhiHuStoryListFragment(), getString(R.string.title_zhi_hu));
-        adapter.addFragment(new QiWenNewsListFragment(), getString(R.string.title_guo_nei_news));
+        adapter.addFragment(new WeChatNewsListFragment(), getString(R.string.title_guo_nei_news));
         this.viewPager.setOffscreenPageLimit(adapter.getCount());
         this.viewPager.setAdapter(adapter);
     }

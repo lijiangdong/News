@@ -18,7 +18,7 @@ package com.ljd.news.data.repository;
 
 import com.ljd.news.data.entity.mapper.QiWenNewsEntityDataMapper;
 import com.ljd.news.data.net.RetrofitServiceFactory;
-import com.ljd.news.domain.GuoNeiNews;
+import com.ljd.news.domain.WeChatNews;
 import com.ljd.news.domain.repository.AvatarRepository;
 
 import javax.inject.Inject;
@@ -33,14 +33,15 @@ public class AvatarDataRepository implements AvatarRepository {
     private final RetrofitServiceFactory retrofitServiceFactory;
 
     @Inject
-    public AvatarDataRepository(QiWenNewsEntityDataMapper qiWenNewsEntityDataMapper, RetrofitServiceFactory retrofitServiceFactory) {
+    public AvatarDataRepository(QiWenNewsEntityDataMapper qiWenNewsEntityDataMapper,
+                                RetrofitServiceFactory retrofitServiceFactory) {
         this.qiWenNewsEntityDataMapper = qiWenNewsEntityDataMapper;
         this.retrofitServiceFactory = retrofitServiceFactory;
     }
 
     @Override
-    public Observable<GuoNeiNews> getGuoNeiNews(String key, int page, int rows) {
-        return retrofitServiceFactory.getGuoNeiNewsApi().getGuoNeiNews(key,page,rows)
+    public Observable<WeChatNews> getWeChatNews(String key, int page, int rows, String keyword) {
+        return retrofitServiceFactory.getWeChatNewsService().getGuoNeiNews(key,page,rows,keyword)
                 .map(guoNeiNewsEntity -> qiWenNewsEntityDataMapper.transform(guoNeiNewsEntity));
     }
 }

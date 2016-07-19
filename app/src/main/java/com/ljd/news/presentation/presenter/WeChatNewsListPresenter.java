@@ -16,15 +16,15 @@
 
 package com.ljd.news.presentation.presenter;
 
-import com.ljd.news.domain.GuoNeiNews;
-import com.ljd.news.domain.interactor.GetQiWenNews;
+import com.ljd.news.domain.WeChatNews;
+import com.ljd.news.domain.interactor.GetWeChatNews;
 import com.ljd.news.domain.interactor.ResponseSubscriber;
 import com.ljd.news.domain.interactor.UseCase;
 import com.ljd.news.presentation.exception.ErrorMessageFactory;
 import com.ljd.news.presentation.internal.di.PerActivity;
-import com.ljd.news.presentation.mapper.QiWenNewsModelDataMapper;
-import com.ljd.news.presentation.model.QiWenNewsResultModel;
-import com.ljd.news.presentation.view.QiWenNewsListView;
+import com.ljd.news.presentation.mapper.WeChatNewsModelDataMapper;
+import com.ljd.news.presentation.model.WeChatNewsResultModel;
+import com.ljd.news.presentation.view.WeChatNewsListView;
 
 import java.util.Collection;
 
@@ -32,18 +32,18 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 @PerActivity
-public class QiWenNewsListPresenter implements Presenter<QiWenNewsListView> {
+public class WeChatNewsListPresenter implements Presenter<WeChatNewsListView> {
 
-    private QiWenNewsListView qiWenNewsListView;
+    private WeChatNewsListView weChatNewsListView;
     private final UseCase getGuoNeiNewsListUseCase;
-    private final QiWenNewsModelDataMapper qiWenNewsModelDataMapper;
+    private final WeChatNewsModelDataMapper weChatNewsModelDataMapper;
     private int page = 1;
 
     @Inject
-    public QiWenNewsListPresenter(@Named("guoNeiNewsList") UseCase getGuoNeiNewsList,
-                                  QiWenNewsModelDataMapper qiWenNewsModelDataMapper) {
+    public WeChatNewsListPresenter(@Named("guoNeiNewsList") UseCase getGuoNeiNewsList,
+                                   WeChatNewsModelDataMapper weChatNewsModelDataMapper) {
         this.getGuoNeiNewsListUseCase = getGuoNeiNewsList;
-        this.qiWenNewsModelDataMapper = qiWenNewsModelDataMapper;
+        this.weChatNewsModelDataMapper = weChatNewsModelDataMapper;
     }
 
     @Override
@@ -56,7 +56,7 @@ public class QiWenNewsListPresenter implements Presenter<QiWenNewsListView> {
     }
 
     private void loadGuoNeiNewsList(){
-        this.qiWenNewsListView.showLoading();
+        this.weChatNewsListView.showLoading();
         this.getGuoNeiNewsList();
     }
 
@@ -65,40 +65,40 @@ public class QiWenNewsListPresenter implements Presenter<QiWenNewsListView> {
     }
 
     @Override
-    public void setView(QiWenNewsListView qiWenNewsListView) {
-        this.qiWenNewsListView = qiWenNewsListView;
+    public void setView(WeChatNewsListView weChatNewsListView) {
+        this.weChatNewsListView = weChatNewsListView;
     }
 
     private void setPage(int page){
-        GetQiWenNews getQiWenNews = (GetQiWenNews)getGuoNeiNewsListUseCase;
-        getQiWenNews.setPage(page);
+        GetWeChatNews getWeChatNews = (GetWeChatNews)getGuoNeiNewsListUseCase;
+        getWeChatNews.setPage(page);
     }
 
-    private void showGuoNeiNewsCollectionInView(GuoNeiNews guoNeiNews){
-        this.qiWenNewsListView.renderGuoNeiNewsList(transformGuoNeiNewsList(guoNeiNews));
+    private void showGuoNeiNewsCollectionInView(WeChatNews weChatNews){
+        this.weChatNewsListView.renderGuoNeiNewsList(transformGuoNeiNewsList(weChatNews));
     }
 
-    private Collection<QiWenNewsResultModel> transformGuoNeiNewsList(GuoNeiNews guoNeiNews){
-        return this.qiWenNewsModelDataMapper.transform(guoNeiNews.getResult());
+    private Collection<WeChatNewsResultModel> transformGuoNeiNewsList(WeChatNews weChatNews){
+        return this.weChatNewsModelDataMapper.transform(weChatNews.getResult());
     }
 
     private void showErrorMessage(Exception e){
-        String errorMessage = ErrorMessageFactory.create(qiWenNewsListView.context(),e);
-        this.qiWenNewsListView.showError(errorMessage);
+        String errorMessage = ErrorMessageFactory.create(weChatNewsListView.context(),e);
+        this.weChatNewsListView.showError(errorMessage);
     }
 
-    private final class GuoNeiNewsListSubscriber extends ResponseSubscriber<GuoNeiNews>{
+    private final class GuoNeiNewsListSubscriber extends ResponseSubscriber<WeChatNews>{
 
         @Override
-        protected void onSuccess(GuoNeiNews guoNeiNews) {
-            qiWenNewsListView.hideLoading();
+        protected void onSuccess(WeChatNews weChatNews) {
+            weChatNewsListView.hideLoading();
             setPage(++page);
-            showGuoNeiNewsCollectionInView(guoNeiNews);
+            showGuoNeiNewsCollectionInView(weChatNews);
         }
 
         @Override
         protected void onFailure(Throwable e) {
-            qiWenNewsListView.hideLoading();
+            weChatNewsListView.hideLoading();
             showErrorMessage((Exception)e);
         }
     }

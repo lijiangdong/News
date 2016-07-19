@@ -18,11 +18,11 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context=".presentation.view.fragment.QiWenNewsListFragment">
+             tools:context=".presentation.view.fragment.WeChatNewsListFragment">
 
     <include layout="@layout/view_progress"/>
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/guo_nei_news_recycler"
+        android:id="@+id/we_chat_news_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

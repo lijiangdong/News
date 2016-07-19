@@ -16,9 +16,9 @@
 
 package com.ljd.news.domain;
 
-public class GuoNeiNewsResult {
+public class WeChatNewsResult {
 
-    private String ctime;
+    private String hottime;
     private String title;
     private String description;
     private String picUrl;
@@ -27,19 +27,19 @@ public class GuoNeiNewsResult {
     /**
      *
      * @return
-     * The ctime
+     * The hottime
      */
-    public String getCtime() {
-        return ctime;
+    public String getHottime() {
+        return hottime;
     }
 
     /**
      *
-     * @param ctime
-     * The ctime
+     * @param hottime
+     * The hottime
      */
-    public void setCtime(String ctime) {
-        this.ctime = ctime;
+    public void setHottime(String hottime) {
+        this.hottime = hottime;
     }
 
     /**

@@ -16,10 +16,10 @@
 
 package com.ljd.news.data.entity.mapper;
 
-import com.ljd.news.data.entity.QiWenNewsEntity;
-import com.ljd.news.data.entity.QiWenNewsResultEntity;
-import com.ljd.news.domain.GuoNeiNews;
-import com.ljd.news.domain.GuoNeiNewsResult;
+import com.ljd.news.data.entity.WeChatNewsEntity;
+import com.ljd.news.data.entity.WeChatNewsResultEntity;
+import com.ljd.news.domain.WeChatNews;
+import com.ljd.news.domain.WeChatNewsResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,31 +36,31 @@ public class QiWenNewsEntityDataMapper {
     public QiWenNewsEntityDataMapper() {
     }
 
-    public GuoNeiNews transform(QiWenNewsEntity qiWenNewsEntity){
-        checkNotNull(qiWenNewsEntity,"qiWenNewsEntity == null");
-        GuoNeiNews guoNeiNews = new GuoNeiNews();
-        guoNeiNews.setErrorCode(qiWenNewsEntity.getErrorCode());
-        guoNeiNews.setReason(qiWenNewsEntity.getReason());
-        guoNeiNews.setResult(transform(qiWenNewsEntity.getResult()));
-        return guoNeiNews;
+    public WeChatNews transform(WeChatNewsEntity weChatNewsEntity){
+        checkNotNull(weChatNewsEntity,"weChatNewsEntity == null");
+        WeChatNews weChatNews = new WeChatNews();
+        weChatNews.setErrorCode(weChatNewsEntity.getErrorCode());
+        weChatNews.setReason(weChatNewsEntity.getReason());
+        weChatNews.setResult(transform(weChatNewsEntity.getResult()));
+        return weChatNews;
     }
 
-    public List<GuoNeiNewsResult> transform(List<QiWenNewsResultEntity> guoNeiNewsResultEntities){
-        List<GuoNeiNewsResult> guoNeiNewsResults = new ArrayList<>();
-        for (QiWenNewsResultEntity qiWenNewsResultEntity : guoNeiNewsResultEntities){
-            guoNeiNewsResults.add(this.transform(qiWenNewsResultEntity));
+    public List<WeChatNewsResult> transform(List<WeChatNewsResultEntity> guoNeiNewsResultEntities){
+        List<WeChatNewsResult> weChatNewsResults = new ArrayList<>();
+        for (WeChatNewsResultEntity weChatNewsResultEntity : guoNeiNewsResultEntities){
+            weChatNewsResults.add(this.transform(weChatNewsResultEntity));
         }
-        return guoNeiNewsResults;
+        return weChatNewsResults;
     }
 
-    public GuoNeiNewsResult transform(QiWenNewsResultEntity qiWenNewsResultEntity){
-        checkNotNull(qiWenNewsResultEntity,"qiWenNewsResultEntity == null");
-        GuoNeiNewsResult guoNeiNewsResult = new GuoNeiNewsResult();
-        guoNeiNewsResult.setCtime(qiWenNewsResultEntity.getCtime());
-        guoNeiNewsResult.setDescription(qiWenNewsResultEntity.getDescription());
-        guoNeiNewsResult.setPicUrl(qiWenNewsResultEntity.getPicUrl());
-        guoNeiNewsResult.setTitle(qiWenNewsResultEntity.getTitle());
-        guoNeiNewsResult.setUrl(qiWenNewsResultEntity.getUrl());
-        return guoNeiNewsResult;
+    public WeChatNewsResult transform(WeChatNewsResultEntity weChatNewsResultEntity){
+        checkNotNull(weChatNewsResultEntity,"weChatNewsResultEntity == null");
+        WeChatNewsResult weChatNewsResult = new WeChatNewsResult();
+        weChatNewsResult.setHottime(weChatNewsResultEntity.getHottime());
+        weChatNewsResult.setDescription(weChatNewsResultEntity.getDescription());
+        weChatNewsResult.setPicUrl(weChatNewsResultEntity.getPicUrl());
+        weChatNewsResult.setTitle(weChatNewsResultEntity.getTitle());
+        weChatNewsResult.setUrl(weChatNewsResultEntity.getUrl());
+        return weChatNewsResult;
     }
 }

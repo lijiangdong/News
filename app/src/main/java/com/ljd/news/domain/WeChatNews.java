@@ -14,24 +14,15 @@
  * limitations under the License.
  */
 
-package com.ljd.news.data.entity;
-
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+package com.ljd.news.domain;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class QiWenNewsEntity {
+public class WeChatNews {
 
-    @SerializedName("result")
-    @Expose
-    private List<QiWenNewsResultEntity> result = new ArrayList<QiWenNewsResultEntity>();
-    @SerializedName("error_code")
-    @Expose
+    private List<WeChatNewsResult> result = new ArrayList<WeChatNewsResult>();
     private Integer errorCode;
-    @SerializedName("reason")
-    @Expose
     private String reason;
 
     /**
@@ -39,7 +30,7 @@ public class QiWenNewsEntity {
      * @return
      * The result
      */
-    public List<QiWenNewsResultEntity> getResult() {
+    public List<WeChatNewsResult> getResult() {
         return result;
     }
 
@@ -48,7 +39,7 @@ public class QiWenNewsEntity {
      * @param result
      * The result
      */
-    public void setResult(List<QiWenNewsResultEntity> result) {
+    public void setResult(List<WeChatNewsResult> result) {
         this.result = result;
     }
 
@@ -87,5 +78,4 @@ public class QiWenNewsEntity {
     public void setReason(String reason) {
         this.reason = reason;
     }
-
 }

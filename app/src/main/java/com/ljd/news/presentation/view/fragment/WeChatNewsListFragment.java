@@ -29,11 +29,11 @@ import android.widget.RelativeLayout;
 
 import com.ljd.news.R;
 import com.ljd.news.presentation.internal.di.components.MainComponent;
-import com.ljd.news.presentation.model.QiWenNewsResultModel;
-import com.ljd.news.presentation.presenter.QiWenNewsListPresenter;
-import com.ljd.news.presentation.view.QiWenNewsListView;
+import com.ljd.news.presentation.model.WeChatNewsResultModel;
+import com.ljd.news.presentation.presenter.WeChatNewsListPresenter;
+import com.ljd.news.presentation.view.WeChatNewsListView;
 import com.ljd.news.presentation.view.activity.NewsDetailActivity;
-import com.ljd.news.presentation.view.adapter.QiWenNewsAdapter;
+import com.ljd.news.presentation.view.adapter.WeChatNewsAdapter;
 import com.ljd.news.utils.ToastUtils;
 
 import java.util.ArrayList;
@@ -44,20 +44,19 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class QiWenNewsListFragment extends BaseFragment implements QiWenNewsListView {
+public class WeChatNewsListFragment extends BaseFragment implements WeChatNewsListView {
 
-    @BindView(R.id.guo_nei_news_recycler) RecyclerView recyclerView;
+    @BindView(R.id.we_chat_news_recycler) RecyclerView recyclerView;
     @BindView(R.id.rl_progress) RelativeLayout progressView;
-    @Inject
-    QiWenNewsListPresenter presenter;
-    @Inject
-    QiWenNewsAdapter adapter;
+
+    @Inject WeChatNewsListPresenter presenter;
+    @Inject WeChatNewsAdapter adapter;
 
     private LinearLayoutManager linearLayoutManager;
-    private Collection<QiWenNewsResultModel> qiWenNewsResultModels = new ArrayList<>();
+    private Collection<WeChatNewsResultModel> weChatNewsResultModels = new ArrayList<>();
     private boolean isLoading;
 
-    public QiWenNewsListFragment() {
+    public WeChatNewsListFragment() {
     }
 
     @Override
@@ -69,7 +68,7 @@ public class QiWenNewsListFragment extends BaseFragment implements QiWenNewsList
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View layout = inflater.inflate(R.layout.fragment_qi_wen_news_list, container, false);
+        View layout = inflater.inflate(R.layout.fragment_we_chat_news_list, container, false);
         ButterKnife.bind(this,layout);
         getComponent(MainComponent.class).inject(this);
         setRecyclerView();
@@ -85,8 +84,8 @@ public class QiWenNewsListFragment extends BaseFragment implements QiWenNewsList
         this.recyclerView.addOnScrollListener(new RecyclerViewScrollListener());
     }
 
-    private void onClickRecycleViewItem(QiWenNewsResultModel qiWenNewsResultModel){
-        startActivity(NewsDetailActivity.getCallingIntent(getActivity(),qiWenNewsResultModel.getUrl()));
+    private void onClickRecycleViewItem(WeChatNewsResultModel weChatNewsResultModel){
+        startActivity(NewsDetailActivity.getCallingIntent(getActivity(), weChatNewsResultModel.getUrl()));
     }
 
     @Override
@@ -115,9 +114,9 @@ public class QiWenNewsListFragment extends BaseFragment implements QiWenNewsList
     }
 
     @Override
-    public void renderGuoNeiNewsList(Collection<QiWenNewsResultModel> qiWenNewsResultModels) {
-        this.qiWenNewsResultModels.addAll(qiWenNewsResultModels);
-        this.adapter.setGuoNeiNewsList(this.qiWenNewsResultModels);
+    public void renderGuoNeiNewsList(Collection<WeChatNewsResultModel> weChatNewsResultModels) {
+        this.weChatNewsResultModels.addAll(weChatNewsResultModels);
+        this.adapter.setWeChatNewsList(this.weChatNewsResultModels);
     }
 
     @Override

@@ -24,25 +24,25 @@ import javax.inject.Inject;
 
 import rx.Observable;
 
-public class GetQiWenNews extends UseCase {
+public class GetWeChatNews extends UseCase {
 
     private final AvatarDataRepository avatarDataRepository;
-    private final String APP_KEY = "5ff96710e9a54966a264e3837ab5bfc2";
+    private final String APP_KEY = "53b4892b3f764cc2a19e4896546aa8e8";
     private final int RAWS = 10;
 
     private int page = 1;
 
     @Inject
-    public GetQiWenNews(ThreadExecutor threadExecutor,
-                        PostExecutionThread postExecutionThread,
-                        AvatarDataRepository avatarDataRepository) {
+    public GetWeChatNews(ThreadExecutor threadExecutor,
+                         PostExecutionThread postExecutionThread,
+                         AvatarDataRepository avatarDataRepository) {
         super(threadExecutor, postExecutionThread);
         this.avatarDataRepository = avatarDataRepository;
     }
 
     @Override
     protected Observable buildUseCaseObservable() {
-        return avatarDataRepository.getGuoNeiNews(APP_KEY,page,RAWS);
+        return avatarDataRepository.getWeChatNews(APP_KEY,page,RAWS,"上海");
     }
 
     public void setPage(int page) {
