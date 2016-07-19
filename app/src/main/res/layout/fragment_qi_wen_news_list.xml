@@ -18,7 +18,7 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context="com.ljd.news.presentation.view.fragment.GuoNeiNewsListFragment">
+             tools:context=".presentation.view.fragment.QiWenNewsListFragment">
 
     <include layout="@layout/view_progress"/>
     <android.support.v7.widget.RecyclerView

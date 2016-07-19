@@ -24,7 +24,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.ljd.news.R;
-import com.ljd.news.presentation.model.GuoNeiNewsResultModel;
+import com.ljd.news.presentation.model.QiWenNewsResultModel;
 import com.ljd.news.presentation.view.component.AutoLoadImageView;
 
 import java.util.Collection;
@@ -38,18 +38,18 @@ import butterknife.ButterKnife;
 
 import static com.ljd.news.utils.Utils.checkNotNull;
 
-public class GuoNeiNewsAdapter extends RecyclerView.Adapter<GuoNeiNewsAdapter.ViewHolder> {
+public class QiWenNewsAdapter extends RecyclerView.Adapter<QiWenNewsAdapter.ViewHolder> {
 
-    private List<GuoNeiNewsResultModel> guoNeiNewsResultList;
+    private List<QiWenNewsResultModel> guoNeiNewsResultList;
     private final LayoutInflater layoutInflater;
     private OnItemClickListener onItemClickListener;
 
     public interface OnItemClickListener{
-        void onUserItemClicked(GuoNeiNewsResultModel guoNeiNewsResultModel);
+        void onUserItemClicked(QiWenNewsResultModel qiWenNewsResultModel);
     }
 
     @Inject
-    public GuoNeiNewsAdapter(Context context) {
+    public QiWenNewsAdapter(Context context) {
         this.layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.guoNeiNewsResultList = Collections.EMPTY_LIST;
     }
@@ -62,13 +62,13 @@ public class GuoNeiNewsAdapter extends RecyclerView.Adapter<GuoNeiNewsAdapter.Vi
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        GuoNeiNewsResultModel guoNeiNewsResultModel = guoNeiNewsResultList.get(position);
-        holder.image.loadUrl(guoNeiNewsResultModel.getPicUrl());
-        holder.timeText.setText(guoNeiNewsResultModel.getCtime());
-        holder.titleText.setText(guoNeiNewsResultModel.getTitle());
+        QiWenNewsResultModel qiWenNewsResultModel = guoNeiNewsResultList.get(position);
+        holder.image.loadUrl(qiWenNewsResultModel.getPicUrl());
+        holder.timeText.setText(qiWenNewsResultModel.getCtime());
+        holder.titleText.setText(qiWenNewsResultModel.getTitle());
         holder.itemView.setOnClickListener(v -> {
             if (onItemClickListener != null){
-                onItemClickListener.onUserItemClicked(guoNeiNewsResultModel);
+                onItemClickListener.onUserItemClicked(qiWenNewsResultModel);
             }
         });
     }
@@ -78,9 +78,9 @@ public class GuoNeiNewsAdapter extends RecyclerView.Adapter<GuoNeiNewsAdapter.Vi
         return (this.guoNeiNewsResultList != null)?guoNeiNewsResultList.size() : 0;
     }
 
-    public void setGuoNeiNewsList(Collection<GuoNeiNewsResultModel> guoNeiNewsResultList) {
+    public void setGuoNeiNewsList(Collection<QiWenNewsResultModel> guoNeiNewsResultList) {
         checkNotNull(guoNeiNewsResultList);
-        this.guoNeiNewsResultList = (List<GuoNeiNewsResultModel>) guoNeiNewsResultList;
+        this.guoNeiNewsResultList = (List<QiWenNewsResultModel>) guoNeiNewsResultList;
         this.notifyDataSetChanged();
     }
 

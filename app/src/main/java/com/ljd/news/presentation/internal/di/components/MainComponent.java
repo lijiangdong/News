@@ -21,7 +21,7 @@ import com.ljd.news.presentation.internal.di.modules.ActivityModule;
 import com.ljd.news.presentation.internal.di.modules.GuoNeiNewsModule;
 import com.ljd.news.presentation.internal.di.modules.ZhiHuModule;
 import com.ljd.news.presentation.view.activity.MainActivity;
-import com.ljd.news.presentation.view.fragment.GuoNeiNewsListFragment;
+import com.ljd.news.presentation.view.fragment.QiWenNewsListFragment;
 import com.ljd.news.presentation.view.fragment.ZhiHuStoryDetailFragment;
 import com.ljd.news.presentation.view.fragment.ZhiHuStoryListFragment;
 
@@ -38,5 +38,5 @@ public interface MainComponent {
 
     void inject(MainActivity activity);
 
-    void inject(GuoNeiNewsListFragment fragment);
+    void inject(QiWenNewsListFragment fragment);
 }

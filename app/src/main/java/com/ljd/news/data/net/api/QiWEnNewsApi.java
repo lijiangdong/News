@@ -16,15 +16,15 @@
 
 package com.ljd.news.data.net.api;
 
-import com.ljd.news.data.entity.GuoNeiNewsEntity;
+import com.ljd.news.data.entity.QiWenNewsEntity;
 
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 import rx.Observable;
 
-public interface GuoNeiNewsApi {
-    @GET("/GuoNeiNews/Query")
-    Observable<GuoNeiNewsEntity> getGuoNeiNews(@Query("key")String key,
-                                               @Query("page")int page,
-                                               @Query("rows")int rows);
+public interface QiWenNewsApi {
+    @GET("/QiWenNews/Query")
+    Observable<QiWenNewsEntity> getGuoNeiNews(@Query("key")String key,
+                                              @Query("page")int page,
+                                              @Query("rows")int rows);
 }

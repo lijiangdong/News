@@ -24,18 +24,18 @@ import javax.inject.Inject;
 
 import rx.Observable;
 
-public class GetGuoNeiNews extends UseCase {
+public class GetQiWenNews extends UseCase {
 
     private final AvatarDataRepository avatarDataRepository;
-    private final String APP_KEY = "5effb2f8f356499e83bc00aba02e17e7";
+    private final String APP_KEY = "5ff96710e9a54966a264e3837ab5bfc2";
     private final int RAWS = 10;
 
     private int page = 1;
 
     @Inject
-    public GetGuoNeiNews(ThreadExecutor threadExecutor,
-                         PostExecutionThread postExecutionThread,
-                         AvatarDataRepository avatarDataRepository) {
+    public GetQiWenNews(ThreadExecutor threadExecutor,
+                        PostExecutionThread postExecutionThread,
+                        AvatarDataRepository avatarDataRepository) {
         super(threadExecutor, postExecutionThread);
         this.avatarDataRepository = avatarDataRepository;
     }

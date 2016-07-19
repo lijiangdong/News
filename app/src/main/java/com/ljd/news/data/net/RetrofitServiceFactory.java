@@ -16,7 +16,7 @@
 
 package com.ljd.news.data.net;
 
-import com.ljd.news.data.net.api.GuoNeiNewsApi;
+import com.ljd.news.data.net.api.QiWenNewsApi;
 import com.ljd.news.data.net.api.NewsApi;
 import com.ljd.news.data.net.api.WeChatNewsApi;
 import com.ljd.news.data.net.api.ZhiHuApi;
@@ -51,7 +51,7 @@ public class RetrofitServiceFactory {
         return newsRetrofit.getNewsRetrofit(NewsApi.class,NEWS_URL);
     }
 
-    public GuoNeiNewsApi getGuoNeiNewsApi(){
-        return newsRetrofit.getNewsRetrofit(GuoNeiNewsApi.class,AVATAR_BASE_URL);
+    public QiWenNewsApi getGuoNeiNewsApi(){
+        return newsRetrofit.getNewsRetrofit(QiWenNewsApi.class,AVATAR_BASE_URL);
     }
 }

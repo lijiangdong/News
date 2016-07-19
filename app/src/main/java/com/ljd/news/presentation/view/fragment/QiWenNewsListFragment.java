@@ -29,10 +29,10 @@ import android.widget.RelativeLayout;
 
 import com.ljd.news.R;
 import com.ljd.news.presentation.internal.di.components.MainComponent;
-import com.ljd.news.presentation.model.GuoNeiNewsResultModel;
-import com.ljd.news.presentation.presenter.GuoNeiNewsListPresenter;
-import com.ljd.news.presentation.view.GuoNeiNewsListView;
-import com.ljd.news.presentation.view.adapter.GuoNeiNewsAdapter;
+import com.ljd.news.presentation.model.QiWenNewsResultModel;
+import com.ljd.news.presentation.presenter.QiWenNewsListPresenter;
+import com.ljd.news.presentation.view.QiWenNewsListView;
+import com.ljd.news.presentation.view.adapter.QiWenNewsAdapter;
 import com.ljd.news.utils.ToastUtils;
 
 import java.util.ArrayList;
@@ -43,18 +43,20 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class GuoNeiNewsListFragment extends BaseFragment implements GuoNeiNewsListView {
+public class QiWenNewsListFragment extends BaseFragment implements QiWenNewsListView {
 
     @BindView(R.id.guo_nei_news_recycler) RecyclerView recyclerView;
     @BindView(R.id.rl_progress) RelativeLayout progressView;
-    @Inject GuoNeiNewsListPresenter presenter;
-    @Inject GuoNeiNewsAdapter adapter;
+    @Inject
+    QiWenNewsListPresenter presenter;
+    @Inject
+    QiWenNewsAdapter adapter;
 
     private LinearLayoutManager linearLayoutManager;
-    private Collection<GuoNeiNewsResultModel> guoNeiNewsResultModels = new ArrayList<>();
+    private Collection<QiWenNewsResultModel> qiWenNewsResultModels = new ArrayList<>();
     private boolean isLoading;
 
-    public GuoNeiNewsListFragment() {
+    public QiWenNewsListFragment() {
     }
 
     @Override
@@ -66,7 +68,7 @@ public class GuoNeiNewsListFragment extends BaseFragment implements GuoNeiNewsLi
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View layout = inflater.inflate(R.layout.fragment_guo_nei_news_list, container, false);
+        View layout = inflater.inflate(R.layout.fragment_qi_wen_news_list, container, false);
         ButterKnife.bind(this,layout);
         getComponent(MainComponent.class).inject(this);
         setRecyclerView();
@@ -82,7 +84,7 @@ public class GuoNeiNewsListFragment extends BaseFragment implements GuoNeiNewsLi
         this.recyclerView.addOnScrollListener(new RecyclerViewScrollListener());
     }
 
-    private void onClickRecycleViewItem(GuoNeiNewsResultModel guoNeiNewsResultModel){
+    private void onClickRecycleViewItem(QiWenNewsResultModel qiWenNewsResultModel){
 
     }
 
@@ -112,9 +114,9 @@ public class GuoNeiNewsListFragment extends BaseFragment implements GuoNeiNewsLi
     }
 
     @Override
-    public void renderGuoNeiNewsList(Collection<GuoNeiNewsResultModel> guoNeiNewsResultModels) {
-        this.guoNeiNewsResultModels.addAll(guoNeiNewsResultModels);
-        this.adapter.setGuoNeiNewsList(this.guoNeiNewsResultModels);
+    public void renderGuoNeiNewsList(Collection<QiWenNewsResultModel> qiWenNewsResultModels) {
+        this.qiWenNewsResultModels.addAll(qiWenNewsResultModels);
+        this.adapter.setGuoNeiNewsList(this.qiWenNewsResultModels);
     }
 
     @Override

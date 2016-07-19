@@ -22,11 +22,11 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GuoNeiNewsEntity {
+public class QiWenNewsEntity {
 
     @SerializedName("result")
     @Expose
-    private List<GuoNeiNewsResultEntity> result = new ArrayList<GuoNeiNewsResultEntity>();
+    private List<QiWenNewsResultEntity> result = new ArrayList<QiWenNewsResultEntity>();
     @SerializedName("error_code")
     @Expose
     private Integer errorCode;
@@ -39,7 +39,7 @@ public class GuoNeiNewsEntity {
      * @return
      * The result
      */
-    public List<GuoNeiNewsResultEntity> getResult() {
+    public List<QiWenNewsResultEntity> getResult() {
         return result;
     }
 
@@ -48,7 +48,7 @@ public class GuoNeiNewsEntity {
      * @param result
      * The result
      */
-    public void setResult(List<GuoNeiNewsResultEntity> result) {
+    public void setResult(List<QiWenNewsResultEntity> result) {
         this.result = result;
     }
 

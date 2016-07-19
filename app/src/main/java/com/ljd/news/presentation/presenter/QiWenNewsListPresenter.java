@@ -17,14 +17,14 @@
 package com.ljd.news.presentation.presenter;
 
 import com.ljd.news.domain.GuoNeiNews;
-import com.ljd.news.domain.interactor.GetGuoNeiNews;
+import com.ljd.news.domain.interactor.GetQiWenNews;
 import com.ljd.news.domain.interactor.ResponseSubscriber;
 import com.ljd.news.domain.interactor.UseCase;
 import com.ljd.news.presentation.exception.ErrorMessageFactory;
 import com.ljd.news.presentation.internal.di.PerActivity;
-import com.ljd.news.presentation.mapper.GuoNeiNewsModelDataMapper;
-import com.ljd.news.presentation.model.GuoNeiNewsResultModel;
-import com.ljd.news.presentation.view.GuoNeiNewsListView;
+import com.ljd.news.presentation.mapper.QiWenNewsModelDataMapper;
+import com.ljd.news.presentation.model.QiWenNewsResultModel;
+import com.ljd.news.presentation.view.QiWenNewsListView;
 
 import java.util.Collection;
 
@@ -32,18 +32,18 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 @PerActivity
-public class GuoNeiNewsListPresenter implements Presenter<GuoNeiNewsListView> {
+public class QiWenNewsListPresenter implements Presenter<QiWenNewsListView> {
 
-    private GuoNeiNewsListView guoNeiNewsListView;
+    private QiWenNewsListView qiWenNewsListView;
     private final UseCase getGuoNeiNewsListUseCase;
-    private final GuoNeiNewsModelDataMapper guoNeiNewsModelDataMapper;
+    private final QiWenNewsModelDataMapper qiWenNewsModelDataMapper;
     private int page = 1;
 
     @Inject
-    public GuoNeiNewsListPresenter(@Named("guoNeiNewsList") UseCase getGuoNeiNewsList,
-                                   GuoNeiNewsModelDataMapper guoNeiNewsModelDataMapper) {
+    public QiWenNewsListPresenter(@Named("guoNeiNewsList") UseCase getGuoNeiNewsList,
+                                  QiWenNewsModelDataMapper qiWenNewsModelDataMapper) {
         this.getGuoNeiNewsListUseCase = getGuoNeiNewsList;
-        this.guoNeiNewsModelDataMapper = guoNeiNewsModelDataMapper;
+        this.qiWenNewsModelDataMapper = qiWenNewsModelDataMapper;
     }
 
     @Override
@@ -56,7 +56,7 @@ public class GuoNeiNewsListPresenter implements Presenter<GuoNeiNewsListView> {
     }
 
     private void loadGuoNeiNewsList(){
-        this.guoNeiNewsListView.showLoading();
+        this.qiWenNewsListView.showLoading();
         this.getGuoNeiNewsList();
     }
 
@@ -65,40 +65,40 @@ public class GuoNeiNewsListPresenter implements Presenter<GuoNeiNewsListView> {
     }
 
     @Override
-    public void setView(GuoNeiNewsListView guoNeiNewsListView) {
-        this.guoNeiNewsListView = guoNeiNewsListView;
+    public void setView(QiWenNewsListView qiWenNewsListView) {
+        this.qiWenNewsListView = qiWenNewsListView;
     }
 
     private void setPage(int page){
-        GetGuoNeiNews getGuoNeiNews = (GetGuoNeiNews)getGuoNeiNewsListUseCase;
-        getGuoNeiNews.setPage(page);
+        GetQiWenNews getQiWenNews = (GetQiWenNews)getGuoNeiNewsListUseCase;
+        getQiWenNews.setPage(page);
     }
 
     private void showGuoNeiNewsCollectionInView(GuoNeiNews guoNeiNews){
-        this.guoNeiNewsListView.renderGuoNeiNewsList(transformGuoNeiNewsList(guoNeiNews));
+        this.qiWenNewsListView.renderGuoNeiNewsList(transformGuoNeiNewsList(guoNeiNews));
     }
 
-    private Collection<GuoNeiNewsResultModel> transformGuoNeiNewsList(GuoNeiNews guoNeiNews){
-        return this.guoNeiNewsModelDataMapper.transform(guoNeiNews.getResult());
+    private Collection<QiWenNewsResultModel> transformGuoNeiNewsList(GuoNeiNews guoNeiNews){
+        return this.qiWenNewsModelDataMapper.transform(guoNeiNews.getResult());
     }
 
     private void showErrorMessage(Exception e){
-        String errorMessage = ErrorMessageFactory.create(guoNeiNewsListView.context(),e);
-        this.guoNeiNewsListView.showError(errorMessage);
+        String errorMessage = ErrorMessageFactory.create(qiWenNewsListView.context(),e);
+        this.qiWenNewsListView.showError(errorMessage);
     }
 
     private final class GuoNeiNewsListSubscriber extends ResponseSubscriber<GuoNeiNews>{
 
         @Override
         protected void onSuccess(GuoNeiNews guoNeiNews) {
-            guoNeiNewsListView.hideLoading();
+            qiWenNewsListView.hideLoading();
             setPage(++page);
             showGuoNeiNewsCollectionInView(guoNeiNews);
         }
 
         @Override
         protected void onFailure(Throwable e) {
-            guoNeiNewsListView.hideLoading();
+            qiWenNewsListView.hideLoading();
             showErrorMessage((Exception)e);
         }
     }

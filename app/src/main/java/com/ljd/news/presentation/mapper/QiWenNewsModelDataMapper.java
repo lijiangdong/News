@@ -17,7 +17,7 @@
 package com.ljd.news.presentation.mapper;
 
 import com.ljd.news.domain.GuoNeiNewsResult;
-import com.ljd.news.presentation.model.GuoNeiNewsResultModel;
+import com.ljd.news.presentation.model.QiWenNewsResultModel;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -26,30 +26,30 @@ import javax.inject.Inject;
 
 import static com.ljd.news.utils.Utils.checkNotNull;
 
-public class GuoNeiNewsModelDataMapper {
+public class QiWenNewsModelDataMapper {
 
     @Inject
-    public GuoNeiNewsModelDataMapper() {
+    public QiWenNewsModelDataMapper() {
     }
 
 
 
-    public Collection<GuoNeiNewsResultModel> transform(Collection<GuoNeiNewsResult> guoNeiNewsResults){
-        Collection<GuoNeiNewsResultModel> guoNeiNewsResultModels = new ArrayList<>();
+    public Collection<QiWenNewsResultModel> transform(Collection<GuoNeiNewsResult> guoNeiNewsResults){
+        Collection<QiWenNewsResultModel> qiWenNewsResultModels = new ArrayList<>();
         for (GuoNeiNewsResult guoNeiNewsResult : guoNeiNewsResults){
-            guoNeiNewsResultModels.add(this.transform(guoNeiNewsResult));
+            qiWenNewsResultModels.add(this.transform(guoNeiNewsResult));
         }
-        return guoNeiNewsResultModels;
+        return qiWenNewsResultModels;
     }
 
-    public GuoNeiNewsResultModel transform(GuoNeiNewsResult guoNeiNewsResult){
+    public QiWenNewsResultModel transform(GuoNeiNewsResult guoNeiNewsResult){
         checkNotNull(guoNeiNewsResult,"guoNeiNewsResultEntity == null");
-        GuoNeiNewsResultModel guoNeiNewsResultModel = new GuoNeiNewsResultModel();
-        guoNeiNewsResultModel.setCtime(guoNeiNewsResult.getCtime());
-        guoNeiNewsResultModel.setDescription(guoNeiNewsResult.getDescription());
-        guoNeiNewsResultModel.setPicUrl(guoNeiNewsResult.getPicUrl());
-        guoNeiNewsResultModel.setTitle(guoNeiNewsResult.getTitle());
-        guoNeiNewsResultModel.setUrl(guoNeiNewsResult.getUrl());
-        return guoNeiNewsResultModel;
+        QiWenNewsResultModel qiWenNewsResultModel = new QiWenNewsResultModel();
+        qiWenNewsResultModel.setCtime(guoNeiNewsResult.getCtime());
+        qiWenNewsResultModel.setDescription(guoNeiNewsResult.getDescription());
+        qiWenNewsResultModel.setPicUrl(guoNeiNewsResult.getPicUrl());
+        qiWenNewsResultModel.setTitle(guoNeiNewsResult.getTitle());
+        qiWenNewsResultModel.setUrl(guoNeiNewsResult.getUrl());
+        return qiWenNewsResultModel;
     }
 }

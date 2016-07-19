@@ -16,10 +16,10 @@
 
 package com.ljd.news.presentation.view;
 
-import com.ljd.news.presentation.model.GuoNeiNewsResultModel;
+import com.ljd.news.presentation.model.QiWenNewsResultModel;
 
 import java.util.Collection;
 
-public interface GuoNeiNewsListView extends LoadDataView{
-    void renderGuoNeiNewsList(Collection<GuoNeiNewsResultModel> guoNeiNewsResultModels);
+public interface QiWenNewsListView extends LoadDataView{
+    void renderGuoNeiNewsList(Collection<QiWenNewsResultModel> qiWenNewsResultModels);
 }

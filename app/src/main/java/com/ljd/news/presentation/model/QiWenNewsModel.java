@@ -19,8 +19,8 @@ package com.ljd.news.presentation.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GuoNeiNewsModel {
-    private List<GuoNeiNewsResultModel> result = new ArrayList<GuoNeiNewsResultModel>();
+public class QiWenNewsModel {
+    private List<QiWenNewsResultModel> result = new ArrayList<QiWenNewsResultModel>();
     private Integer errorCode;
     private String reason;
 
@@ -29,7 +29,7 @@ public class GuoNeiNewsModel {
      * @return
      * The result
      */
-    public List<GuoNeiNewsResultModel> getResult() {
+    public List<QiWenNewsResultModel> getResult() {
         return result;
     }
 
@@ -38,7 +38,7 @@ public class GuoNeiNewsModel {
      * @param result
      * The result
      */
-    public void setResult(List<GuoNeiNewsResultModel> result) {
+    public void setResult(List<QiWenNewsResultModel> result) {
         this.result = result;
     }
 

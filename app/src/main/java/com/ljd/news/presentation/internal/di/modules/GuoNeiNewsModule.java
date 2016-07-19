@@ -16,7 +16,7 @@
 
 package com.ljd.news.presentation.internal.di.modules;
 
-import com.ljd.news.domain.interactor.GetGuoNeiNews;
+import com.ljd.news.domain.interactor.GetQiWenNews;
 import com.ljd.news.domain.interactor.UseCase;
 import com.ljd.news.presentation.internal.di.PerActivity;
 
@@ -29,7 +29,7 @@ import dagger.Provides;
 public class GuoNeiNewsModule {
 
     @Provides @PerActivity @Named("guoNeiNewsList")
-    UseCase provideGetGuoNeiNewsList(GetGuoNeiNews getGuoNeiNews){
-        return getGuoNeiNews;
+    UseCase provideGetGuoNeiNewsList(GetQiWenNews getQiWenNews){
+        return getQiWenNews;
     }
 }
