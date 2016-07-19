@@ -98,7 +98,7 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
     private void setupViewPager() {
         MainViewPageAdapter adapter = new MainViewPageAdapter(getSupportFragmentManager());
         adapter.addFragment(new ZhiHuStoryListFragment(), getString(R.string.title_zhi_hu));
-        adapter.addFragment(new WeChatNewsListFragment(), getString(R.string.title_guo_nei_news));
+        adapter.addFragment(new WeChatNewsListFragment(), getString(R.string.title_we_chat_news));
         this.viewPager.setOffscreenPageLimit(adapter.getCount());
         this.viewPager.setAdapter(adapter);
     }

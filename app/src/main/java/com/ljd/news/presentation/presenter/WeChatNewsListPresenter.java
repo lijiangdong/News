@@ -35,33 +35,33 @@ import javax.inject.Named;
 public class WeChatNewsListPresenter implements Presenter<WeChatNewsListView> {
 
     private WeChatNewsListView weChatNewsListView;
-    private final UseCase getGuoNeiNewsListUseCase;
+    private final UseCase getWeChatNewsListUseCase;
     private final WeChatNewsModelDataMapper weChatNewsModelDataMapper;
     private int page = 1;
 
     @Inject
-    public WeChatNewsListPresenter(@Named("guoNeiNewsList") UseCase getGuoNeiNewsList,
+    public WeChatNewsListPresenter(@Named("getWeChatNewsList") UseCase getWeChatNewsList,
                                    WeChatNewsModelDataMapper weChatNewsModelDataMapper) {
-        this.getGuoNeiNewsListUseCase = getGuoNeiNewsList;
+        this.getWeChatNewsListUseCase = getWeChatNewsList;
         this.weChatNewsModelDataMapper = weChatNewsModelDataMapper;
     }
 
     @Override
     public void destroy() {
-        this.getGuoNeiNewsListUseCase.unSubscribe();
+        this.getWeChatNewsListUseCase.unSubscribe();
     }
 
     public void initialize(){
-        this.loadGuoNeiNewsList();
+        this.loadWeChatNewsList();
     }
 
-    private void loadGuoNeiNewsList(){
+    private void loadWeChatNewsList(){
         this.weChatNewsListView.showLoading();
-        this.getGuoNeiNewsList();
+        this.getWeChatNewsList();
     }
 
-    private void getGuoNeiNewsList(){
-        this.getGuoNeiNewsListUseCase.execute(new GuoNeiNewsListSubscriber());
+    private void getWeChatNewsList(){
+        this.getWeChatNewsListUseCase.execute(new WeChatNewsListSubscriber());
     }
 
     @Override
@@ -70,15 +70,15 @@ public class WeChatNewsListPresenter implements Presenter<WeChatNewsListView> {
     }
 
     private void setPage(int page){
-        GetWeChatNews getWeChatNews = (GetWeChatNews)getGuoNeiNewsListUseCase;
+        GetWeChatNews getWeChatNews = (GetWeChatNews)getWeChatNewsListUseCase;
         getWeChatNews.setPage(page);
     }
 
-    private void showGuoNeiNewsCollectionInView(WeChatNews weChatNews){
-        this.weChatNewsListView.renderGuoNeiNewsList(transformGuoNeiNewsList(weChatNews));
+    private void showWeChatNewsCollectionInView(WeChatNews weChatNews){
+        this.weChatNewsListView.renderWeChatNewsList(transformWeChatNewsList(weChatNews));
     }
 
-    private Collection<WeChatNewsResultModel> transformGuoNeiNewsList(WeChatNews weChatNews){
+    private Collection<WeChatNewsResultModel> transformWeChatNewsList(WeChatNews weChatNews){
         return this.weChatNewsModelDataMapper.transform(weChatNews.getResult());
     }
 
@@ -87,13 +87,13 @@ public class WeChatNewsListPresenter implements Presenter<WeChatNewsListView> {
         this.weChatNewsListView.showError(errorMessage);
     }
 
-    private final class GuoNeiNewsListSubscriber extends ResponseSubscriber<WeChatNews>{
+    private final class WeChatNewsListSubscriber extends ResponseSubscriber<WeChatNews>{
 
         @Override
         protected void onSuccess(WeChatNews weChatNews) {
             weChatNewsListView.hideLoading();
             setPage(++page);
-            showGuoNeiNewsCollectionInView(weChatNews);
+            showWeChatNewsCollectionInView(weChatNews);
         }
 
         @Override

@@ -21,5 +21,5 @@ import com.ljd.news.presentation.model.WeChatNewsResultModel;
 import java.util.Collection;
 
 public interface WeChatNewsListView extends LoadDataView{
-    void renderGuoNeiNewsList(Collection<WeChatNewsResultModel> weChatNewsResultModels);
+    void renderWeChatNewsList(Collection<WeChatNewsResultModel> weChatNewsResultModels);
 }

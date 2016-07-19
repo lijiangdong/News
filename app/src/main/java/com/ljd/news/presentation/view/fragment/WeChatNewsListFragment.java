@@ -76,8 +76,8 @@ public class WeChatNewsListFragment extends BaseFragment implements WeChatNewsLi
     }
 
     private void setRecyclerView(){
-        this.adapter.setOnItemClickListener(guoNeiNewsResultModel ->
-                this.onClickRecycleViewItem(guoNeiNewsResultModel));
+        this.adapter.setOnItemClickListener(weChatNewsResultModel ->
+                this.onClickRecycleViewItem(weChatNewsResultModel));
         this.linearLayoutManager = new LinearLayoutManager(getActivity());
         this.recyclerView.setLayoutManager(linearLayoutManager);
         this.recyclerView.setAdapter(adapter);
@@ -93,11 +93,11 @@ public class WeChatNewsListFragment extends BaseFragment implements WeChatNewsLi
         super.onViewCreated(view, savedInstanceState);
         this.presenter.setView(this);
         if (savedInstanceState == null){
-            this.loadGuoNeiNewsList();
+            this.loadWeChatNewsList();
         }
     }
 
-    private void loadGuoNeiNewsList(){
+    private void loadWeChatNewsList(){
         this.presenter.initialize();
     }
 
@@ -114,7 +114,7 @@ public class WeChatNewsListFragment extends BaseFragment implements WeChatNewsLi
     }
 
     @Override
-    public void renderGuoNeiNewsList(Collection<WeChatNewsResultModel> weChatNewsResultModels) {
+    public void renderWeChatNewsList(Collection<WeChatNewsResultModel> weChatNewsResultModels) {
         this.weChatNewsResultModels.addAll(weChatNewsResultModels);
         this.adapter.setWeChatNewsList(this.weChatNewsResultModels);
     }

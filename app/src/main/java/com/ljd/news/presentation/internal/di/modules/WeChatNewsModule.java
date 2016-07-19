@@ -28,7 +28,7 @@ import dagger.Provides;
 @Module
 public class WeChatNewsModule {
 
-    @Provides @PerActivity @Named("guoNeiNewsList")
+    @Provides @PerActivity @Named("getWeChatNewsList")
     UseCase provideGetGuoNeiNewsList(GetWeChatNews getWeChatNews){
         return getWeChatNews;
     }
