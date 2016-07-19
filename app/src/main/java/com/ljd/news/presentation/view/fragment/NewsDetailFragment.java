@@ -62,7 +62,7 @@ public class NewsDetailFragment extends Fragment {
 
     private void initWebView(){
         webView = new WebView(getActivity());
-        webView.loadUrl(getArguments().getString(LOAD_URL));
+        webView.loadUrl("http://mp.weixin.qq.com/s?__biz=MTA5NTIzNDE2MQ==&idx=1&mid=2653344618&sn=6cc4be711d055490b22433b14f970a34");
         webViewContainer.addView(webView);
     }
 

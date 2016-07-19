@@ -23,8 +23,9 @@ import retrofit2.http.Query;
 import rx.Observable;
 
 public interface QiWenNewsApi {
-    @GET("/QiWenNews/Query")
+    @GET("/WxNews/Query")
     Observable<QiWenNewsEntity> getGuoNeiNews(@Query("key")String key,
                                               @Query("page")int page,
-                                              @Query("rows")int rows);
+                                              @Query("rows")int rows,
+                                              @Query("keyword")String keyword);
 }
