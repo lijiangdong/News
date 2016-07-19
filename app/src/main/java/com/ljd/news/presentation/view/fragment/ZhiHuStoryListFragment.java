@@ -87,6 +87,22 @@ public class ZhiHuStoryListFragment extends BaseFragment  implements ZhiHuStoryL
         return layout;
     }
 
+    private void setRecyclerView(){
+        this.zhiHuAdapter.setOnItemClickListener(zhiHuStoryItemModel ->
+                this.onClickRecycleViewItem(zhiHuStoryItemModel));
+        this.linearLayoutManager = new LinearLayoutManager(context());
+        this.recyclerView.setLayoutManager(linearLayoutManager);
+        this.recyclerView.setAdapter(zhiHuAdapter);
+        this.recyclerView.addOnScrollListener(new RecyclerViewScrollListener());
+    }
+
+    private void onClickRecycleViewItem(ZhiHuStoryItemModel zhiHuStoryItemModel){
+        if (navigator != null){
+            navigator.navigateToActivity(ZhiHuStoryDetailActivity
+                    .getCallingIntent(getActivity(),zhiHuStoryItemModel.getId()));
+        }
+    }
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -118,21 +134,6 @@ public class ZhiHuStoryListFragment extends BaseFragment  implements ZhiHuStoryL
         this.handleFab = null;
     }
 
-    private void setRecyclerView(){
-        this.zhiHuAdapter.setOnItemClickListener(zhiHuStoryItemModel ->
-                this.onClickRecycleViewItem(zhiHuStoryItemModel));
-        this.linearLayoutManager = new LinearLayoutManager(context());
-        this.recyclerView.setLayoutManager(linearLayoutManager);
-        this.recyclerView.setAdapter(zhiHuAdapter);
-        this.recyclerView.addOnScrollListener(new RecyclerViewScrollListener());
-    }
-
-    private void onClickRecycleViewItem(ZhiHuStoryItemModel zhiHuStoryItemModel){
-        if (navigator != null){
-            navigator.navigateToActivity(ZhiHuStoryDetailActivity
-                    .getCallingIntent(getActivity(),zhiHuStoryItemModel.getId()));
-        }
-    }
 
     private void loadMoreView(){
         this.isLoading = true;
