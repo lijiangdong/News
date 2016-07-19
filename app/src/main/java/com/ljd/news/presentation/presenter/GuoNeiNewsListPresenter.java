@@ -69,11 +69,16 @@ public class GuoNeiNewsListPresenter implements Presenter<GuoNeiNewsListView> {
         getGuoNeiNews.setPage(page);
     }
 
+    private void showGuoNeiNewsCollectionInView(GuoNeiNews guoNeiNews){
+
+    }
+
     private final class GuoNeiNewsListSubscriber extends ResponseSubscriber<GuoNeiNews>{
 
         @Override
         protected void onSuccess(GuoNeiNews guoNeiNews) {
-
+            guoNeiNewsListView.hideLoading();
+            showGuoNeiNewsCollectionInView(guoNeiNews);
         }
 
         @Override

@@ -63,6 +63,10 @@ public class ZhiHuStoryListPresenter implements Presenter<ZhiHuStoryListView> {
         this.getMoreStoryList();
     }
 
+    private void getMoreStoryList(){
+        this.getZhiHuStoryListByDateUseCase.execute(new ZhiHuStoryListByDateSubscriber());
+    }
+
     private void loadZhiHuStoryList(){
         this.viewListView.showLoading();
         this.getZhiHuStoryList();
@@ -78,10 +82,6 @@ public class ZhiHuStoryListPresenter implements Presenter<ZhiHuStoryListView> {
         setDate(zhiHuDaily.getDate());
     }
 
-    private void getMoreStoryList(){
-        this.getZhiHuStoryListByDateUseCase.execute(new ZhiHuStoryListByDateSubscriber());
-    }
-
     private void showMoreZhiHuCollectionInView(ZhiHuDaily zhiHuDaily){
         Collection<ZhiHuStoryItemModel> zhiHuStoryItemModels = transformStoryItem(zhiHuDaily);
         this.viewListView.renderMoreStory(zhiHuStoryItemModels);
@@ -93,13 +93,13 @@ public class ZhiHuStoryListPresenter implements Presenter<ZhiHuStoryListView> {
         getZhiHuDailyByDate.setDate(date);
     }
 
+    private Collection<ZhiHuStoryItemModel> transformStoryItem(ZhiHuDaily zhiHuDaily){
+        return this.zhiHuModelDataMapper.transform(zhiHuDaily.getStories());
+    }
+
     private void showErrorMessage(Exception e){
         String errorMessage = ErrorMessageFactory.create(viewListView.context(), e);
         this.viewListView.showError(errorMessage);
-    }
-
-    private Collection<ZhiHuStoryItemModel> transformStoryItem(ZhiHuDaily zhiHuDaily){
-        return this.zhiHuModelDataMapper.transform(zhiHuDaily.getStories());
     }
 
     @Override
