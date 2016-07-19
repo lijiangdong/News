@@ -30,6 +30,13 @@ public final class Utils {
         return object;
     }
 
+    public static <T> T checkNotNull(T object){
+        if (object == null){
+            throw new NullPointerException();
+        }
+        return object;
+    }
+
     public static boolean hasJellyBean() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN;
     }

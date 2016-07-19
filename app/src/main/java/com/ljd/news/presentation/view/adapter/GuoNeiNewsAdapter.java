@@ -24,7 +24,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.ljd.news.R;
-import com.ljd.news.presentation.model.ZhiHuStoryItemModel;
+import com.ljd.news.presentation.model.GuoNeiNewsResultModel;
 import com.ljd.news.presentation.view.component.AutoLoadImageView;
 
 import java.util.Collection;
@@ -38,55 +38,49 @@ import butterknife.ButterKnife;
 
 import static com.ljd.news.utils.Utils.checkNotNull;
 
-public class ZhiHuAdapter extends RecyclerView.Adapter<ZhiHuAdapter.ViewHolder>{
+public class GuoNeiNewsAdapter extends RecyclerView.Adapter<GuoNeiNewsAdapter.ViewHolder> {
 
-    public interface OnItemClickListener{
-        void onUserItemClicked(ZhiHuStoryItemModel zhiHuStoryItemModel);
-    }
-
-    private List<ZhiHuStoryItemModel> storyList;
+    private List<GuoNeiNewsResultModel> guoNeiNewsResultList;
     private final LayoutInflater layoutInflater;
-
     private OnItemClickListener onItemClickListener;
 
+    public interface OnItemClickListener{
+        void onUserItemClicked(GuoNeiNewsResultModel guoNeiNewsResultModel);
+    }
+
     @Inject
-    public ZhiHuAdapter(Context context) {
-        checkNotNull(context,"Context == null");
+    public GuoNeiNewsAdapter(Context context) {
         this.layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        this.storyList = Collections.emptyList();
+        this.guoNeiNewsResultList = Collections.EMPTY_LIST;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = this.layoutInflater.inflate(R.layout.zhihu_item,parent,false);
+        View view = this.layoutInflater.inflate(R.layout.item,parent,false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        ZhiHuStoryItemModel zhiHuStoryItemModel = storyList.get(position);
-        holder.storyImageView.loadUrl(zhiHuStoryItemModel.getImage());
-        holder.storyTitleText.setText(zhiHuStoryItemModel.getTitle());
+        GuoNeiNewsResultModel guoNeiNewsResultModel = guoNeiNewsResultList.get(position);
+        holder.image.loadUrl(guoNeiNewsResultModel.getPicUrl());
+        holder.timeText.setText(guoNeiNewsResultModel.getCtime());
+        holder.titleText.setText(guoNeiNewsResultModel.getTitle());
         holder.itemView.setOnClickListener(v -> {
-            if (this.onItemClickListener != null){
-                onItemClickListener.onUserItemClicked(zhiHuStoryItemModel);
+            if (onItemClickListener != null){
+                onItemClickListener.onUserItemClicked(guoNeiNewsResultModel);
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return (this.storyList != null)?storyList.size():0;
+        return (this.guoNeiNewsResultList != null)?guoNeiNewsResultList.size() : 0;
     }
 
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
-
-    public void setStoryList(Collection<ZhiHuStoryItemModel> storyList) {
-        checkNotNull(storyList,"storyList == null");
-        this.storyList = (List<ZhiHuStoryItemModel>) storyList;
+    public void setGuoNeiNewsList(Collection<GuoNeiNewsResultModel> guoNeiNewsResultList) {
+        checkNotNull(guoNeiNewsResultList);
+        this.guoNeiNewsResultList = (List<GuoNeiNewsResultModel>) guoNeiNewsResultList;
         this.notifyDataSetChanged();
     }
 
@@ -96,11 +90,9 @@ public class ZhiHuAdapter extends RecyclerView.Adapter<ZhiHuAdapter.ViewHolder>{
 
     final static class ViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.zhi_hu_story_image)
-        AutoLoadImageView storyImageView;
-
-        @BindView(R.id.zhi_hu_story_title_text)
-        TextView storyTitleText;
+        @BindView(R.id.news_image) AutoLoadImageView image;
+        @BindView(R.id.news_title_text) TextView titleText;
+        @BindView(R.id.news_time_text) TextView timeText;
 
         public ViewHolder(View itemView) {
             super(itemView);
