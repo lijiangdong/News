@@ -20,9 +20,13 @@ import com.ljd.news.domain.GuoNeiNews;
 import com.ljd.news.domain.interactor.GetGuoNeiNews;
 import com.ljd.news.domain.interactor.ResponseSubscriber;
 import com.ljd.news.domain.interactor.UseCase;
+import com.ljd.news.presentation.exception.ErrorMessageFactory;
 import com.ljd.news.presentation.internal.di.PerActivity;
 import com.ljd.news.presentation.mapper.GuoNeiNewsModelDataMapper;
+import com.ljd.news.presentation.model.GuoNeiNewsResultModel;
 import com.ljd.news.presentation.view.GuoNeiNewsListView;
+
+import java.util.Collection;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -33,6 +37,7 @@ public class GuoNeiNewsListPresenter implements Presenter<GuoNeiNewsListView> {
     private GuoNeiNewsListView guoNeiNewsListView;
     private final UseCase getGuoNeiNewsListUseCase;
     private final GuoNeiNewsModelDataMapper guoNeiNewsModelDataMapper;
+    private int page = 1;
 
     @Inject
     public GuoNeiNewsListPresenter(@Named("guoNeiNewsList") UseCase getGuoNeiNewsList,
@@ -70,7 +75,16 @@ public class GuoNeiNewsListPresenter implements Presenter<GuoNeiNewsListView> {
     }
 
     private void showGuoNeiNewsCollectionInView(GuoNeiNews guoNeiNews){
+        this.guoNeiNewsListView.renderGuoNeiNewsList(transformGuoNeiNewsList(guoNeiNews));
+    }
 
+    private Collection<GuoNeiNewsResultModel> transformGuoNeiNewsList(GuoNeiNews guoNeiNews){
+        return this.guoNeiNewsModelDataMapper.transform(guoNeiNews.getResult());
+    }
+
+    private void showErrorMessage(Exception e){
+        String errorMessage = ErrorMessageFactory.create(guoNeiNewsListView.context(),e);
+        this.guoNeiNewsListView.showError(errorMessage);
     }
 
     private final class GuoNeiNewsListSubscriber extends ResponseSubscriber<GuoNeiNews>{
@@ -78,12 +92,14 @@ public class GuoNeiNewsListPresenter implements Presenter<GuoNeiNewsListView> {
         @Override
         protected void onSuccess(GuoNeiNews guoNeiNews) {
             guoNeiNewsListView.hideLoading();
+            setPage(++page);
             showGuoNeiNewsCollectionInView(guoNeiNews);
         }
 
         @Override
         protected void onFailure(Throwable e) {
-
+            guoNeiNewsListView.hideLoading();
+            showErrorMessage((Exception)e);
         }
     }
 }

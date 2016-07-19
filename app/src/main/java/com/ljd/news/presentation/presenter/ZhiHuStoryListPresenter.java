@@ -88,13 +88,13 @@ public class ZhiHuStoryListPresenter implements Presenter<ZhiHuStoryListView> {
         setDate(zhiHuDaily.getDate());
     }
 
+    private Collection<ZhiHuStoryItemModel> transformStoryItem(ZhiHuDaily zhiHuDaily){
+        return this.zhiHuModelDataMapper.transform(zhiHuDaily.getStories());
+    }
+
     private void setDate(String date){
         GetZhiHuDailyByDate getZhiHuDailyByDate = (GetZhiHuDailyByDate)getZhiHuStoryListByDateUseCase;
         getZhiHuDailyByDate.setDate(date);
-    }
-
-    private Collection<ZhiHuStoryItemModel> transformStoryItem(ZhiHuDaily zhiHuDaily){
-        return this.zhiHuModelDataMapper.transform(zhiHuDaily.getStories());
     }
 
     private void showErrorMessage(Exception e){

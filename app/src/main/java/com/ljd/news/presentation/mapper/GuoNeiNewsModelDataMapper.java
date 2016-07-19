@@ -16,13 +16,11 @@
 
 package com.ljd.news.presentation.mapper;
 
-import com.ljd.news.domain.GuoNeiNews;
 import com.ljd.news.domain.GuoNeiNewsResult;
-import com.ljd.news.presentation.model.GuoNeiNewsModel;
 import com.ljd.news.presentation.model.GuoNeiNewsResultModel;
 
+import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -34,17 +32,10 @@ public class GuoNeiNewsModelDataMapper {
     public GuoNeiNewsModelDataMapper() {
     }
 
-    public GuoNeiNewsModel transform(GuoNeiNews guoNeiNews){
-        checkNotNull(guoNeiNews,"guoNeiNewsEntity == null");
-        GuoNeiNewsModel guoNeiNewsModel = new GuoNeiNewsModel();
-        guoNeiNewsModel.setErrorCode(guoNeiNews.getErrorCode());
-        guoNeiNewsModel.setReason(guoNeiNews.getReason());
-        guoNeiNewsModel.setResult(transform(guoNeiNews.getResult()));
-        return guoNeiNewsModel;
-    }
 
-    public List<GuoNeiNewsResultModel> transform(List<GuoNeiNewsResult> guoNeiNewsResults){
-        List<GuoNeiNewsResultModel> guoNeiNewsResultModels = Collections.EMPTY_LIST;
+
+    public Collection<GuoNeiNewsResultModel> transform(Collection<GuoNeiNewsResult> guoNeiNewsResults){
+        Collection<GuoNeiNewsResultModel> guoNeiNewsResultModels = Collections.EMPTY_LIST;
         for (GuoNeiNewsResult guoNeiNewsResult : guoNeiNewsResults){
             guoNeiNewsResultModels.add(this.transform(guoNeiNewsResult));
         }

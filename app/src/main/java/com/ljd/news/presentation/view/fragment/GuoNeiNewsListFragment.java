@@ -35,6 +35,9 @@ import com.ljd.news.presentation.view.GuoNeiNewsListView;
 import com.ljd.news.presentation.view.adapter.GuoNeiNewsAdapter;
 import com.ljd.news.utils.ToastUtils;
 
+import java.util.Collection;
+import java.util.Collections;
+
 import javax.inject.Inject;
 
 import butterknife.BindView;
@@ -48,10 +51,10 @@ public class GuoNeiNewsListFragment extends BaseFragment implements GuoNeiNewsLi
     @Inject GuoNeiNewsAdapter adapter;
 
     private LinearLayoutManager linearLayoutManager;
+    private Collection<GuoNeiNewsResultModel> guoNeiNewsResultModels = Collections.emptyList();
     private boolean isLoading;
 
     public GuoNeiNewsListFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -92,6 +95,10 @@ public class GuoNeiNewsListFragment extends BaseFragment implements GuoNeiNewsLi
         }
     }
 
+    private void loadGuoNeiNewsList(){
+        this.presenter.initialize();
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -104,8 +111,10 @@ public class GuoNeiNewsListFragment extends BaseFragment implements GuoNeiNewsLi
         this.presenter.destroy();
     }
 
-    private void loadGuoNeiNewsList(){
-        this.presenter.initialize();
+    @Override
+    public void renderGuoNeiNewsList(Collection<GuoNeiNewsResultModel> guoNeiNewsResultModels) {
+        this.guoNeiNewsResultModels.addAll(guoNeiNewsResultModels);
+        this.adapter.setGuoNeiNewsList(this.guoNeiNewsResultModels);
     }
 
     @Override
