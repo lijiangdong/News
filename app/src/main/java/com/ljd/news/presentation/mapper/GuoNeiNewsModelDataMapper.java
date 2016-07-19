@@ -19,8 +19,8 @@ package com.ljd.news.presentation.mapper;
 import com.ljd.news.domain.GuoNeiNewsResult;
 import com.ljd.news.presentation.model.GuoNeiNewsResultModel;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 
 import javax.inject.Inject;
 
@@ -35,7 +35,7 @@ public class GuoNeiNewsModelDataMapper {
 
 
     public Collection<GuoNeiNewsResultModel> transform(Collection<GuoNeiNewsResult> guoNeiNewsResults){
-        Collection<GuoNeiNewsResultModel> guoNeiNewsResultModels = Collections.EMPTY_LIST;
+        Collection<GuoNeiNewsResultModel> guoNeiNewsResultModels = new ArrayList<>();
         for (GuoNeiNewsResult guoNeiNewsResult : guoNeiNewsResults){
             guoNeiNewsResultModels.add(this.transform(guoNeiNewsResult));
         }

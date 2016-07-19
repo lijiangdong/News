@@ -35,8 +35,8 @@ import com.ljd.news.presentation.view.GuoNeiNewsListView;
 import com.ljd.news.presentation.view.adapter.GuoNeiNewsAdapter;
 import com.ljd.news.utils.ToastUtils;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 
 import javax.inject.Inject;
 
@@ -51,7 +51,7 @@ public class GuoNeiNewsListFragment extends BaseFragment implements GuoNeiNewsLi
     @Inject GuoNeiNewsAdapter adapter;
 
     private LinearLayoutManager linearLayoutManager;
-    private Collection<GuoNeiNewsResultModel> guoNeiNewsResultModels = Collections.emptyList();
+    private Collection<GuoNeiNewsResultModel> guoNeiNewsResultModels = new ArrayList<>();
     private boolean isLoading;
 
     public GuoNeiNewsListFragment() {
