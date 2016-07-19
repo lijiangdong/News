@@ -25,6 +25,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import com.ljd.news.R;
 import com.ljd.news.presentation.internal.di.components.MainComponent;
@@ -32,6 +33,7 @@ import com.ljd.news.presentation.model.GuoNeiNewsResultModel;
 import com.ljd.news.presentation.presenter.GuoNeiNewsListPresenter;
 import com.ljd.news.presentation.view.GuoNeiNewsListView;
 import com.ljd.news.presentation.view.adapter.GuoNeiNewsAdapter;
+import com.ljd.news.utils.ToastUtils;
 
 import javax.inject.Inject;
 
@@ -41,6 +43,7 @@ import butterknife.ButterKnife;
 public class GuoNeiNewsListFragment extends BaseFragment implements GuoNeiNewsListView {
 
     @BindView(R.id.guo_nei_news_recycler) RecyclerView recyclerView;
+    @BindView(R.id.rl_progress) RelativeLayout progressView;
     @Inject GuoNeiNewsListPresenter presenter;
     @Inject GuoNeiNewsAdapter adapter;
 
@@ -89,23 +92,36 @@ public class GuoNeiNewsListFragment extends BaseFragment implements GuoNeiNewsLi
         }
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        this.recyclerView.setAdapter(null);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        this.presenter.destroy();
+    }
+
     private void loadGuoNeiNewsList(){
         this.presenter.initialize();
     }
 
     @Override
     public void showLoading() {
-
+        this.progressView.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideLoading() {
         this.isLoading = false;
+        this.progressView.setVisibility(View.GONE);
     }
 
     @Override
     public void showError(String message) {
-
+        ToastUtils.showToastLong(message);
     }
 
     @Override
