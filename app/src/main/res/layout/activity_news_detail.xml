@@ -47,6 +47,7 @@
                 app:layout_collapseMode="pin" />
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
+
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/nest"
         android:layout_width="match_parent"

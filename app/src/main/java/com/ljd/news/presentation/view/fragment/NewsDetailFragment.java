@@ -49,7 +49,6 @@ public class NewsDetailFragment extends Fragment {
     }
 
     @BindView(R.id.web_view_container) FrameLayout webViewContainer;
-
     private WebView webView;
 
     @Override
