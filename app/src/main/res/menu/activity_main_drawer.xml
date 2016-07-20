@@ -25,11 +25,6 @@
             android:title="反馈" />
 
         <item
-            android:id="@+id/nav_author"
-            android:icon="@drawable/ic_menu_author"
-            android:title="作者" />
-
-        <item
             android:id="@+id/nav_update"
             android:icon="@drawable/ic_menu_update"
             android:title="检查更新" />

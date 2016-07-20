@@ -155,9 +155,6 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
                 case R.id.nav_feedback:
                     this.navigateToFeedback();
                     break;
-                case R.id.nav_author:
-                    this.navigateToAuthor();
-                    break;
                 case R.id.nav_update:
                     this.navigateToUpdate();
                     break;
@@ -202,9 +199,6 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
         Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
                 "mailto", "ljd2038@gmail.com", null));
         startActivity(Intent.createChooser(intent, "选择邮件客户端:"));
-    }
-    private void navigateToAuthor(){
-        navigateToActivity(AuthorActivity.getCallingIntent(this));
     }
 
     private void navigateToUpdate(){
