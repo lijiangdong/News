@@ -22,6 +22,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.FrameLayout;
 
@@ -48,7 +49,6 @@ public class NewsDetailFragment extends Fragment {
     }
 
     @BindView(R.id.web_view_container) FrameLayout webViewContainer;
-
     private WebView webView;
 
     @Override
@@ -63,6 +63,14 @@ public class NewsDetailFragment extends Fragment {
     private void initWebView(){
         String url = getArguments().getString(LOAD_URL);
         webView = new WebView(getActivity());
+        WebSettings settings = webView.getSettings();
+        settings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+        settings.setLoadWithOverviewMode(true);
+        settings.setDomStorageEnabled(true);
+        settings.setDatabaseEnabled(true);
+        settings.setAppCachePath(getActivity().getCacheDir().getAbsolutePath() + "/webViewCache");
+        settings.setAppCacheEnabled(true);
+        settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         webView.loadUrl(url);
         webViewContainer.addView(webView);
     }

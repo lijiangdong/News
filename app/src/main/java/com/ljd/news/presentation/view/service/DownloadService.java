@@ -35,8 +35,6 @@ import java.io.File;
 
 import javax.inject.Inject;
 
-import timber.log.Timber;
-
 public class DownloadService extends Service implements DownloadNewsApkView,HasComponent<NewsComponent> {
 
     public DownloadService(){
@@ -76,7 +74,6 @@ public class DownloadService extends Service implements DownloadNewsApkView,HasC
                 "application/vnd.android.package-archive");
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
         getApplicationContext().startActivity(intent);
-        Timber.d("安装完成");
     }
 
     @Override

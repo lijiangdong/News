@@ -42,7 +42,7 @@ public class GetWeChatNews extends UseCase {
 
     @Override
     protected Observable buildUseCaseObservable() {
-        return avatarDataRepository.getWeChatNews(APP_KEY,page,RAWS,"上海");
+        return avatarDataRepository.getWeChatNews(APP_KEY,page,RAWS,"Android");
     }
 
     public void setPage(int page) {
