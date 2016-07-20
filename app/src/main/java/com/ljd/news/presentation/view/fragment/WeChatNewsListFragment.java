@@ -18,8 +18,10 @@ package com.ljd.news.presentation.view.fragment;
 
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -48,6 +50,7 @@ public class WeChatNewsListFragment extends BaseFragment implements WeChatNewsLi
 
     @BindView(R.id.we_chat_news_recycler) RecyclerView recyclerView;
     @BindView(R.id.rl_progress) RelativeLayout progressView;
+    @BindView(R.id.swipe_refresh_layout) SwipeRefreshLayout refreshLayout;
 
     @Inject WeChatNewsListPresenter presenter;
     @Inject WeChatNewsAdapter adapter;
@@ -71,8 +74,13 @@ public class WeChatNewsListFragment extends BaseFragment implements WeChatNewsLi
         View layout = inflater.inflate(R.layout.fragment_we_chat_news_list, container, false);
         ButterKnife.bind(this,layout);
         getComponent(MainComponent.class).inject(this);
-        setRecyclerView();
+        this.setUpView();
         return layout;
+    }
+
+    private void setUpView(){
+        this.setRecyclerView();
+        this.setRefreshLayout();
     }
 
     private void setRecyclerView(){
@@ -86,6 +94,14 @@ public class WeChatNewsListFragment extends BaseFragment implements WeChatNewsLi
 
     private void onClickRecycleViewItem(WeChatNewsResultModel weChatNewsResultModel){
         startActivity(NewsDetailActivity.getCallingIntent(getActivity(), weChatNewsResultModel.getUrl()));
+    }
+
+    private void setRefreshLayout(){
+        this.refreshLayout.setColorSchemeColors(Color.BLUE);
+        this.refreshLayout.setOnRefreshListener(() -> {
+            this.refreshLayout.setRefreshing(true);
+            this.presenter.initialize();
+        });
     }
 
     @Override
@@ -127,6 +143,7 @@ public class WeChatNewsListFragment extends BaseFragment implements WeChatNewsLi
     @Override
     public void hideLoading() {
         this.isLoading = false;
+        this.refreshLayout.setRefreshing(false);
         this.progressView.setVisibility(View.GONE);
     }
 

@@ -18,8 +18,10 @@ package com.ljd.news.presentation.view.fragment;
 
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -50,6 +52,7 @@ public class ZhiHuStoryListFragment extends BaseFragment  implements ZhiHuStoryL
 
     @BindView(R.id.zhi_hu_recycler_view) RecyclerView recyclerView;
     @BindView(R.id.rl_progress) RelativeLayout progressView;
+    @BindView(R.id.swipe_refresh_layout) SwipeRefreshLayout refreshLayout;
 
     @Inject ZhiHuAdapter zhiHuAdapter;
     @Inject ZhiHuStoryListPresenter zhiHuStoryListPresenter;
@@ -83,8 +86,13 @@ public class ZhiHuStoryListFragment extends BaseFragment  implements ZhiHuStoryL
                              Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.fragment_zhi_hu_story_list, container, false);
         ButterKnife.bind(this,layout);
-        setRecyclerView();
+        this.setUpView();
         return layout;
+    }
+
+    private void setUpView(){
+        this.setRecyclerView();
+        this.setRefreshView();
     }
 
     private void setRecyclerView(){
@@ -98,9 +106,17 @@ public class ZhiHuStoryListFragment extends BaseFragment  implements ZhiHuStoryL
 
     private void onClickRecycleViewItem(ZhiHuStoryItemModel zhiHuStoryItemModel){
         if (navigator != null){
-            navigator.navigateToActivity(ZhiHuStoryDetailActivity
+            this.navigator.navigateToActivity(ZhiHuStoryDetailActivity
                     .getCallingIntent(getActivity(),zhiHuStoryItemModel.getId()));
         }
+    }
+
+    private void setRefreshView(){
+        this.refreshLayout.setColorSchemeColors(Color.BLUE);
+        this.refreshLayout.setOnRefreshListener(() -> {
+            zhiHuStoryListPresenter.initialize();
+            refreshLayout.setRefreshing(true);
+        });
     }
 
     @Override
@@ -164,7 +180,8 @@ public class ZhiHuStoryListFragment extends BaseFragment  implements ZhiHuStoryL
     @Override
     public void hideLoading() {
         this.isLoading = false;
-        progressView.setVisibility(View.GONE);
+        this.progressView.setVisibility(View.GONE);
+        this.refreshLayout.setRefreshing(false);
     }
 
     @Override
