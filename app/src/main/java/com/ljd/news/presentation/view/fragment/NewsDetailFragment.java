@@ -24,6 +24,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 
 import com.ljd.news.R;
@@ -56,11 +57,11 @@ public class NewsDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.fragment_news_deatil, container, false);
         ButterKnife.bind(this,layout);
-        this.initWebView();
+        this.setUpWebView();
         return layout;
     }
 
-    private void initWebView(){
+    private void setUpWebView(){
         String url = getArguments().getString(LOAD_URL);
         webView = new WebView(getActivity());
         WebSettings settings = webView.getSettings();
@@ -71,6 +72,13 @@ public class NewsDetailFragment extends Fragment {
         settings.setAppCachePath(getActivity().getCacheDir().getAbsolutePath() + "/webViewCache");
         settings.setAppCacheEnabled(true);
         settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        webView.setWebViewClient(new WebViewClient(){
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+        });
         webView.loadUrl(url);
         webViewContainer.addView(webView);
     }

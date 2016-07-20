@@ -131,12 +131,6 @@ public class ZhiHuStoryDetailFragment extends BaseFragment implements ZhiHuStory
         }
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        webView.onResume();
-    }
-
     private void loadZhiHuStoryDetails(){
         this.presenter.initialize();
     }
