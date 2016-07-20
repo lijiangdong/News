@@ -17,6 +17,8 @@
 package com.ljd.news.presentation.view.activity;
 
 import android.app.AlertDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
@@ -151,16 +153,14 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
                     this.navigateToShowShare();
                     break;
                 case R.id.nav_feedback:
+                    this.navigateToFeedback();
                     break;
                 case R.id.nav_author:
                     this.navigateToAuthor();
                     break;
-                case R.id.nav_clear_cache:
-                    break;
                 case R.id.nav_update:
                     this.navigateToUpdate();
                     break;
-
             }
             this.drawerLayout.closeDrawer(GravityCompat.START);
             return true;
@@ -198,13 +198,18 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
         oks.show(this);
     }
 
+    private void navigateToFeedback(){
+        Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                "mailto", "ljd2038@gmail.com", null));
+        startActivity(Intent.createChooser(intent, "选择邮件客户端:"));
+    }
     private void navigateToAuthor(){
         navigateToActivity(AuthorActivity.getCallingIntent(this));
     }
 
     private void navigateToUpdate(){
         if (isUpdate && updateDialog != null){
-            updateDialog.show();
+            this.updateDialog.show();
         }else {
             ToastUtils.showToastLong(getString(R.string.not_find_update));
         }
@@ -213,7 +218,7 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
     @Override
     public void onBackPressed() {
         if (drawerLayout != null && drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START);
+            this.drawerLayout.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
         }
