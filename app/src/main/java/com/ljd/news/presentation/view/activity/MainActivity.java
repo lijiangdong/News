@@ -111,8 +111,9 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
                 case R.id.nav_share:
                     this.showShare();
                     break;
+
             }
-            drawerLayout.closeDrawers();
+            drawerLayout.closeDrawer(GravityCompat.START);
             return true;
         });
     }
