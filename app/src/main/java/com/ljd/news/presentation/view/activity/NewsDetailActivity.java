@@ -59,9 +59,9 @@ public class NewsDetailActivity extends BaseActivity {
     }
 
     private void initView(){
-        setSupportActionBar(toolbar);
         String title = getIntent().getStringExtra(TITLE);
         this.toolbar.setTitle(title);
+        setSupportActionBar(toolbar);
         this.toolbar.setNavigationOnClickListener((view) -> NewsDetailActivity.this.onBackPressed());
         this.collapsingToolbarLayout.setTitle(title);
         LogUtil.e(title);
