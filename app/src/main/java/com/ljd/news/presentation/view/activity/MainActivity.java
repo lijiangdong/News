@@ -103,21 +103,6 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
         this.viewPager.setAdapter(adapter);
     }
 
-    private void setupDrawerContent() {
-        this.navigationView.setNavigationItemSelectedListener(item -> {
-            item.setChecked(true);
-            int id = item.getItemId();
-            switch (id){
-                case R.id.nav_share:
-                    this.showShare();
-                    break;
-
-            }
-            drawerLayout.closeDrawer(GravityCompat.START);
-            return true;
-        });
-    }
-
     private void setupFloatButton(){
         this.fab.hideMenu(false);
         new Handler().postDelayed(()->{
@@ -144,6 +129,56 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
 
     private void setupTabLayout(){
         this.tabLayout.setupWithViewPager(this.viewPager);
+    }
+
+    private void setupDrawerContent() {
+        this.navigationView.setNavigationItemSelectedListener(item -> {
+            item.setChecked(true);
+            int id = item.getItemId();
+            switch (id){
+                case R.id.nav_zhi_hu:
+                    break;
+                case R.id.nav_we_chat:
+                    break;
+                case R.id.nav_share:
+                    this.showShare();
+                    break;
+                case R.id.nav_feedback:
+                    break;
+                case R.id.nav_author:
+                    break;
+                case R.id.nav_clear_cache:
+                    break;
+                case R.id.nav_update:
+                    break;
+
+            }
+            drawerLayout.closeDrawer(GravityCompat.START);
+            return true;
+        });
+    }
+
+    private void showShare() {
+        ShareSDK.initSDK(this);
+        OnekeyShare oks = new OnekeyShare();
+        //关闭sso授权
+        oks.disableSSOWhenAuthorize();
+        // title标题，印象笔记、邮箱、信息、微信、人人网和QQ空间使用
+        oks.setTitle("share");
+        // titleUrl是标题的网络链接，仅在人人网和QQ空间使用
+        //oks.setTitleUrl("http://sharesdk.cn");
+        // text是分享文本，所有平台都需要这个字段
+        oks.setText("News下载地址");
+        // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
+        // oks.setImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片
+        // url仅在微信（包括好友和朋友圈）中使用
+        oks.setUrl("http://lijiangdong.com/app/release/apk/news.apk");
+        // site是分享此内容的网站名称，仅在QQ空间使用
+        oks.setSite(getString(R.string.app_name));
+        // siteUrl是分享此内容的网站地址，仅在QQ空间使用
+        // oks.setSiteUrl("http://sharesdk.cn");
+        // 启动分享GUI
+        oks.show(this);
     }
 
     @Override
@@ -189,26 +224,5 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
         builder.create().show();
     }
 
-    private void showShare() {
-        ShareSDK.initSDK(this);
-        OnekeyShare oks = new OnekeyShare();
-        //关闭sso授权
-        oks.disableSSOWhenAuthorize();
-        // title标题，印象笔记、邮箱、信息、微信、人人网和QQ空间使用
-        oks.setTitle("share");
-        // titleUrl是标题的网络链接，仅在人人网和QQ空间使用
-        //oks.setTitleUrl("http://sharesdk.cn");
-        // text是分享文本，所有平台都需要这个字段
-        oks.setText("News下载地址");
-        // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
-        // oks.setImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片
-        // url仅在微信（包括好友和朋友圈）中使用
-        oks.setUrl("http://lijiangdong.com/app/release/apk/news.apk");
-        // site是分享此内容的网站名称，仅在QQ空间使用
-        oks.setSite(getString(R.string.app_name));
-        // siteUrl是分享此内容的网站地址，仅在QQ空间使用
-        // oks.setSiteUrl("http://sharesdk.cn");
-        // 启动分享GUI
-        oks.show(this);
-    }
+
 }
