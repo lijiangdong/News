@@ -19,9 +19,11 @@ package com.ljd.news.presentation.view.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 
+import com.facebook.stetho.common.LogUtil;
 import com.ljd.news.R;
 import com.ljd.news.presentation.view.fragment.NewsDetailFragment;
 
@@ -42,6 +44,8 @@ public class NewsDetailActivity extends BaseActivity {
     }
 
     @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.collapsing_toolbar) CollapsingToolbarLayout collapsingToolbarLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,12 +59,16 @@ public class NewsDetailActivity extends BaseActivity {
     }
 
     private void initView(){
-        this.toolbar.setTitle(getIntent().getStringExtra(TITLE));
         setSupportActionBar(toolbar);
-        toolbar.setNavigationOnClickListener((view) -> NewsDetailActivity.this.onBackPressed());
+        String title = getIntent().getStringExtra(TITLE);
+        this.toolbar.setTitle(title);
+        this.toolbar.setNavigationOnClickListener((view) -> NewsDetailActivity.this.onBackPressed());
+        this.collapsingToolbarLayout.setTitle(title);
+        LogUtil.e(title);
         ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
+        if (actionBar != null){
             actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayShowTitleEnabled(true);
         }
     }
 }
