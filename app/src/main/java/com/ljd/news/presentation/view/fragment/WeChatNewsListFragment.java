@@ -93,7 +93,8 @@ public class WeChatNewsListFragment extends BaseFragment implements WeChatNewsLi
     }
 
     private void onClickRecycleViewItem(WeChatNewsResultModel weChatNewsResultModel){
-        startActivity(NewsDetailActivity.getCallingIntent(getActivity(), weChatNewsResultModel.getUrl()));
+        startActivity(NewsDetailActivity.getCallingIntent(getActivity(),
+                weChatNewsResultModel.getUrl(),weChatNewsResultModel.getTitle()));
     }
 
     private void setRefreshLayout(){

@@ -19,28 +19,48 @@ package com.ljd.news.presentation.view.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
 
 import com.ljd.news.R;
 import com.ljd.news.presentation.view.fragment.NewsDetailFragment;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class NewsDetailActivity extends BaseActivity {
 
     private static final String URL = "com.ljd.news.presentation.view.activity.URL";
+    private static final String TITLE = "com.ljd.news.presentation.view.activity.TITLE";
 
-    public static Intent getCallingIntent(Context context,String url){
+    public static Intent getCallingIntent(Context context,String url,String title){
         Intent intent = new Intent();
         intent.setClass(context,NewsDetailActivity.class);
         intent.putExtra(URL,url);
+        intent.putExtra(TITLE,title);
         return intent;
     }
 
+    @BindView(R.id.toolbar) Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_detail);
+        ButterKnife.bind(this);
+        initView();
         if (savedInstanceState == null){
             addFragment(R.id.fragment_container,
                     NewsDetailFragment.newInstance(getIntent().getStringExtra(URL)));
+        }
+    }
+
+    private void initView(){
+        this.toolbar.setTitle(getIntent().getStringExtra(TITLE));
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener((view) -> NewsDetailActivity.this.onBackPressed());
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
         }
     }
 }
