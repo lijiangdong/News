@@ -43,6 +43,7 @@ import com.ljd.news.presentation.view.fragment.BaseFragment;
 import com.ljd.news.presentation.view.fragment.WeChatNewsListFragment;
 import com.ljd.news.presentation.view.fragment.ZhiHuStoryListFragment;
 import com.ljd.news.presentation.view.service.DownloadService;
+import com.ljd.news.utils.ToastUtils;
 
 import javax.inject.Inject;
 
@@ -51,7 +52,8 @@ import butterknife.ButterKnife;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
 
-public class MainActivity extends BaseActivity implements HasComponent<MainComponent>, BaseFragment.HandleFloatActionButton,CheckNewsUpdateView{
+public class MainActivity extends BaseActivity implements HasComponent<MainComponent>,
+        BaseFragment.HandleFloatActionButton,CheckNewsUpdateView{
 
     @BindView(R.id.drawer_layout) DrawerLayout drawerLayout;
     @BindView(R.id.toolbar) Toolbar toolbar;
@@ -61,6 +63,9 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
     @BindView(R.id.tabs) TabLayout tabLayout;
 
     @Inject CheckNewsUpdatePresenter presenter;
+
+    private boolean isUpdate;
+    private AlertDialog updateDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,7 +148,7 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
                     this.navigateToWeChat();
                     break;
                 case R.id.nav_share:
-                    this.showShare();
+                    this.navigateToShowShare();
                     break;
                 case R.id.nav_feedback:
                     break;
@@ -153,6 +158,7 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
                 case R.id.nav_clear_cache:
                     break;
                 case R.id.nav_update:
+                    this.navigateToUpdate();
                     break;
 
             }
@@ -169,7 +175,7 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
         this.viewPager.setCurrentItem(1);
     }
 
-    private void showShare() {
+    private void navigateToShowShare() {
         ShareSDK.initSDK(this);
         OnekeyShare oks = new OnekeyShare();
         //关闭sso授权
@@ -194,6 +200,14 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
 
     private void navigateToAuthor(){
         navigateToActivity(AuthorActivity.getCallingIntent(this));
+    }
+
+    private void navigateToUpdate(){
+        if (isUpdate && updateDialog != null){
+            updateDialog.show();
+        }else {
+            ToastUtils.showToastLong(getString(R.string.not_find_update));
+        }
     }
 
     @Override
@@ -226,6 +240,7 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
 
     @Override
     public void updatePromptView(String versionName, String message) {
+        this.isUpdate = true;
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(getString(R.string.version_update));
         builder.setCancelable(true);
@@ -236,6 +251,7 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
         builder.setNegativeButton(getString(R.string.cancel),(dialog, which) -> {
             dialog.dismiss();
         });
-        builder.create().show();
+        this.updateDialog = builder.create();
+        this.updateDialog.show();
     }
 }
