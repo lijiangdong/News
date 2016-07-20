@@ -93,6 +93,8 @@
 
         <activity android:name=".presentation.view.activity.NewsDetailActivity">
         </activity>
+        <activity android:name=".presentation.view.activity.AuthorActivity">
+        </activity>
     </application>
 
 </manifest>

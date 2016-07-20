@@ -137,8 +137,10 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
             int id = item.getItemId();
             switch (id){
                 case R.id.nav_zhi_hu:
+                    this.navigateToZhiHu();
                     break;
                 case R.id.nav_we_chat:
+                    this.navigateToWeChat();
                     break;
                 case R.id.nav_share:
                     this.showShare();
@@ -146,6 +148,7 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
                 case R.id.nav_feedback:
                     break;
                 case R.id.nav_author:
+                    this.navigateToAuthor();
                     break;
                 case R.id.nav_clear_cache:
                     break;
@@ -153,9 +156,17 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
                     break;
 
             }
-            drawerLayout.closeDrawer(GravityCompat.START);
+            this.drawerLayout.closeDrawer(GravityCompat.START);
             return true;
         });
+    }
+
+    private void navigateToZhiHu(){
+        this.viewPager.setCurrentItem(0);
+    }
+
+    private void navigateToWeChat(){
+        this.viewPager.setCurrentItem(1);
     }
 
     private void showShare() {
@@ -179,6 +190,10 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
         // oks.setSiteUrl("http://sharesdk.cn");
         // 启动分享GUI
         oks.show(this);
+    }
+
+    private void navigateToAuthor(){
+        navigateToActivity(AuthorActivity.getCallingIntent(this));
     }
 
     @Override
@@ -223,6 +238,4 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
         });
         builder.create().show();
     }
-
-
 }
