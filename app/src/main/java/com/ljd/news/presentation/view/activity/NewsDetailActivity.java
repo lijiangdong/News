@@ -19,7 +19,6 @@ package com.ljd.news.presentation.view.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 
@@ -44,7 +43,6 @@ public class NewsDetailActivity extends BaseActivity {
     }
 
     @BindView(R.id.toolbar) Toolbar toolbar;
-    @BindView(R.id.collapsing_toolbar) CollapsingToolbarLayout collapsingToolbarLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +61,6 @@ public class NewsDetailActivity extends BaseActivity {
         this.toolbar.setTitle(title);
         setSupportActionBar(toolbar);
         this.toolbar.setNavigationOnClickListener((view) -> NewsDetailActivity.this.onBackPressed());
-        this.collapsingToolbarLayout.setTitle(title);
         LogUtil.e(title);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null){
