@@ -22,7 +22,6 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 
-import com.facebook.stetho.common.LogUtil;
 import com.ljd.news.R;
 import com.ljd.news.presentation.view.fragment.NewsDetailFragment;
 
@@ -61,7 +60,6 @@ public class NewsDetailActivity extends BaseActivity {
         this.toolbar.setTitle(title);
         setSupportActionBar(toolbar);
         this.toolbar.setNavigationOnClickListener((view) -> NewsDetailActivity.this.onBackPressed());
-        LogUtil.e(title);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null){
             actionBar.setDisplayHomeAsUpEnabled(true);

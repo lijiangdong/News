@@ -36,6 +36,10 @@ android {
         exclude 'META-INF/NOTICE'
         exclude 'META-INF/LICENSE'
     }
+
+    lintOptions {
+        checkReleaseBuilds false
+    }
 }
 
 dependencies {
@@ -68,5 +72,4 @@ dependencies {
     debugCompile developmentDependencies.stethoOkhttp
 
     testCompile testDependencies.junit
-    compile 'com.android.support:support-v4:23.4.0'
 }
