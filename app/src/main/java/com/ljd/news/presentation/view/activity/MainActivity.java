@@ -20,16 +20,13 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
-import android.view.animation.AnimationUtils;
 
 import com.ljd.news.R;
 import com.ljd.news.presentation.internal.di.HasComponent;
@@ -39,8 +36,6 @@ import com.ljd.news.presentation.internal.di.modules.ZhiHuModule;
 import com.ljd.news.presentation.presenter.CheckNewsUpdatePresenter;
 import com.ljd.news.presentation.view.CheckNewsUpdateView;
 import com.ljd.news.presentation.view.adapter.MainViewPageAdapter;
-import com.ljd.news.presentation.view.component.FloatingActionButton;
-import com.ljd.news.presentation.view.component.FloatingActionMenu;
 import com.ljd.news.presentation.view.fragment.BaseFragment;
 import com.ljd.news.presentation.view.fragment.WeChatNewsListFragment;
 import com.ljd.news.presentation.view.fragment.ZhiHuStoryListFragment;
@@ -61,7 +56,7 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
     @BindView(R.id.toolbar) Toolbar toolbar;
     @BindView(R.id.nav_view) NavigationView navigationView;
     @BindView(R.id.viewpager) ViewPager viewPager;
-    @BindView(R.id.fab) FloatingActionMenu fab;
+//    @BindView(R.id.fab) FloatingActionMenu fab;
     @BindView(R.id.tabs) TabLayout tabLayout;
 
     @Inject CheckNewsUpdatePresenter presenter;
@@ -88,7 +83,7 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
         this.setupToolbar();
         this.setupDrawerContent();
         this.setupViewPager();
-        this.setupFloatButton();
+//        this.setupFloatButton();
         this.setupTabLayout();
     }
 
@@ -110,7 +105,8 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
         this.viewPager.setAdapter(adapter);
     }
 
-    private void setupFloatButton(){
+/*    private void setupFloatButton(){
+        this.fab.setVisibility(View.GONE);
         this.fab.hideMenu(false);
         new Handler().postDelayed(()->{
             fab.showMenu(true);
@@ -132,7 +128,7 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
             programFab1.setLabelTextColor(ContextCompat.getColor(MainActivity.this, R.color.black));
         });
 
-    }
+    }*/
 
     private void setupTabLayout(){
         this.tabLayout.setupWithViewPager(this.viewPager);
@@ -229,12 +225,12 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
 
     @Override
     public void hideFloatActionButton() {
-        this.fab.hideMenu(true);
+//        this.fab.hideMenu(true);
     }
 
     @Override
     public void showFloatActionButton() {
-        this.fab.showMenu(true);
+//        this.fab.showMenu(true);
     }
 
     @Override

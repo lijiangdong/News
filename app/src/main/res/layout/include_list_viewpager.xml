@@ -34,7 +34,7 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    <com.ljd.news.presentation.view.component.FloatingActionMenu
+<!--    <com.ljd.news.presentation.view.component.FloatingActionMenu
         android:id="@+id/fab"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -63,6 +63,6 @@
             android:layout_height="wrap_content"
             fab:fab_size="mini"
             fab:fab_label="Menu item 3" />
-    </com.ljd.news.presentation.view.component.FloatingActionMenu>
+    </com.ljd.news.presentation.view.component.FloatingActionMenu>-->
 
 </android.support.design.widget.CoordinatorLayout>
