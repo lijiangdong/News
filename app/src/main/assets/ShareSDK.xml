@@ -21,7 +21,7 @@
 		Id="2"
 		SortId="2"/>
 
-	<WechatMoments
+<!--	<WechatMoments
 		AppId="wx4c0bbd7dd8a4ca64"
 		AppSecret="0f91d49a21dc916eb567cfef1f67d43c"
 		BypassApproval="true"
@@ -34,7 +34,7 @@
 		AppSecret="0f91d49a21dc916eb567cfef1f67d43c"
 		Enable="false"
 		Id="5"
-		SortId="5"/>
+		SortId="5"/>-->
 
 
 	<!-- ShareByAppClient标识是否使用微博客户端分享，默认是false -->
@@ -44,14 +44,14 @@
 		Enable="true"
 		Id="4"
 		ShareByAppClient="true"
-		SortId="4"/>
-
+		SortId="3"/>
+<!--
 	<QZone
 		AppId="1104646053"
 		AppKey="bYlW9M39pwYjYhMf"
 		Enable="true"
 		Id="6"
 		ShareByAppClient="true"
-		SortId="6"/>
+		SortId="6"/>-->
 
 </DevInfor>
