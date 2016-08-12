@@ -65,7 +65,7 @@ dependencies {
     compile appDependencies.converterGson
     compile appDependencies.rxjavaAdapter
     compile appDependencies.glide
-
+    compile appDependencies.andfix
 
     debugCompile developmentDependencies.leakCanary
     debugCompile developmentDependencies.stetho

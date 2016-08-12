@@ -18,6 +18,7 @@ package com.ljd.news.presentation;
 
 import android.app.Application;
 
+import com.alipay.euler.andfix.patch.PatchManager;
 import com.facebook.stetho.Stetho;
 import com.ljd.news.presentation.internal.di.components.ApplicationComponent;
 import com.ljd.news.presentation.internal.di.components.DaggerApplicationComponent;
@@ -33,6 +34,7 @@ import static timber.log.Timber.DebugTree;
 public class NewsApplication extends Application {
 
     private ApplicationComponent applicationComponent;
+    private PatchManager patchManager;
 
     @Override
     public void onCreate() {
@@ -43,6 +45,20 @@ public class NewsApplication extends Application {
         initializeInjector();
         initStetho();
         initShare();
+        initAndFix();
+    }
+
+    private void initAndFix(){
+        patchManager = new PatchManager(this);
+        patchManager.init(NewsConfig.VERSION_NAME);
+        patchManager.loadPatch();
+//        Intent patchDownloadIntent = new Intent(this, PatchDownloadIntentService.class);
+//        patchDownloadIntent.putExtra("url", "http://xxx/patch/app-release-fix-shine.apatch");
+//        startService(patchDownloadIntent);
+    }
+
+    public PatchManager getPatchManager() {
+        return patchManager;
     }
 
     private void initToastUtils(){
@@ -75,4 +91,5 @@ public class NewsApplication extends Application {
     public ApplicationComponent getApplicationComponent() {
         return this.applicationComponent;
     }
+
 }
