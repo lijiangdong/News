@@ -29,6 +29,11 @@
             android:icon="@drawable/ic_menu_update"
             android:title="检查更新" />
 
+        <item
+            android:id="@+id/clear_patch"
+            android:icon="@drawable/ic_menu_update"
+            android:title="清空补丁" />
+
     </group>
 
 </menu>

@@ -18,7 +18,6 @@ package com.ljd.news.data.net;
 
 import android.content.Context;
 
-import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.ljd.news.utils.NetWorkUtils;
 
 import java.io.File;
@@ -89,7 +88,7 @@ public class DefaultHttpClient implements HttpClient{
                 .addNetworkInterceptor(REWRITE_CACHE_CONTROL_INTERCEPTOR)
                 .addInterceptor(REWRITE_CACHE_CONTROL_INTERCEPTOR)
                 .addInterceptor(httpLoggingInterceptor)
-                .addInterceptor(new StethoInterceptor())
+//                .addInterceptor(new StethoInterceptor())
                 .cache(cache)
                 .build();
     }

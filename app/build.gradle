@@ -17,7 +17,21 @@ android {
         versionName globalConfiguration.versionName
     }
 
+    signingConfigs {
+        release {
+            storeFile file("News.jks")
+            storePassword "android"
+            keyAlias "ljd"
+            keyPassword "android"
+        }
+    }
+
     buildTypes {
+        debug {
+            minifyEnabled globalConfiguration.minifyEnabled  //设置代码进行混淆
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
         release {
             minifyEnabled globalConfiguration.minifyEnabled
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'

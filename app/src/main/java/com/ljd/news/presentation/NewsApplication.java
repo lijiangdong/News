@@ -17,14 +17,16 @@
 package com.ljd.news.presentation;
 
 import android.app.Application;
+import android.os.Environment;
 
 import com.alipay.euler.andfix.patch.PatchManager;
-import com.facebook.stetho.Stetho;
+import com.ljd.news.AndFixPatch;
 import com.ljd.news.presentation.internal.di.components.ApplicationComponent;
 import com.ljd.news.presentation.internal.di.components.DaggerApplicationComponent;
 import com.ljd.news.presentation.internal.di.modules.ApplicationModule;
 import com.ljd.news.utils.ToastUtils;
-import com.squareup.leakcanary.LeakCanary;
+
+import java.io.IOException;
 
 import cn.sharesdk.framework.ShareSDK;
 import timber.log.Timber;
@@ -40,18 +42,25 @@ public class NewsApplication extends Application {
     public void onCreate() {
         super.onCreate();
         initToastUtils();
-        initLeakCanary();
+//        initLeakCanary();
         initTimber();
         initializeInjector();
-        initStetho();
+//        initStetho();
         initShare();
         initAndFix();
     }
 
     private void initAndFix(){
-        patchManager = new PatchManager(this);
+        patchManager = AndFixPatch.getInstance(this);
         patchManager.init(NewsConfig.VERSION_NAME);
         patchManager.loadPatch();
+        String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/hack.apatch";
+        try {
+            patchManager.addPatch(path);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+//        patchManager.addPatch();
 //        Intent patchDownloadIntent = new Intent(this, PatchDownloadIntentService.class);
 //        patchDownloadIntent.putExtra("url", "http://xxx/patch/app-release-fix-shine.apatch");
 //        startService(patchDownloadIntent);
@@ -65,9 +74,9 @@ public class NewsApplication extends Application {
         ToastUtils.register(this);
     }
 
-    private void initLeakCanary(){
-        LeakCanary.install(this);
-    }
+//    private void initLeakCanary(){
+//        LeakCanary.install(this);
+//    }
 
     private void initTimber(){
         if (NewsConfig.IS_DEBUG){
@@ -80,9 +89,9 @@ public class NewsApplication extends Application {
                 .build();
     }
 
-    private void initStetho(){
-        Stetho.initializeWithDefaults(this);
-    }
+//    private void initStetho(){
+//        Stetho.initializeWithDefaults(this);
+//    }
 
     private void initShare(){
         ShareSDK.initSDK(this);
