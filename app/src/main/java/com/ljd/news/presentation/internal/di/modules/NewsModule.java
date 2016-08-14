@@ -18,7 +18,7 @@ package com.ljd.news.presentation.internal.di.modules;
 
 import com.ljd.news.domain.interactor.DownloadNewsApk;
 import com.ljd.news.domain.interactor.UseCase;
-import com.ljd.news.presentation.internal.di.PerActivity;
+import com.ljd.news.presentation.internal.di.PerService;
 
 import javax.inject.Named;
 
@@ -28,7 +28,7 @@ import dagger.Provides;
 @Module
 public class NewsModule {
 
-    @Provides @PerActivity @Named("downloadNewsApk")
+    @Provides @PerService @Named("downloadNewsApk")
     UseCase provideDownloadNewsApk(DownloadNewsApk downloadNewsApk){
         return downloadNewsApk;
     }

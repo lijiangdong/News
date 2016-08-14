@@ -16,13 +16,13 @@
 
 package com.ljd.news.presentation.internal.di.components;
 
-import com.ljd.news.presentation.internal.di.PerActivity;
+import com.ljd.news.presentation.internal.di.PerService;
 import com.ljd.news.presentation.internal.di.modules.NewsModule;
 import com.ljd.news.presentation.view.service.DownloadService;
 
 import dagger.Component;
 
-@PerActivity
+@PerService
 @Component(dependencies = ApplicationComponent.class, modules =  NewsModule.class)
 public interface NewsComponent {
     void inject(DownloadService service);

@@ -20,7 +20,7 @@ import android.os.Environment;
 
 import com.ljd.news.domain.interactor.ResponseSubscriber;
 import com.ljd.news.domain.interactor.UseCase;
-import com.ljd.news.presentation.internal.di.PerActivity;
+import com.ljd.news.presentation.internal.di.PerService;
 import com.ljd.news.presentation.view.DownloadNewsApkView;
 
 import java.io.BufferedInputStream;
@@ -34,7 +34,7 @@ import javax.inject.Named;
 
 import okhttp3.ResponseBody;
 
-@PerActivity
+@PerService
 public class DownloadNewsApkPresenter implements Presenter<DownloadNewsApkView> {
 
     private UseCase downloadApkUseCase;
