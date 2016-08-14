@@ -20,13 +20,14 @@ import android.app.Application;
 import android.os.Environment;
 
 import com.alipay.euler.andfix.patch.PatchManager;
-import com.ljd.news.AndFixPatch;
 import com.ljd.news.presentation.internal.di.components.ApplicationComponent;
 import com.ljd.news.presentation.internal.di.components.DaggerApplicationComponent;
 import com.ljd.news.presentation.internal.di.modules.ApplicationModule;
 import com.ljd.news.utils.ToastUtils;
 
 import java.io.IOException;
+
+import javax.inject.Inject;
 
 import cn.sharesdk.framework.ShareSDK;
 import timber.log.Timber;
@@ -36,22 +37,23 @@ import static timber.log.Timber.DebugTree;
 public class NewsApplication extends Application {
 
     private ApplicationComponent applicationComponent;
-    private PatchManager patchManager;
+
+    @Inject
+    PatchManager patchManager;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        initializeInjector();
         initToastUtils();
 //        initLeakCanary();
         initTimber();
-        initializeInjector();
 //        initStetho();
         initShare();
         initAndFix();
     }
 
     private void initAndFix(){
-        patchManager = AndFixPatch.getInstance(this);
         patchManager.init(NewsConfig.VERSION_NAME);
         patchManager.loadPatch();
         String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/hack.apatch";

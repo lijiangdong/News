@@ -18,6 +18,7 @@ package com.ljd.news.presentation.internal.di.components;
 
 import android.content.Context;
 
+import com.alipay.euler.andfix.patch.PatchManager;
 import com.ljd.news.data.repository.AvatarDataRepository;
 import com.ljd.news.domain.executor.PostExecutionThread;
 import com.ljd.news.domain.executor.ThreadExecutor;
@@ -41,4 +42,5 @@ public interface ApplicationComponent {
     ZhiHuRepository zhiHuRepository();
     NewsRepository newsRepository();
     AvatarDataRepository avatarDataRepository();
+    PatchManager patchManager();
 }

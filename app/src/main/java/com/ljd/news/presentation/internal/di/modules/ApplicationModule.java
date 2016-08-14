@@ -18,16 +18,17 @@ package com.ljd.news.presentation.internal.di.modules;
 
 import android.content.Context;
 
-import com.ljd.news.data.repository.NewsDataRepository;
-import com.ljd.news.domain.repository.NewsRepository;
-import com.ljd.news.presentation.NewsApplication;
+import com.alipay.euler.andfix.patch.PatchManager;
 import com.ljd.news.data.excutor.JobExecutor;
 import com.ljd.news.data.net.DefaultHttpClient;
 import com.ljd.news.data.net.HttpClient;
+import com.ljd.news.data.repository.NewsDataRepository;
 import com.ljd.news.data.repository.ZhiHuDataRepository;
 import com.ljd.news.domain.executor.PostExecutionThread;
 import com.ljd.news.domain.executor.ThreadExecutor;
+import com.ljd.news.domain.repository.NewsRepository;
 import com.ljd.news.domain.repository.ZhiHuRepository;
+import com.ljd.news.presentation.NewsApplication;
 import com.ljd.news.presentation.UIThread;
 
 import javax.inject.Singleton;
@@ -72,6 +73,11 @@ public class ApplicationModule {
     @Provides @Singleton
     NewsRepository provideNewsRepository(NewsDataRepository newsDataRepository){
         return newsDataRepository;
+    }
+
+    @Provides @Singleton
+    PatchManager providePackageManager(){
+        return new PatchManager(application.getApplicationContext());
     }
 
 }

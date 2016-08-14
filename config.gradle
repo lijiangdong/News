@@ -23,6 +23,7 @@ ext{
     okHttpLogVersion = '3.3.1'
     glideVersion = '3.7.0'
     andfixVersion = '0.4.0@aar'
+    umengVersioin = 'latest.integration'
 
     leakCanaryVersion = '1.4-beta2'
     stethoVersion = '1.3.1';
@@ -44,7 +45,8 @@ ext{
             converterGson:          "com.squareup.retrofit2:converter-gson:${gsonVersion}",
             rxjavaAdapter:          "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}",
             glide:                  "com.github.bumptech.glide:glide:${glideVersion}",
-            andfix:                 "com.alipay.euler:andfix:${andfixVersion}"
+            andfix:                 "com.alipay.euler:andfix:${andfixVersion}",
+            umeng:                  "com.umeng.analytics:analytics:${umengVersioin}"
     ]
 
     appTestDependencies = [

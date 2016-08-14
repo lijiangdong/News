@@ -28,7 +28,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 
-import com.ljd.news.AndFixPatch;
+import com.alipay.euler.andfix.patch.PatchManager;
 import com.ljd.news.R;
 import com.ljd.news.presentation.internal.di.HasComponent;
 import com.ljd.news.presentation.internal.di.components.DaggerMainComponent;
@@ -61,6 +61,7 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
     @BindView(R.id.tabs) TabLayout tabLayout;
 
     @Inject CheckNewsUpdatePresenter presenter;
+    @Inject PatchManager patchManager;
 
     private boolean isUpdate;
     private AlertDialog updateDialog;
@@ -156,7 +157,7 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
                     this.navigateToUpdate();
                     break;
                 case R.id.clear_patch:
-                    AndFixPatch.getInstance(this).removeAllPatch();
+                    patchManager.removeAllPatch();
                     break;
             }
             this.drawerLayout.closeDrawer(GravityCompat.START);
@@ -173,7 +174,7 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
     }
 
     private void navigateToShowShare() {
-        crash();
+//        crash();
         ShareSDK.initSDK(this);
         OnekeyShare oks = new OnekeyShare();
         //关闭sso授权
@@ -197,14 +198,14 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
     }
 
     private void navigateToFeedback(){
-        crash();
+//        crash();
         Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
                 "mailto", "ljd2038@gmail.com", null));
         startActivity(Intent.createChooser(intent, "选择邮件客户端:"));
     }
 
     private void navigateToUpdate(){
-        crash();
+//        crash();
         if (isUpdate && updateDialog != null){
             this.updateDialog.show();
         }else {
