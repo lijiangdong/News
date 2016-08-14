@@ -45,10 +45,9 @@ public class NewsApplication extends Application {
     public void onCreate() {
         super.onCreate();
         initializeInjector();
+        getApplicationComponent().inject(this);
         initToastUtils();
-//        initLeakCanary();
         initTimber();
-//        initStetho();
         initShare();
         initAndFix();
     }
@@ -62,10 +61,6 @@ public class NewsApplication extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        patchManager.addPatch();
-//        Intent patchDownloadIntent = new Intent(this, PatchDownloadIntentService.class);
-//        patchDownloadIntent.putExtra("url", "http://xxx/patch/app-release-fix-shine.apatch");
-//        startService(patchDownloadIntent);
     }
 
     public PatchManager getPatchManager() {
@@ -76,9 +71,6 @@ public class NewsApplication extends Application {
         ToastUtils.register(this);
     }
 
-//    private void initLeakCanary(){
-//        LeakCanary.install(this);
-//    }
 
     private void initTimber(){
         if (NewsConfig.IS_DEBUG){
@@ -90,10 +82,6 @@ public class NewsApplication extends Application {
                 .applicationModule(new ApplicationModule(this))
                 .build();
     }
-
-//    private void initStetho(){
-//        Stetho.initializeWithDefaults(this);
-//    }
 
     private void initShare(){
         ShareSDK.initSDK(this);
