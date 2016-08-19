@@ -6,13 +6,15 @@ import com.ljd.news.domain.repository.NewsRepository;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.verifyZeroInteractions;
 
+@RunWith(MockitoJUnitRunner.class)
 public class DownloadNewsApkTest {
 
     private DownloadNewsApk downloadNewsApk;
@@ -23,7 +25,6 @@ public class DownloadNewsApkTest {
 
     @Before
     public void setUp(){
-        MockitoAnnotations.initMocks(this);
         downloadNewsApk = new DownloadNewsApk(mockThreadExecutor,mockPostExecutionThread,
                 mockNewsRepository);
     }

@@ -87,15 +87,31 @@ dependencies {
     debugCompile developmentDependencies.stetho
     debugCompile developmentDependencies.stethoOkhttp
 
-    //test
+    // Dependencies for local unit tests
     testCompile testDependencies.junit
-    testCompile testDependencies.assertj
     testCompile testDependencies.mockito
-    testCompile testDependencies.robolectric
-    testCompile testDependencies.dexmaker
-    testCompile testDependencies.dexmakerMockito
-    testCompile testDependencies.supportAnnotations
-    testCompile testDependencies.runner
-    testCompile testDependencies.espresso
-    testCompile testDependencies.testingSupportLib
+    testCompile testDependencies.hamcrest
+
+    // Android Testing Support Library's runner and rules
+    androidTestCompile testDependencies.runner
+    androidTestCompile testDependencies.rules
+
+    // Dependencies for Android unit tests
+    androidTestCompile testDependencies.junit
+    androidTestCompile testDependencies.mockito
+    androidTestCompile testDependencies.dexmaker
+    androidTestCompile testDependencies.dexmakerMockito
+
+    // Espresso UI Testing
+    androidTestCompile testDependencies.espresso
+    androidTestCompile (testDependencies.espressoContrib)
+    androidTestCompile testDependencies.espressoIntents
+
+    // Resolve conflicts between main and test APK:
+    androidTestCompile testDependencies.supportAnnotations
+    androidTestCompile testDependencies.testingSupportLib
+    androidTestCompile testDependencies.supportV4
+    androidTestCompile testDependencies.recyclerviewV7
+    androidTestCompile testDependencies.appcompat
+    androidTestCompile testDependencies.design
 }
