@@ -91,6 +91,7 @@ dependencies {
     testCompile testDependencies.junit
     testCompile testDependencies.mockito
     testCompile testDependencies.hamcrest
+    testCompile testDependencies.robolectric
 
     // Android Testing Support Library's runner and rules
     androidTestCompile testDependencies.runner
@@ -106,6 +107,7 @@ dependencies {
     androidTestCompile testDependencies.espresso
     androidTestCompile (testDependencies.espressoContrib)
     androidTestCompile testDependencies.espressoIntents
+    androidTestCompile testDependencies.robolectric
 
     // Resolve conflicts between main and test APK:
     androidTestCompile testDependencies.supportAnnotations

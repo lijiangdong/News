@@ -27,9 +27,9 @@ import rx.Observable;
 public class GetWeChatNews extends UseCase {
 
     private final AvatarDataRepository avatarDataRepository;
-    private final String APP_KEY = "53b4892b3f764cc2a19e4896546aa8e8";
-    private final int RAWS = 10;
 
+    private static final String APP_KEY = "53b4892b3f764cc2a19e4896546aa8e8";
+    private static final int RAWS = 10;
     private int page = 1;
 
     @Inject
