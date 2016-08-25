@@ -23,6 +23,7 @@ import com.alipay.euler.andfix.patch.PatchManager;
 import com.ljd.news.presentation.internal.di.components.ApplicationComponent;
 import com.ljd.news.presentation.internal.di.components.DaggerApplicationComponent;
 import com.ljd.news.presentation.internal.di.modules.ApplicationModule;
+import com.ljd.news.presentation.internal.di.modules.RepositoryModule;
 import com.ljd.news.utils.ToastUtils;
 
 import java.io.IOException;
@@ -79,6 +80,7 @@ public class NewsApplication extends Application {
     }
     private void initializeInjector() {
         this.applicationComponent = DaggerApplicationComponent.builder()
+                .repositoryModule(new RepositoryModule())
                 .applicationModule(new ApplicationModule(this))
                 .build();
     }

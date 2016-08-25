@@ -26,14 +26,16 @@ import com.ljd.news.domain.repository.NewsRepository;
 import com.ljd.news.domain.repository.ZhiHuRepository;
 import com.ljd.news.presentation.NewsApplication;
 import com.ljd.news.presentation.internal.di.modules.ApplicationModule;
+import com.ljd.news.presentation.internal.di.modules.RepositoryModule;
 
 import javax.inject.Singleton;
 
 import dagger.Component;
 
 @Singleton
-@Component(modules = ApplicationModule.class)
+@Component(modules = {ApplicationModule.class, RepositoryModule.class})
 public interface ApplicationComponent {
+
     void inject(NewsApplication newsApplication);
 
     Context context();

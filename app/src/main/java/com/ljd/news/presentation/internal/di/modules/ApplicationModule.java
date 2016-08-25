@@ -22,12 +22,8 @@ import com.alipay.euler.andfix.patch.PatchManager;
 import com.ljd.news.data.excutor.JobExecutor;
 import com.ljd.news.data.net.DefaultHttpClient;
 import com.ljd.news.data.net.HttpClient;
-import com.ljd.news.data.repository.NewsDataRepository;
-import com.ljd.news.data.repository.ZhiHuDataRepository;
 import com.ljd.news.domain.executor.PostExecutionThread;
 import com.ljd.news.domain.executor.ThreadExecutor;
-import com.ljd.news.domain.repository.NewsRepository;
-import com.ljd.news.domain.repository.ZhiHuRepository;
 import com.ljd.news.presentation.NewsApplication;
 import com.ljd.news.presentation.UIThread;
 
@@ -63,16 +59,6 @@ public class ApplicationModule {
     @Provides @Singleton
     PostExecutionThread providePostExecutionThread(UIThread uiThread) {
         return uiThread;
-    }
-
-    @Provides @Singleton
-    ZhiHuRepository provideZhiHuRepository(ZhiHuDataRepository zhiHuDataRepository) {
-        return zhiHuDataRepository;
-    }
-
-    @Provides @Singleton
-    NewsRepository provideNewsRepository(NewsDataRepository newsDataRepository){
-        return newsDataRepository;
     }
 
     @Provides @Singleton
